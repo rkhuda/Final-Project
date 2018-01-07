@@ -29,11 +29,11 @@ public class Maze extends JFrame {
 	//	Pacman = new ImageIcon("Pacman.png");
 	ImageIcon Pacman = new ImageIcon("Pacman.png");
 	Image image = Pacman.getImage(); // transform it 
-	Image newimg = image.getScaledInstance(20,20,  java.awt.Image.SCALE_SMOOTH); 
+	Image newimg = image.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH); 
 	Pacman = new ImageIcon(newimg);  // transform it back
 
-	pane.setLayout(new GridLayout(50,50));
-	panels = new JPanel[50][49];
+	pane.setLayout(new GridLayout(40,40));
+	panels = new JPanel[40][39];
 	for (int x = 0; x < panels.length;x++) {
             for (int y = 0; y < panels[x].length;y++) {
                 panels[x][y] = new JPanel(new GridLayout(1,1));
