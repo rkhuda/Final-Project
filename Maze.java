@@ -1,7 +1,8 @@
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
-
+import java.awt.event.*;
+import javax.swing.border.*;
 //import java.awt.Graphics;
 //import java.awt.BorderLayout;
 //import java.awt.Container;
@@ -12,9 +13,44 @@ import javax.swing.*;
 //import javax.swing.JFrame;
 //import javax.swing.JPanel;
 
-public class Maze extends JPanel {
+public class Maze extends JFrame {
+    private Container pane;
+    private JPanel[][] panels;
+    private ImageIcon Pacman;
+   
+ public Maze(){
+        this.setTitle("PACMAN");
+	this.setSize(900,900);
+	this.setLocation(100,100);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
+pane = this.getContentPane();
+	//	Pacman = new ImageIcon("Pacman.png");
+ImageIcon Pacman = new ImageIcon("Pacman.png");
+Image image = Pacman.getImage(); // transform it 
+Image newimg = image.getScaledInstance(50,50,  java.awt.Image.SCALE_SMOOTH); 
+Pacman = new ImageIcon(newimg);  // transform it back
 
-    public void paint(Graphics g) {
+	pane.setLayout(new GridLayout(5,5));
+	panels = new JPanel[4][4];
+	for (int x = 0; x < panels.length;x++) {
+            for (int y = 0; y < panels[x].length;y++) {
+                panels[x][y] = new JPanel(new GridLayout(1,1));
+		JPanel p = panels[x][y];
+		JLabel b = new JLabel();
+		if (x == 2 && y == 2) {
+                    b.setIcon(Pacman);
+                    b.setBackground(Color.YELLOW);
+		   
+
+		}
+		p.add(b);
+		pane.add(p);
+	    }
+
+	}
+ }
+    /* public void paint(Graphics g) {
 
 	Graphics2D g2 = (Graphics2D) g;
 	g2.setStroke(new BasicStroke(10));
@@ -22,15 +58,17 @@ public class Maze extends JPanel {
 	g2.draw(new Rectangle2D.Float(0, 0, 500, 500));
     }
 
-    public static void main(String[] args){
-	JFrame frame = new JFrame();
-	frame.setBackground(Color.black);
-	frame.add(new Maze());
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setBounds(500, 200, 500, 520);
-	frame.setVisible(true);
     }
-    /*
+
+    */
+    
+    public static void main(String[] args){
+	Maze ma = new Maze();
+	
+	ma.setVisible(true);
+    }
+ }
+    /* 
     public Maze() {
 
 	JFrame frame = new JFrame("MazeFoundation");
@@ -55,4 +93,4 @@ public class Maze extends JPanel {
     }
     */
     
-}
+
