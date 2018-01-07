@@ -17,16 +17,16 @@ public class Maze extends JFrame {
     private Walls border;
 
     public Maze(){
-	this.border = new Walls();
+	border = new Walls();
     }
 
     public static void main(String[] args){
-        Maze frame = new Maze();
-	frame.setTitle("Pacman");
-	frame.setBackground(Color.black);
-	frame.getContentPane().add(frame.border);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setBounds(500, 200, 500, 520);
-	frame.setVisible(true);
+        Maze maze = new Maze();
+	maze.setTitle("Pacman");
+	maze.setBackground(Color.black);
+	maze.getContentPane().add(maze.border);
+	maze.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	maze.setBounds(500, 200, 500, 520);
+	maze.setVisible(true);
     }
 }
