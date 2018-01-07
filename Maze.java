@@ -23,26 +23,34 @@ public class Maze extends JFrame {
 	this.setSize(900,900);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-	
-pane = this.getContentPane();
+	//	this.setBackground(Color.BLACK);
+	pane = getContentPane();
+	//	this.setBackground(Color.red);
 	//	Pacman = new ImageIcon("Pacman.png");
-ImageIcon Pacman = new ImageIcon("Pacman.png");
-Image image = Pacman.getImage(); // transform it 
-Image newimg = image.getScaledInstance(50,50,  java.awt.Image.SCALE_SMOOTH); 
-Pacman = new ImageIcon(newimg);  // transform it back
+	ImageIcon Pacman = new ImageIcon("Pacman.png");
+	Image image = Pacman.getImage(); // transform it 
+	Image newimg = image.getScaledInstance(20,20,  java.awt.Image.SCALE_SMOOTH); 
+	Pacman = new ImageIcon(newimg);  // transform it back
 
-	pane.setLayout(new GridLayout(5,5));
-	panels = new JPanel[4][4];
+	pane.setLayout(new GridLayout(50,50));
+	panels = new JPanel[50][49];
 	for (int x = 0; x < panels.length;x++) {
             for (int y = 0; y < panels[x].length;y++) {
                 panels[x][y] = new JPanel(new GridLayout(1,1));
 		JPanel p = panels[x][y];
 		JLabel b = new JLabel();
-		if (x == 2 && y == 2) {
+	       	Container c = getContentPane();
+	
+		    
+		
+		if (x == 25 && y == 20) {
                     b.setIcon(Pacman);
                     b.setBackground(Color.YELLOW);
 		   
 
+		}
+		else{
+		    p.setBackground(Color.BLACK);
 		}
 		p.add(b);
 		pane.add(p);
