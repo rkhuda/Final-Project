@@ -45,7 +45,7 @@ public class Maze extends JFrame {
 		
 		if (x == 25 && y == 20) {
                     b.setIcon(Pacman);
-                    b.setBackground(Color.YELLOW);
+                    p.setBackground(Color.BLACK);
 		   
 
 		}
