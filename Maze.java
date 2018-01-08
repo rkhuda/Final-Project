@@ -24,7 +24,7 @@ public class Maze extends JFrame {
 	Pacman = new ImageIcon(newimg);  // transform it back
 
 	pane.setLayout(new GridLayout(40,40));
-	panels = new JPanel[40][39];
+	panels = new JPanel[40][40];
 	for (int x = 0; x < panels.length;x++) {
             for (int y = 0; y < panels[x].length;y++) {
                 panels[x][y] = new JPanel(new GridLayout(1,1));
@@ -45,6 +45,7 @@ public class Maze extends JFrame {
 		}
 		p.add(b);
 		pane.add(p);
+		b.setBorder(BorderFactory.createLineBorder(Color.blue));
 	    }
 
 	}
