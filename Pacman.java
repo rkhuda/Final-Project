@@ -11,5 +11,12 @@ public class Pacman{
     public int getY(){
 	return ycor;
     }
+
+    public void setX(int xcor){
+	this.xcor = xcor;
+    }
+    public void setY(int ycor){
+	this.ycor = ycor;
+    }
+	
 }
- 
