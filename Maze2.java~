@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-public class Maze extends JFrame implements KeyListener {
+public class Maze2 extends JFrame implements KeyListener {
 
     private Container pane;
     private JPanel[][] panels;
@@ -12,7 +12,7 @@ public class Maze extends JFrame implements KeyListener {
     private Pacman pac;
     private JLabel con;
     private JLabel b;
-    public Maze(){
+    public Maze2(){
 	
 	this.setTitle("Pacman");
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -104,7 +104,7 @@ public class Maze extends JFrame implements KeyListener {
     }
     
     public static void main(String[] args){
-	Maze maze = new Maze();
+	Maze2 maze = new Maze2();
 	maze.setVisible(true);
 	//	maze.pack();
     }
