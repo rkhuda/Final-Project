@@ -22,11 +22,7 @@ public class Maze extends JFrame implements KeyListener {
 	Image image = Pacman.getImage(); // transform it
 	Image newimg = image.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
 	Pacman = new ImageIcon(newimg);  // transform it back
-<<<<<<< HEAD
        	pac = new Pacman();
-=======
-	//	pac = new Pacman(0,0);
->>>>>>> 47c86ad36b8bf1c0642a3bf1099b55ca02ace7e0
 	pane.setLayout(new GridLayout(40,40));
 	panels = new JPanel[40][40];
 	for (int x = 0; x < panels.length;x++) {
@@ -58,7 +54,6 @@ public class Maze extends JFrame implements KeyListener {
     
     public void keyPressed(KeyEvent e){
 	int c = e.getKeyCode();
-<<<<<<< HEAD
 	JLabel b = new JLabel();
 	
 		if(c == KeyEvent.VK_UP){
@@ -78,18 +73,6 @@ public class Maze extends JFrame implements KeyListener {
 		}
     
 	
-=======
-        
-	JLabel b = new JLabel();
-	panels[20][21].add(b);
-		if(c == KeyEvent.VK_UP){
-		    b.setIcon(Pacman);
-		    //	    panels[20][21].setBackground(Color.WHITE);
-		    //	    panels[20][22].setBackground(Color.WHITE);
-	    System.out.println(c);
-	    
-		}
->>>>>>> 47c86ad36b8bf1c0642a3bf1099b55ca02ace7e0
     }
 		
 
