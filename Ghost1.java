@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class Ghost1 {
 
-    private int xcor = 50;
-    private int ycor = 50;
+    private int xcor = 100;
+    private int ycor = 100;
 
     private boolean up;
     private boolean down;
@@ -30,8 +30,6 @@ public class Ghost1 {
 	frame.setResizable(false);
 	frame.setSize(300, 300);
 	frame.setLocation(375, 55);
-
-	//move();
     }
     class DrawPanel extends JPanel {
 	    public void paintComponent(Graphics g) {
@@ -47,17 +45,21 @@ public class Ghost1 {
     private void move(){
 	while (true) {
 	    if (xcor > 10) {
+		up = false;
+		down = false;
 		right = true;
 		left = false;
 	    }
-	    //if (xcor > 290 && ycor > 10) {
-	    //up = true;
-	    //down= false;
-	    //}
+	    if (xcor > 280 && ycor > 10) {
+		up = true;
+		down= false;
+		right = false;
+		left = false;
+	    }
 
-	    //if (up) {
-	    //ycor--;
-	    //}
+	    if (up) {
+	    ycor--;
+	    }
 	    if (right) {
 		xcor++;
 	    }
