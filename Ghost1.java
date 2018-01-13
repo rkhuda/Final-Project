@@ -3,15 +3,23 @@ import java.awt.*;
 
 public class Ghost1 {
 
-    int xcor = 20;
-    int ycor = 20;
+    private int xcor = 50;
+    private int ycor = 50;
+
+    private boolean up;
+    private boolean down;
+    private boolean left;
+    private boolean right;
+
+    private JFrame frame;
 
     public static void main(String[] args) {
 	Ghost1 ghost = new Ghost1();
+	ghost.move();
     }
 
     public Ghost1() {
-	JFrame frame = new JFrame("Pacman");
+	frame = new JFrame("Pacman");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	DrawPanel drawPanel = new DrawPanel();
@@ -35,4 +43,28 @@ public class Ghost1 {
 		Pacman.paintIcon(this, g, xcor, ycor);
 	    }
 	}
+
+    private void move(){
+	while (true) {
+	    if (xcor > 10) {
+		right = true;
+		left = false;
+	    }
+	    //if (xcor > 290 && ycor > 10) {
+	    //up = true;
+	    //down= false;
+	    //}
+
+	    //if (up) {
+	    //ycor--;
+	    //}
+	    if (right) {
+		xcor++;
+	    }
+	    try {
+		Thread.sleep(10);
+	    } catch (Exception exc){}
+	    frame.repaint();
+	}
+    }
 }
