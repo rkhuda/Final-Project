@@ -13,6 +13,9 @@ public class Game extends JFrame implements KeyListener {
     private JLabel con;
     private JLabel b;
 
+    private int xcor = 1;
+    private int ycor = 1;
+
     public Game(){
 	
 	this.setTitle("Pacman Game");
@@ -50,7 +53,9 @@ public class Game extends JFrame implements KeyListener {
 
     class Ghost extends JPanel {
 	public void paintComponent(Graphics g) {
-	    Pacman.paintIcon(pane, g, 1, 1);
+	    g.setColor(Color.BLACK);
+	    g.fillRect(0, 0, getWidth(), getHeight());
+	    Pacman.paintIcon(pane, g, xcor, ycor);
 	}
     }
 		
