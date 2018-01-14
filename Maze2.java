@@ -11,7 +11,10 @@ public class Maze2 extends JFrame implements KeyListener {
     private JLabel con;
     private JLabel b;
 
-    private ImageIcon Pacman;
+    private ImageIcon R;
+    private ImageIcon L;
+    private ImageIcon U;
+    private ImageIcon D;
 
     private Pacman pac;
 
@@ -22,12 +25,27 @@ public class Maze2 extends JFrame implements KeyListener {
 	this.setBounds(300, 200, 900, 900);
 	addKeyListener(this);
 	pane = getContentPane();
-       	
-	Pacman = new ImageIcon("PacmanRight.png");
-	Image image = Pacman.getImage(); // transform it
-	Image newimg = image.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
 
-	Pacman = new ImageIcon(newimg);  // transform it back
+	R = new ImageIcon("PacmanRight.png");
+	Image imageR = R.getImage(); // transform it
+	Image newimgR = imageR.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	R = new ImageIcon(newimgR);  // transform it back
+
+        L = new ImageIcon("PacmanLeft.png");
+	Image imageL = L.getImage(); // transform it
+	Image newimgL = imageL.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	L = new ImageIcon(newimgL);  // transform it back
+
+        D = new ImageIcon("PacmanDown.png");
+	Image imageD = D.getImage(); // transform it
+	Image newimgD = imageD.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	D = new ImageIcon(newimgD);  // transform it back
+
+        U = new ImageIcon("PacmanUp.png");
+	Image imageU = U.getImage(); // transform it
+	Image newimgU = imageU.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	U = new ImageIcon(newimgU);  // transform it back
+
 	b = new JLabel();
        	pac = new Pacman();
 	pane.setLayout(new GridLayout(40 ,40 ));
@@ -46,7 +64,7 @@ public class Maze2 extends JFrame implements KeyListener {
 		if (x == pac.getY() && y == pac.getX()) {
 		    //      pac.setX(20);
 		    //        pac.setY(20);
-		     b.setIcon(Pacman);
+		     b.setIcon(R);
 		    p.setBackground(Color.BLACK);
 		    p.add(b);
 		}
@@ -98,7 +116,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() - 1);
 	    panels[pac.getY()][pac.getX()].add(b);
-	    b.setIcon(Pacman);
+	    b.setIcon(U);
 	    System.out.println(pac.getY());
 	    
 	    // b.setLocation(1,1);
@@ -109,15 +127,15 @@ public class Maze2 extends JFrame implements KeyListener {
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
 	    panels[pac.getY()][pac.getX()].add(b);
-	    b.setIcon(Pacman);
+	    b.setIcon(D);
 	    System.out.println(pac.getY());
 	}
-	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 <= 39){
+	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 < 39){
 	    b.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() + 1);
 	    panels[pac.getY()][pac.getX()].add(b);
-	    b.setIcon(Pacman);
+	    b.setIcon(R);
 	    System.out.println(pac.getX());
 	}
 	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 > 0){
@@ -125,7 +143,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() - 1);
 	    panels[pac.getY()][pac.getX()].add(b);
-	    b.setIcon(Pacman);
+	    b.setIcon(L);
 	    System.out.println(pac.getX());
 	}
     }
