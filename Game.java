@@ -39,6 +39,31 @@ public class Game extends JFrame implements KeyListener {
 	       	Container c = getContentPane();
 		p.setBackground(Color.BLACK);
 	       	pane.add(p);
+
+		if (x == 0) {
+		    p.setBorder(BorderFactory.createMatteBorder(10, 0, 0, 0, Color.BLUE));
+		}
+		if (x == 39) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.BLUE));
+		}
+		if (y == 0) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 10, 0, 0, Color.BLUE));
+		}
+		if (y == 39) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, Color.BLUE));
+		}
+		if (x == 0 && y == 0) {
+		    p.setBorder(BorderFactory.createMatteBorder(10, 10, 0, 0, Color.BLUE));
+		}
+		if (x == 39 && y == 0) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 10, 10, 0, Color.BLUE));
+		}
+		if (x == 0 && y == 39) {
+		    p.setBorder(BorderFactory.createMatteBorder(10, 0, 0, 10, Color.BLUE));
+		}
+		if (x == 39 && y == 39) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 10, Color.BLUE));
+		}
 	    }
 	}
 	//panels[20][20].add(con);
