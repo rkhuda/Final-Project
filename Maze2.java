@@ -23,7 +23,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	addKeyListener(this);
 	pane = getContentPane();
        	
-	Pacman = new ImageIcon("PacmanRight.png");
+	Pacman = new ImageIcon("Pacman.png");
 	Image image = Pacman.getImage(); // transform it
 	Image newimg = image.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
 
