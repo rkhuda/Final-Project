@@ -1,10 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Ghost extends JComponent {
+public class Ghost extends JComponent{
 
     private int lastX = 0;
-
+    
     public Ghost() {
 	Thread animation = new Thread(
 				      new Runnable() {
@@ -19,18 +19,18 @@ public class Ghost extends JComponent {
 				      });
 	animation.start();
     }
+    
+    
 
     public void paintComponent(Graphics g) {
 
-	int w = getWidth();
-	int h = getHeight();
+	int width = getWidth();
+	int height = getHeight();
 
-	int speed = 1;
+	int xcor = lastX + 1;
 
-	int x = lastX + speed;
-
-	if (x > w + 100) {
-	    x = -100;
+	if (xcor > width) {
+	    xcor = 0;
 	}
 
 	ImageIcon Pacman = new ImageIcon("Pacman.png");
@@ -38,9 +38,9 @@ public class Ghost extends JComponent {
 	Image scaledpac = pac.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
 	Pacman = new ImageIcon(scaledpac);
 
-	Pacman.paintIcon(this, g, x, h/2 + 10);
+	Pacman.paintIcon(this, g, xcor, height/2);
 
-	lastX = x;
+	lastX = xcor;
 	
     }
 }
