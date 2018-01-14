@@ -23,7 +23,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	addKeyListener(this);
 	pane = getContentPane();
        	
-	Pacman = new ImageIcon("Pacman.png");
+	Pacman = new ImageIcon("PacmanRight.png");
 	Image image = Pacman.getImage(); // transform it
 	Image newimg = image.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
 
@@ -58,6 +58,31 @@ public class Maze2 extends JFrame implements KeyListener {
 	    
 		    //	p.add(con);
 		pane.add(p);
+
+		if (x == 0) {
+		    p.setBorder(BorderFactory.createMatteBorder(10, 0, 0, 0, Color.BLUE));
+		}
+		if (x == 39) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 0, Color.BLUE));
+		}
+		if (y == 0) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 10, 0, 0, Color.BLUE));
+		}
+		if (y == 39) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 10, Color.BLUE));
+		}
+		if (x == 0 && y == 0) {
+		    p.setBorder(BorderFactory.createMatteBorder(10, 10, 0, 0, Color.BLUE));
+		}
+		if (x == 39 && y == 0) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 10, 10, 0, Color.BLUE));
+		}
+		if (x == 0 && y == 39) {
+		    p.setBorder(BorderFactory.createMatteBorder(10, 0, 0, 10, Color.BLUE));
+		}
+		if (x == 39 && y == 39) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 10, 10, Color.BLUE));
+		}
 	    }
 	}
     }
@@ -68,7 +93,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	//	 b = new JLabel();
 	
 	
-	if(c == KeyEvent.VK_UP && pac.getY() - 1 >= 0){
+	if(c == KeyEvent.VK_UP && pac.getY() - 1 > 0){
 	    b.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() - 1);
@@ -79,7 +104,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	    // b.setLocation(1,1);
  	}
     
-	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 <= 39){
+	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 < 39){
 	    b.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
@@ -95,7 +120,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	    b.setIcon(Pacman);
 	    System.out.println(pac.getX());
 	}
-	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 >= 0){
+	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 > 0){
        	    b.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() - 1);
