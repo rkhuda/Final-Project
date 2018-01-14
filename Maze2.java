@@ -19,56 +19,63 @@ public class Maze2 extends JFrame implements KeyListener {
 	this.setBounds(300, 200, 900, 900);
 	addKeyListener(this);
 	pane = getContentPane();
-	b = new JLabel();
+       	
 	Pacman = new ImageIcon("Pacman.png");
 	Image image = Pacman.getImage(); // transform it
 	Image newimg = image.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+
 	Pacman = new ImageIcon(newimg);  // transform it back
+	b = new JLabel(Pacman);
        	pac = new Pacman();
-	pane.setLayout(new GridLayout(40,40));
-	panels = new JPanel[40][40];
+	pane.setLayout(new GridLayout(40 ,40 ));
+
+	panels = new JPanel[40 ][40];
 	for (int x = 0; x < panels.length;x++) {
             for (int y = 0; y < panels[x].length;y++) {
                 panels[x][y] = new JPanel(new GridLayout(1,1));
 		JPanel p = panels[x][y];
-	       	con = new JLabel();
+		//	con  = new JLabel();
+		
 	       	Container c = getContentPane();
 	
 		    
-		
+		   			
 		if (x == pac.getY() && y == pac.getX()) {
 		    //      pac.setX(20);
 		    //        pac.setY(20);
-		    con.setIcon(Pacman);
+		    // b.setIcon(Pacman);
 		    p.setBackground(Color.BLACK);
-		   
-
+		    p.add(b);
 		}
-		else{
+		
+		
+		
+		
 		    p.setBackground(Color.BLACK);
-		}
-		p.add(con);
+	    
+		    //	p.add(con);
 		pane.add(p);
 	    }
-
 	}
     }
+
     
     public void keyPressed(KeyEvent e){
 	int c = e.getKeyCode();
-	// b = new JLabel();
+	//	 b = new JLabel();
 	
 	
 	if(c == KeyEvent.VK_UP && pac.getY() - 1 >= 0){
-	    
-	    
-	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(null);
+	    panels[pac.getY()][pac.getX()].add(b);
+	    //  System.out.println(getLabelFor(panels[pac.getY()][pac.getX()]));
 	    pac.setY(pac.getY() - 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(Pacman);
 	    System.out.println(pac.getY());
-	}
+	    
+	    // b.setLocation(1,1);
+ 	}
     
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 <= 39){
 	    panels[pac.getY()][pac.getX()].add(b);
