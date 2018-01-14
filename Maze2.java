@@ -25,7 +25,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	Image newimg = image.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
 
 	Pacman = new ImageIcon(newimg);  // transform it back
-	b = new JLabel(Pacman);
+	b = new JLabel();
        	pac = new Pacman();
 	pane.setLayout(new GridLayout(40 ,40 ));
 
@@ -43,7 +43,7 @@ public class Maze2 extends JFrame implements KeyListener {
 		if (x == pac.getY() && y == pac.getX()) {
 		    //      pac.setX(20);
 		    //        pac.setY(20);
-		    // b.setIcon(Pacman);
+		     b.setIcon(Pacman);
 		    p.setBackground(Color.BLACK);
 		    p.add(b);
 		}
@@ -67,8 +67,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	
 	if(c == KeyEvent.VK_UP && pac.getY() - 1 >= 0){
 	    b.setIcon(null);
-	    panels[pac.getY()][pac.getX()].add(b);
-	    //  System.out.println(getLabelFor(panels[pac.getY()][pac.getX()]));
+	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() - 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(Pacman);
@@ -78,24 +77,24 @@ public class Maze2 extends JFrame implements KeyListener {
  	}
     
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 <= 39){
-	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(null);
+	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(Pacman);
 	    System.out.println(pac.getY());
 	}
 	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 <= 39){
-	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(null);
+	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() + 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(Pacman);
 	    System.out.println(pac.getX());
 	}
 	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 >= 0){
-	    panels[pac.getY()][pac.getX()].add(b);
-	    b.setIcon(null);
+       	    b.setIcon(null);
+	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() - 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(Pacman);
