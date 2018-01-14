@@ -12,6 +12,7 @@ public class Game extends JFrame implements KeyListener {
     private Pacman pac;
     private JLabel con;
     private JLabel b;
+
     public Game(){
 	
 	this.setTitle("Pacman Game");
@@ -20,7 +21,7 @@ public class Game extends JFrame implements KeyListener {
 	addKeyListener(this);
 	pane = getContentPane();
 	//	b = new JLabel();
-	Pacman = new ImageIcon("Pacman.png");
+	Pacman = new ImageIcon("PacmanRight.png");
 	Image image = Pacman.getImage(); // transform it
 	Image newimg = image.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
 	Pacman = new ImageIcon(newimg);  // transform it back
@@ -32,16 +33,25 @@ public class Game extends JFrame implements KeyListener {
             for (int y = 0; y < panels[x].length;y++) {
                 panels[x][y] = new JPanel(new GridLayout(1,1));
 		JPanel p = panels[x][y];
-		con = new JLabel();
 	       	Container c = getContentPane();
 		p.setBackground(Color.BLACK);
 	       	pane.add(p);
 	    }
 	}
-	panels[20][20].add(con);
+	//panels[20][20].add(con);
+	panels[10][10].add(con);
 	con.setIcon(Pacman);
+
+	Ghost ghost = new Ghost();
+	panels[20][20].add(ghost);
 	//	panels[30][30].setBackground(Color.WHITE);
 	//	pane.add(panels[30][30]);
+    }
+
+    class Ghost extends JPanel {
+	public void paintComponent(Graphics g) {
+	    Pacman.paintIcon(pane, g, 1, 1);
+	}
     }
 		
 		/*	if (x == pac.getY() && y == pac.getX()) {
@@ -68,11 +78,13 @@ public class Game extends JFrame implements KeyListener {
     public void keyPressed(KeyEvent e){
 	int c = e.getKeyCode();
 	b = new JLabel();
-	boolean start = true;
-	if(start || c == KeyEvent.VK_UP || c == KeyEvent.VK_LEFT || c == KeyEvent.VK_RIGHT || c == KeyEvent.VK_DOWN){
+	
+	boolean pressed = true;
+	if(pressed || c == KeyEvent.VK_UP || c == KeyEvent.VK_LEFT || c == KeyEvent.VK_RIGHT || c == KeyEvent.VK_DOWN){
 	    con.setIcon(null);
-	    start = false;
+	    pressed = false;
 	}
+	
 	    
   	if(c == KeyEvent.VK_UP && pac.getY() - 1 >= 0){
 	    panels[pac.getY()][pac.getX()].add(b);
@@ -80,7 +92,6 @@ public class Game extends JFrame implements KeyListener {
 	    pac.setY(pac.getY() - 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(Pacman);
-	    System.out.println(pac.getY());
 	}
     
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 <= 39){
