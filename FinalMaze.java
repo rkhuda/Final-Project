@@ -66,9 +66,8 @@ public class FinalMaze extends JFrame implements KeyListener {
        	
 	Pacdot = new ImageIcon("Pacdot.png");
 	Image imageDot = Pacdot.getImage();
-	Image newimgDot = imageDot.getScaledInstance(23,23, java.awt.Image.SCALE_SMOOTH);
+	Image newimgDot = imageDot.getScaledInstance(10, 10, java.awt.Image.SCALE_SMOOTH);
 	Pacdot = new ImageIcon(newimgDot);
-	pd = new JLabel();
 
 	R = new ImageIcon("PacmanRight.png");
 	Image imageR = R.getImage(); // transform it
@@ -128,7 +127,8 @@ public class FinalMaze extends JFrame implements KeyListener {
 
 		panels[x][y] = new JPanel(new FlowLayout());
 		JPanel p = panels[x][y];
-	       	Container c = getContentPane(); 			
+	       	Container c = getContentPane();
+		JLabel b = new JLabel();
 
 		if (x == pac.getY() && y == pac.getX()) {
 		    pm.setIcon(R);
@@ -153,83 +153,121 @@ public class FinalMaze extends JFrame implements KeyListener {
 		}
 		
 	
-		//	pd.setIcon(Pacdot);
+	        b.setIcon(Pacdot);
+		b.setBackground(Color.BLACK);
+		b.setOpaque(true);
 	       	p.setBackground(Color.BLACK);
-		//	p.add(pd);
 		pane.add(p);
+		pane.add(b);
 		
 		if (x == 0) {
 		    p.setBorder(BorderFactory.createMatteBorder(27, 0, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if (x == 24) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 27, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if (y == 0 && (x != 0 && x != 24)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if (y == 24 && (x != 0 && x != 24)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 28, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 2 || y == 22) && (x == 2 || x == 3 || x == 4 || x == 6 || x == 8 ||
 			       x == 9 || x == 10 || x == 12 || x == 13 || x == 14 || x == 16 ||
 			       x == 18 || x == 20 || x == 22)) {
 		     p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		     b.setIcon(null);
+		     b.setBackground(Color.BLUE);
 		}
 		if ((y == 3 || y == 21) && (x == 2 || x == 6 || x == 14 || x == 16 || x == 18 ||
 					    x == 20 || x == 22)){
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 4 || y == 20) && (x == 2 || x == 4 || x == 6 || x == 8 || x == 9 ||
 					    x == 10 || x == 11 || x == 12 || x == 14 ||
 					    x == 18 || x == 22)) {
 		     p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		     b.setIcon(null);
+		     b.setBackground(Color.BLUE);
 		}
 		if ((y == 5 || y == 19) && (x == 4 || x == 12 || x == 16 || x == 17 || x == 18 ||
 					    x == 20 || x == 21 || x == 22)){
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 6 || y == 18) && (x == 2 || x == 3|| x == 4 || x == 6 || x == 7||
 					    x == 9 || x == 10 || x == 11 || x == 12 || x == 13 ||
 					    x == 14)) {
 		     p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		     b.setIcon(null);
+		     b.setBackground(Color.BLUE);
 		}
 		if ((y == 7 || y == 17) && (x == 7 || x == 12 || x == 16 || x == 17 || x == 18 ||
 					    x == 20 || x == 21 || x == 22)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 8 || y == 16) && (x == 2 || x == 3|| x == 4 || x == 5|| x == 7 ||
 					    x == 9 || x == 10 || x == 12 || x == 13 ||
 					    x == 22)) {
 		     p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		     b.setIcon(null);
+		     b.setBackground(Color.BLUE);
 		}
 		if ((y == 9 || y == 15) && (x == 2 || x == 7 || x == 16 || x == 17 || x == 18 ||
 					    x == 19 || x == 20 || x == 22)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 10 || y == 14) && (x == 2 || x == 4 || x == 5 || x == 13  ||
 					     x == 22)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 11 || y == 13) && (x == 7 || x == 13 || x == 15 || x == 16 ||
 					     x == 18 || x == 20)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if (y == 12 && (x == 1 || x == 2 || x == 4 || x == 5 || x == 6 || x == 7 ||
 				x == 13 || x == 14 || x == 15 || x == 16 || x == 18 || x == 20 ||
 				x == 22 || x == 23)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		
 		//make center box
 		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 13 ||
 					    y == 14)) {
 		    p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if (x == 10 && (y == 10 || y == 14)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if (x == 11 && y == 12) {
 		     p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
+		     b.setIcon(null);
+		     b.setBackground(Color.BLUE);
 		}
 		
 	    }
