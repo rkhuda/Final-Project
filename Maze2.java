@@ -10,12 +10,21 @@ public class Maze2 extends JFrame implements KeyListener {
     private JPanel[][] panels;
     private ImageIcon Pacman;
     private ImageIcon Inky;
+    private ImageIcon Clyde;
+    private ImageIcon Pinky;
+    private ImageIcon Blinky;
     private Pacman pac;
     private Enemy blue;
+    private Enemy yellow;
+    private Enemy pink;
+    private Enemy red;
     private JLabel con;
     private Timer timerblue;
     private JLabel pm;
     private JLabel bg;
+    private JLabel yg;
+    private JLabel pg;
+    private JLabel rg;
     private int tiles;
     private int actionNum;
     private int up;
@@ -44,7 +53,29 @@ public class Maze2 extends JFrame implements KeyListener {
 	Image newimg2 = image2.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
 	Inky = new ImageIcon(newimg2);  // transform it back
 	bg = new JLabel();
-        blue = new Enemy();
+        blue = new Enemy(10,5);
+	
+	Clyde = new ImageIcon("Clyde.png");
+	Image image3 = Clyde.getImage(); // transform it
+	Image newimg3 = image3.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	Clyde = new ImageIcon(newimg3);  // transform it back
+	yg = new JLabel();
+        yellow = new Enemy(9,5);
+		
+       	Pinky = new ImageIcon("Pinky.png");
+	Image image4 = Pinky.getImage(); // transform it
+	Image newimg4 = image4.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	Pinky = new ImageIcon(newimg4);  // transform it back
+	pg = new JLabel();
+        pink = new Enemy(10,4);
+		
+	Blinky = new ImageIcon("Blinky.png");
+	Image image5 = Blinky.getImage(); // transform it
+	Image newimg5 = image5.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	Blinky = new ImageIcon(newimg5);  // transform it back
+	rg = new JLabel();
+        red = new Enemy(9,4);
+		       	
 
 	
 	 
@@ -67,13 +98,25 @@ public class Maze2 extends JFrame implements KeyListener {
 		    bg.setIcon(Inky);
 		    p.add(bg);
 		}
-	       
+		if(x == yellow.getY() && y == yellow.getX()){
+		    yg.setIcon(Clyde);
+		    p.add(yg);
+		}
+			if(x == pink.getY() && y == pink.getX()){
+		    pg.setIcon(Pinky);
+		    p.add(pg);
+		}
+			if(x == red.getY() && y == red.getX()){
+		    rg.setIcon(Blinky);
+		    p.add(rg);
+		}
+		
 	        p.setBackground(Color.BLACK);
      		pane.add(p);
 		
 	    }
 	}
-	
+		
        	ActionListener BlueGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
 
@@ -130,13 +173,13 @@ public class Maze2 extends JFrame implements KeyListener {
 		    }
 		}
 	    };
-        Timer timer = new Timer(1000, BlueGhost);
+        Timer timer = new Timer(200, BlueGhost);
         timer.setRepeats(true);
         timer.start();
 	
 
 
-    
+	
     
     }
 
