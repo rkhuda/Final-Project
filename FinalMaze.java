@@ -18,6 +18,7 @@ public class FinalMaze extends JFrame implements KeyListener {
     private JLabel yg;
     private JLabel pg;
     private JLabel rg;
+    private JLabel pd;
 
     private ImageIcon R;
     private ImageIcon L;
@@ -27,6 +28,7 @@ public class FinalMaze extends JFrame implements KeyListener {
     private ImageIcon Clyde;
     private ImageIcon Pinky;
     private ImageIcon Blinky;
+    private ImageIcon Pacdot;
 
     private Pacman pac;
 
@@ -62,6 +64,12 @@ public class FinalMaze extends JFrame implements KeyListener {
 	addKeyListener(this);
 	pane = getContentPane();
        	
+	Pacdot = new ImageIcon("Pacdot.png");
+	Image imageDot = Pacdot.getImage();
+	Image newimgDot = imageDot.getScaledInstance(23,23, java.awt.Image.SCALE_SMOOTH);
+	Pacdot = new ImageIcon(newimgDot);
+	pd = new JLabel();
+
 	R = new ImageIcon("PacmanRight.png");
 	Image imageR = R.getImage(); // transform it
 	Image newimgR = imageR.getScaledInstance(23, 23,  java.awt.Image.SCALE_SMOOTH);
@@ -144,7 +152,10 @@ public class FinalMaze extends JFrame implements KeyListener {
 		    p.add(rg);
 		}
 		
-		p.setBackground(Color.BLACK);
+	
+		//	pd.setIcon(Pacdot);
+	       	p.setBackground(Color.BLACK);
+		//	p.add(pd);
 		pane.add(p);
 		
 		if (x == 0) {
