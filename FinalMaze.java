@@ -118,7 +118,7 @@ public class FinalMaze extends JFrame implements KeyListener {
 	for (int x = 0; x < panels.length;x++) {
             for (int y = 0; y < panels[x].length;y++) {
 
-		panels[x][y] = new JPanel(new GridLayout(1,1));
+		panels[x][y] = new JPanel(new FlowLayout());
 		JPanel p = panels[x][y];
 	       	Container c = getContentPane(); 			
 
