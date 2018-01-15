@@ -299,6 +299,65 @@ ActionListener PinkGhost = new ActionListener() {
         Timer timerPink = new Timer(200, PinkGhost);
         timerPink.setRepeats(true);
         timerPink.start();
+ActionListener RedGhost = new ActionListener() {
+		public void actionPerformed(ActionEvent evt) {
+
+		    if (lastDirectionRed == 0)
+			randomMoveRed();
+		    else{
+	
+	
+			if (lastDirectionRed == 1)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpRed();
+					upCounter--;
+				    }else
+				    randomMoveRed();			
+
+			    }
+			if (lastDirectionRed == 2)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownRed();
+					downCounter--;
+				    }else
+				    randomMoveRed();			
+
+			    }
+			if (lastDirectionRed == 3)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightRed();
+					rightCounter--;
+				    }else
+				    randomMoveRed();			
+
+			    }
+		    
+			if (lastDirectionRed == 4)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftRed();
+					leftCounter--;
+				    }else
+				    randomMoveRed();			
+
+			    }
+		    
+
+
+	
+		    }
+		}
+	    };
+        Timer timerRed = new Timer(200, RedGhost);
+        timerRed.setRepeats(true);
+        timerRed.start();
 
 	
     
@@ -442,7 +501,7 @@ public void moveUpPink(){
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setY(pink.getY() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Inky);
+	    pg.setIcon(Pinky);
 	}
     }
     public void moveDownPink(){
@@ -451,7 +510,7 @@ public void moveUpPink(){
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setY(pink.getY() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Inky);
+	    pg.setIcon(Pinky);
 	}
     }
     public void moveRightPink(){
@@ -460,7 +519,7 @@ public void moveUpPink(){
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setX(pink.getX() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Inky);
+	    pg.setIcon(Pinky);
 	}
     }
     public void moveLeftPink(){
@@ -469,7 +528,7 @@ public void moveUpPink(){
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setX(pink.getX() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Inky);
+	    pg.setIcon(Pinky);
 	}
     }
   
@@ -495,6 +554,68 @@ public void moveUpPink(){
 		if(rand == 4){
 		    moveLeftPink();
 		    lastDirectionPink = 4;
+		   leftCounter = (1 + (int)(Math.random() * (7)));
+		}
+	}
+public void moveUpRed(){
+	if(red.getY()- 1 >= 0){
+	    rg.setIcon(null);
+	    panels[red.getY()][red.getX()].repaint();
+	    red.setY(red.getY() - 1);
+	    panels[red.getY()][red.getX()].add(rg);
+	    rg.setIcon(Blinky);
+	}
+    }
+    public void moveDownRed(){
+	if(red.getY() + 1 <= 39){
+	    rg.setIcon(null);
+	    panels[red.getY()][red.getX()].repaint();
+	    red.setY(red.getY() + 1);
+	    panels[red.getY()][red.getX()].add(rg);
+	    rg.setIcon(Blinky);
+	}
+    }
+    public void moveRightRed(){
+	if(red.getX()+ 1 <= 39){
+	    rg.setIcon(null);
+	    panels[red.getY()][red.getX()].repaint();
+	    red.setX(red.getX() + 1);
+	    panels[red.getY()][red.getX()].add(rg);
+	    rg.setIcon(Blinky);
+	}
+    }
+    public void moveLeftRed(){
+	if(red.getX()- 1 >= 0){
+	    rg.setIcon(null);
+	    panels[red.getY()][red.getX()].repaint();
+	    red.setX(red.getX() - 1);
+	    panels[red.getY()][red.getX()].add(rg);
+	    rg.setIcon(Blinky);
+	}
+    }
+  
+    public void randomMoveRed(){
+	int rand = (1 + (int)(Math.random() * (4)));
+ 		
+		if(rand == 1){
+		   moveUpRed();
+		   lastDirectionRed = 1;
+		   upCounter = (1 + (int)(Math.random() * (7)));
+		   	}
+		if(rand == 2){
+		  moveDownRed();
+		  lastDirectionRed = 2;
+		   downCounter = (1 + (int)(Math.random() * (7)));
+		  
+		 }
+		if(rand == 3){
+		    moveRightRed();
+		    lastDirectionRed = 3;
+		   rightCounter = (1 + (int)(Math.random() * (7)));
+		}
+		if(rand == 4){
+		    moveLeftRed();
+		    lastDirectionRed = 4;
 		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
 	}
