@@ -175,6 +175,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	
 		    }
 		}
+<<<<<<< HEAD
 	    };
         Timer timerBlue = new Timer(200, BlueGhost);
         timerBlue.setRepeats(true);
@@ -346,6 +347,181 @@ ActionListener RedGhost = new ActionListener() {
 					leftCounter--;
 				    }else
 				    randomMoveRed();			
+=======
+	    };
+        Timer timerBlue = new Timer(200, BlueGhost);
+        timerBlue.setRepeats(true);
+        timerBlue.start();
+	
+ActionListener YellowGhost = new ActionListener() {
+		public void actionPerformed(ActionEvent evt) {
+
+		    if (lastDirectionYellow == 0)
+			randomMoveYellow();
+		    else{
+	
+	
+			if (lastDirectionYellow == 3)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpYellow();
+					upCounter--;
+				    }else
+				    randomMoveYellow();			
+
+			    }
+			if (lastDirectionYellow == 4)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownYellow();
+					downCounter--;
+				    }else
+				    randomMoveYellow();			
+
+			    }
+			if (lastDirectionYellow == 5)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightYellow();
+					rightCounter--;
+				    }else
+				    randomMoveYellow();			
+
+			    }
+		    
+			if (lastDirectionYellow == 6)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftYellow();
+					leftCounter--;
+				    }else
+				    randomMoveYellow();			
+
+			    }
+		    
+>>>>>>> 1369441cfd1ab52557313360c7b8a32f129eebad
+
+			    }
+		    
+
+	
+		    }
+		}
+	    };
+        Timer timerYellow = new Timer(200, YellowGhost);
+        timerYellow.setRepeats(true);
+        timerYellow.start();
+	
+ActionListener PinkGhost = new ActionListener() {
+		public void actionPerformed(ActionEvent evt) {
+
+		    if (lastDirectionPink == 0)
+			randomMovePink();
+		    else{
+	
+	
+			if (lastDirectionPink == 1)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpPink();
+					upCounter--;
+				    }else
+				    randomMovePink();			
+
+			    }
+			if (lastDirectionPink == 2)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownPink();
+					downCounter--;
+				    }else
+				    randomMovePink();			
+
+			    }
+			if (lastDirectionPink == 3)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightPink();
+					rightCounter--;
+				    }else
+				    randomMovePink();			
+
+			    }
+		    
+			if (lastDirectionPink == 4)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftPink();
+					leftCounter--;
+				    }else
+				    randomMovePink();			
+
+			    }
+		    
+
+
+	
+		    }
+		}
+	    };
+        Timer timerPink = new Timer(200, PinkGhost);
+        timerPink.setRepeats(true);
+        timerPink.start();
+ActionListener RedGhost = new ActionListener() {
+		public void actionPerformed(ActionEvent evt) {
+
+		    if (lastDirectionRed == 0)
+			randomMoveRed();
+		    else{
+	
+	
+			if (lastDirectionRed == 1)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpRed();
+					upCounter--;
+				    }else
+				    randomMoveRed();			
+
+			    }
+			if (lastDirectionRed == 2)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownRed();
+					downCounter--;
+				    }else
+				    randomMoveRed();			
+
+			    }
+			if (lastDirectionRed == 3)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightRed();
+					rightCounter--;
+				    }else
+				    randomMoveRed();			
+
+			    }
+		    
+			if (lastDirectionRed == 4)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftRed();
+					leftCounter--;
+				    }else
+				    randomMoveRed();			
 
 			    }
 		    
@@ -360,6 +536,17 @@ ActionListener RedGhost = new ActionListener() {
         timerRed.start();
 
 	
+<<<<<<< HEAD
+		    }
+		}
+	    };
+        Timer timerRed = new Timer(200, RedGhost);
+        timerRed.setRepeats(true);
+        timerRed.start();
+
+	
+=======
+>>>>>>> 1369441cfd1ab52557313360c7b8a32f129eebad
     
     }
 
@@ -674,3 +861,5 @@ public void moveUpRed(){
 
     }
 }
+    
+
