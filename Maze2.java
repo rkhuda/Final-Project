@@ -147,57 +147,52 @@ public class Maze2 extends JFrame implements KeyListener {
 
     
     public void keyPressed(KeyEvent e){
+
 	int c = e.getKeyCode();
-	//	 b = new JLabel();
 	
-	
-	if(c == KeyEvent.VK_UP && pac.getY() - 1 > 0){
+	if(c == KeyEvent.VK_UP && pac.getY() - 1 > 0 &&
+	   (panels[pac.getY() - 1][pac.getX()].getBorder() == null)){
 	    b.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() - 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(U);
-	    System.out.println(pac.getY());
-	    
-	    // b.setLocation(1,1);
  	}
     
-	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 < 39){
+	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 < 39 &&
+	   (panels[pac.getY() + 1][pac.getX()].getBorder() == null)){
 	    b.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(D);
-	    System.out.println(pac.getY());
 	}
-	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 < 39){
+	
+	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 < 39 &&
+	   (panels[pac.getY()][pac.getX() + 1].getBorder() == null)){
 	    b.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() + 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(R);
-	    System.out.println(pac.getX());
 	}
-	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 > 0){
+	
+	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 > 0 &&
+	   (panels[pac.getY()][pac.getX() - 1].getBorder() == null)){
        	    b.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() - 1);
 	    panels[pac.getY()][pac.getX()].add(b);
 	    b.setIcon(L);
-	    System.out.println(pac.getX());
 	}
     }
+
     public void keyTyped(KeyEvent e){
     }
-    public void keyReleased(KeyEvent e){
-	//	JLabel b = new JLabel();
-	//	(panels[pac.getX()][pac.getY()]).setIcon(Pacman);
-	//	b.setIcon(Pacman);
-    }
+    public void keyReleased(KeyEvent e){}
     
     public static void main(String[] args){
 	Maze2 maze = new Maze2();
 	maze.setVisible(true);
-	//	maze.pack();
     }
 }
