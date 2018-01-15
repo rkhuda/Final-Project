@@ -4,9 +4,9 @@ public class Enemy{
     
     
 
-    public Enemy(){
-	xcor = 10;
-	ycor = 5;
+    public Enemy(int xcor, int ycor){
+	this.xcor = xcor;
+	this.ycor = ycor;
     }
 
     public int getX(){
