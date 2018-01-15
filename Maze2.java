@@ -16,7 +16,14 @@ public class Maze2 extends JFrame implements KeyListener {
     private Timer timerblue;
     private JLabel pm;
     private JLabel bg;
-
+    private int tiles;
+    private int actionNum;
+    private int up;
+    private int upCounter, downCounter, rightCounter, leftCounter;
+    private int down;
+    private int right;
+    private int left;
+    private int lastDirection = 0;
     public Maze2(){
 	
 	this.setTitle("Pacman");
@@ -66,22 +73,70 @@ public class Maze2 extends JFrame implements KeyListener {
 		
 	    }
 	}
-
+	
        	ActionListener BlueGhost = new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-		//	 moveUpBlue();
-		//	moveDownBlue();
-		//	moveRightBlue();
-			moveLeftBlue();
-                System.out.println("Reading SMTP Info.");
-            }
+		public void actionPerformed(ActionEvent evt) {
+
+		    if (lastDirection == 0)
+			randomMove();
+		    else{
+	
+	
+			if (lastDirection == 3)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpBlue();
+					upCounter--;
+				    }else
+				    randomMove();			
+
+			    }
+			if (lastDirection == 4)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownBlue();
+					downCounter--;
+				    }else
+				    randomMove();			
+
+			    }
+			if (lastDirection == 5)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightBlue();
+					rightCounter--;
+				    }else
+				    randomMove();			
+
+			    }
+		    
+			if (lastDirection == 6)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftBlue();
+					leftCounter--;
+				    }else
+				    randomMove();			
+
+			    }
+		    
+
+
+	
+		    }
+		}
 	    };
-        Timer timer = new Timer(100, BlueGhost);
+        Timer timer = new Timer(1000, BlueGhost);
         timer.setRepeats(true);
         timer.start();
+	
 
 
-
+    
     
     }
 
@@ -122,7 +177,31 @@ public class Maze2 extends JFrame implements KeyListener {
 	}
     }
   
-    
+    public void randomMove(){
+	int rand = (3 + (int)(Math.random() * (4)));
+ 		
+		if(rand == 3){
+		   moveUpBlue();
+		   lastDirection = 3;
+		   upCounter = (1 + (int)(Math.random() * (7)));
+		   	}
+		if(rand == 4){
+		  moveDownBlue();
+		  lastDirection = 4;
+		   downCounter = (1 + (int)(Math.random() * (7)));
+		  
+		 }
+		if(rand == 5){
+		    moveRightBlue();
+		    lastDirection = 5;
+		   rightCounter = (1 + (int)(Math.random() * (7)));
+		}
+		if(rand == 6){
+		    moveLeftBlue();
+		    lastDirection = 6;
+		   leftCounter = (1 + (int)(Math.random() * (7)));
+		}
+	}
     public void keyPressed(KeyEvent e){
 	int c = e.getKeyCode();
 	//	 b = new JLabel();
@@ -179,3 +258,5 @@ public class Maze2 extends JFrame implements KeyListener {
 	//	maze.pack();
     }
 }
+    
+
