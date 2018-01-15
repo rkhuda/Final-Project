@@ -32,7 +32,10 @@ public class Maze2 extends JFrame implements KeyListener {
     private int down;
     private int right;
     private int left;
-    private int lastDirection = 0;
+    private int lastDirectionBlue;
+    private int lastDirectionYellow;
+    private int lastDirectionPink;
+    private int lastDirectionRed;
     public Maze2(){
 	
 	this.setTitle("Pacman");
@@ -120,50 +123,50 @@ public class Maze2 extends JFrame implements KeyListener {
        	ActionListener BlueGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
 
-		    if (lastDirection == 0)
-			randomMove();
+		    if (lastDirectionBlue == 0)
+			randomMoveBlue();
 		    else{
 	
 	
-			if (lastDirection == 3)
+			if (lastDirectionBlue == 1)
 			    {
 				if (upCounter !=0)
 				    {
 					moveUpBlue();
 					upCounter--;
 				    }else
-				    randomMove();			
+				    randomMoveBlue();			
 
 			    }
-			if (lastDirection == 4)
+			if (lastDirectionBlue == 2)
 			    {
 				if (downCounter !=0)
 				    {
 					moveDownBlue();
 					downCounter--;
 				    }else
-				    randomMove();			
+				    randomMoveBlue();			
 
 			    }
-			if (lastDirection == 5)
+			if (lastDirectionBlue == 3)
 			    {
 				if (rightCounter !=0)
 				    {
 					moveRightBlue();
 					rightCounter--;
 				    }else
-				    randomMove();			
+				    randomMoveBlue();			
 
 			    }
 		    
-			if (lastDirection == 6)
+			if (lastDirectionBlue == 4)
 			    {
 				if (leftCounter !=0)
 				    {
 					moveLeftBlue();
 					leftCounter--;
 				    }else
-				    randomMove();			
+				    randomMoveBlue();			
 
 			    }
 		    
@@ -173,9 +176,69 @@ public class Maze2 extends JFrame implements KeyListener {
 		    }
 		}
 	    };
-        Timer timer = new Timer(200, BlueGhost);
-        timer.setRepeats(true);
-        timer.start();
+        Timer timerBlue = new Timer(200, BlueGhost);
+        timerBlue.setRepeats(true);
+        timerBlue.start();
+	
+ActionListener YellowGhost = new ActionListener() {
+		public void actionPerformed(ActionEvent evt) {
+
+		    if (lastDirectionYellow == 0)
+			randomMoveYellow();
+		    else{
+	
+	
+			if (lastDirectionYellow == 3)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpYellow();
+					upCounter--;
+				    }else
+				    randomMoveYellow();			
+
+			    }
+			if (lastDirectionYellow == 4)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownYellow();
+					downCounter--;
+				    }else
+				    randomMoveYellow();			
+
+			    }
+			if (lastDirectionYellow == 5)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightYellow();
+					rightCounter--;
+				    }else
+				    randomMoveYellow();			
+
+			    }
+		    
+			if (lastDirectionYellow == 6)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftYellow();
+					leftCounter--;
+				    }else
+				    randomMoveYellow();			
+
+			    }
+		    
+
+
+	
+		    }
+		}
+	    };
+        Timer timerYellow = new Timer(200, YellowGhost);
+        timerYellow.setRepeats(true);
+        timerYellow.start();
 	
 
 
@@ -220,34 +283,104 @@ public class Maze2 extends JFrame implements KeyListener {
 	}
     }
   
-    public void randomMove(){
-	int rand = (3 + (int)(Math.random() * (4)));
+    public void randomMoveBlue(){
+	int rand = (1 + (int)(Math.random() * (4)));
+ 		
+		if(rand == 1){
+		   moveUpBlue();
+		   lastDirectionBlue = 1;
+		   upCounter = (1 + (int)(Math.random() * (7)));
+		   	}
+		if(rand == 2){
+		  moveDownBlue();
+		  lastDirectionBlue = 2;
+		   downCounter = (1 + (int)(Math.random() * (7)));
+		  
+		 }
+		if(rand == 3){
+		    moveRightBlue();
+		    lastDirectionBlue = 3;
+		   rightCounter = (1 + (int)(Math.random() * (7)));
+		}
+		if(rand == 4){
+		    moveLeftBlue();
+		    lastDirectionBlue = 4;
+		   leftCounter = (1 + (int)(Math.random() * (7)));
+		}
+	}
+
+
+
+
+
+
+
+public void moveUpYellow(){
+	if(yellow.getY()- 1 >= 0){
+	    yg.setIcon(null);
+	    panels[yellow.getY()][yellow.getX()].repaint();
+	    yellow.setY(yellow.getY() - 1);
+	    panels[yellow.getY()][yellow.getX()].add(yg);
+	    yg.setIcon(Clyde);
+	}
+    }
+    public void moveDownYellow(){
+	if(yellow.getY() + 1 <= 39){
+	    yg.setIcon(null);
+	    panels[yellow.getY()][yellow.getX()].repaint();
+	    yellow.setY(yellow.getY() + 1);
+	    panels[yellow.getY()][yellow.getX()].add(yg);
+	    yg.setIcon(Clyde);
+	}
+    }
+    public void moveRightYellow(){
+	if(yellow.getX()+ 1 <= 39){
+	    yg.setIcon(null);
+	    panels[yellow.getY()][yellow.getX()].repaint();
+	    yellow.setX(yellow.getX() + 1);
+	    panels[yellow.getY()][yellow.getX()].add(yg);
+	    yg.setIcon(Clyde);
+	}
+    }
+    public void moveLeftYellow(){
+	if(yellow.getX()- 1 >= 0){
+	    yg.setIcon(null);
+	    panels[yellow.getY()][yellow.getX()].repaint();
+	    yellow.setX(yellow.getX() - 1);
+	    panels[yellow.getY()][yellow.getX()].add(yg);
+	    yg.setIcon(Clyde);
+	}
+    }
+  
+    public void randomMoveYellow(){
+	int rand = (3 + (int)(Math.random() * (5)));
  		
 		if(rand == 3){
-		   moveUpBlue();
-		   lastDirection = 3;
+		   moveUpYellow();
+		   lastDirectionYellow = 3;
 		   upCounter = (1 + (int)(Math.random() * (7)));
 		   	}
 		if(rand == 4){
-		  moveDownBlue();
-		  lastDirection = 4;
+		  moveDownYellow();
+		  lastDirectionYellow = 4;
 		   downCounter = (1 + (int)(Math.random() * (7)));
 		  
 		 }
 		if(rand == 5){
-		    moveRightBlue();
-		    lastDirection = 5;
+		    moveRightYellow();
+		    lastDirectionYellow = 5;
 		   rightCounter = (1 + (int)(Math.random() * (7)));
 		}
-		if(rand == 6){
-		    moveLeftBlue();
-		    lastDirection = 6;
+		if(rand == 6 || rand == 7){
+		    moveLeftYellow();
+		    lastDirectionYellow = 6;
 		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
-	}
+    }
+
     public void keyPressed(KeyEvent e){
 	int c = e.getKeyCode();
-	//	 b = new JLabel();
+
 	
 	
 	if(c == KeyEvent.VK_UP && pac.getY() - 1 >= 0){
@@ -258,7 +391,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	    pm.setIcon(Pacman);
 	    System.out.println(pac.getY());
 	    
-	    // b.setLocation(1,1);
+	    
  	}
     
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 <= 39){
@@ -266,7 +399,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
 	    panels[pac.getY()][pac.getX()].add(pm);
-	    // panels[pac.getY()][pac.getX()].setBackground(Color.WHITE);
+	   
 	    pm.setIcon(Pacman);
 	    System.out.println(pac.getY());
 	}
@@ -290,15 +423,13 @@ public class Maze2 extends JFrame implements KeyListener {
     public void keyTyped(KeyEvent e){
     }
     public void keyReleased(KeyEvent e){
-	//	JLabel b = new JLabel();
-	//	(panels[pac.getX()][pac.getY()]).setIcon(Pacman);
-	//	b.setIcon(Pacman);
+
     }
     
     public static void main(String[] args){
 	Maze2 maze = new Maze2();
 	maze.setVisible(true);
-	//	maze.pack();
+
     }
 }
     
