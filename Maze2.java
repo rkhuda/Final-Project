@@ -240,7 +240,65 @@ ActionListener YellowGhost = new ActionListener() {
         timerYellow.setRepeats(true);
         timerYellow.start();
 	
+ActionListener PinkGhost = new ActionListener() {
+		public void actionPerformed(ActionEvent evt) {
 
+		    if (lastDirectionPink == 0)
+			randomMovePink();
+		    else{
+	
+	
+			if (lastDirectionPink == 1)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpPink();
+					upCounter--;
+				    }else
+				    randomMovePink();			
+
+			    }
+			if (lastDirectionPink == 2)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownPink();
+					downCounter--;
+				    }else
+				    randomMovePink();			
+
+			    }
+			if (lastDirectionPink == 3)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightPink();
+					rightCounter--;
+				    }else
+				    randomMovePink();			
+
+			    }
+		    
+			if (lastDirectionPink == 4)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftPink();
+					leftCounter--;
+				    }else
+				    randomMovePink();			
+
+			    }
+		    
+
+
+	
+		    }
+		}
+	    };
+        Timer timerPink = new Timer(200, PinkGhost);
+        timerPink.setRepeats(true);
+        timerPink.start();
 
 	
     
@@ -377,6 +435,69 @@ public void moveUpYellow(){
 		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
     }
+
+public void moveUpPink(){
+	if(pink.getY()- 1 >= 0){
+	    pg.setIcon(null);
+	    panels[pink.getY()][pink.getX()].repaint();
+	    pink.setY(pink.getY() - 1);
+	    panels[pink.getY()][pink.getX()].add(pg);
+	    pg.setIcon(Inky);
+	}
+    }
+    public void moveDownPink(){
+	if(pink.getY() + 1 <= 39){
+	    pg.setIcon(null);
+	    panels[pink.getY()][pink.getX()].repaint();
+	    pink.setY(pink.getY() + 1);
+	    panels[pink.getY()][pink.getX()].add(pg);
+	    pg.setIcon(Inky);
+	}
+    }
+    public void moveRightPink(){
+	if(pink.getX()+ 1 <= 39){
+	    pg.setIcon(null);
+	    panels[pink.getY()][pink.getX()].repaint();
+	    pink.setX(pink.getX() + 1);
+	    panels[pink.getY()][pink.getX()].add(pg);
+	    pg.setIcon(Inky);
+	}
+    }
+    public void moveLeftPink(){
+	if(pink.getX()- 1 >= 0){
+	    pg.setIcon(null);
+	    panels[pink.getY()][pink.getX()].repaint();
+	    pink.setX(pink.getX() - 1);
+	    panels[pink.getY()][pink.getX()].add(pg);
+	    pg.setIcon(Inky);
+	}
+    }
+  
+    public void randomMovePink(){
+	int rand = (1 + (int)(Math.random() * (4)));
+ 		
+		if(rand == 1){
+		   moveUpPink();
+		   lastDirectionPink = 1;
+		   upCounter = (1 + (int)(Math.random() * (7)));
+		   	}
+		if(rand == 2){
+		  moveDownPink();
+		  lastDirectionPink = 2;
+		   downCounter = (1 + (int)(Math.random() * (7)));
+		  
+		 }
+		if(rand == 3){
+		    moveRightPink();
+		    lastDirectionPink = 3;
+		   rightCounter = (1 + (int)(Math.random() * (7)));
+		}
+		if(rand == 4){
+		    moveLeftPink();
+		    lastDirectionPink = 4;
+		   leftCounter = (1 + (int)(Math.random() * (7)));
+		}
+	}
 
     public void keyPressed(KeyEvent e){
 	int c = e.getKeyCode();
