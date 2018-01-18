@@ -693,7 +693,17 @@ public void moveUpRed(){
 	   (pac.getY() == blue.getY() && pac.getX() == blue.getX()) 
 	   ){
 	    pac.setLives(pac.getLives() - 1);
-	    System.out.println(pac.getLives());
+	    //   System.out.println(pac.getLives());
+	   
+	    // if(pac.getLives() - 1 > 0){
+	    JOptionPane.showMessageDialog(null,"You Have" + " " + Integer.toString(pac.getLives()) + " " + "Lives Remaining!");
+	    
+	    /*  try{
+	    java.util.concurrent.TimeUnit.SECONDS.sleep(2);
+	    }
+	    catch(InterruptedException e){
+	    }
+	    */
 	}
     }
 
