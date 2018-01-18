@@ -692,28 +692,36 @@ public void moveUpRed(){
 	   (pac.getY() == pink.getY() && pac.getX() == pink.getX()) || 
 	   (pac.getY() == blue.getY() && pac.getX() == blue.getX()) 
 	   ){
-	    System.out.println(" pacman Works!");
+	    pac.setLives(pac.getLives() - 1);
+	    System.out.println(pac.getLives());
 	}
     }
 
     public void meetBlue(){
-	if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){
-	    System.out.println("blue Works!");
+	if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){	   
+	     pac.setLives(pac.getLives() - 1);
+	     System.out.println(pac.getLives());
 	}
     }
     public void meetRed(){
-	if(red.getY() == pac.getY() && red.getX() == pac.getX()){
-	    System.out.println("red Works");
+	if(red.getY() == pac.getY() && red.getX() == pac.getX()){	    
+	     pac.setLives(pac.getLives() - 1);
+	     System.out.println(pac.getLives());
 	}
+	
+	
     }
     public void meetYellow(){
-	if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){
-	    System.out.println("yellow works");
+	if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){	    
+	     pac.setLives(pac.getLives() - 1);
+	     System.out.println(pac.getLives());
 	}
     }
     public void meetPink(){
-	if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){
-	    System.out.println("Pink works!");
+	if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){	   
+	     pac.setLives(pac.getLives() - 1);
+	     System.out.println(pac.getLives());
+
 	}
     }
 
