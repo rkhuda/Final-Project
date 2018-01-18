@@ -692,18 +692,28 @@ public void moveUpRed(){
 	   (pac.getY() == pink.getY() && pac.getX() == pink.getX()) || 
 	   (pac.getY() == blue.getY() && pac.getX() == blue.getX()) 
 	   ){
-	    System.out.println("Works!");
+	    System.out.println(" pacman Works!");
 	}
     }
 
     public void meetBlue(){
 	if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){
-	    System.out.println("Works!");
+	    System.out.println("blue Works!");
 	}
     }
     public void meetRed(){
 	if(red.getY() == pac.getY() && red.getX() == pac.getX()){
-	    System.out.println("Works");
+	    System.out.println("red Works");
+	}
+    }
+    public void meetYellow(){
+	if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){
+	    System.out.println("yellow works");
+	}
+    }
+    public void meetPink(){
+	if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){
+	    System.out.println("Pink works!");
 	}
     }
 
