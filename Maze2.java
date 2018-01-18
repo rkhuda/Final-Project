@@ -695,8 +695,15 @@ public void moveUpRed(){
 	    pac.setLives(pac.getLives() - 1);
 	    //   System.out.println(pac.getLives());
 	   
-	    // if(pac.getLives() - 1 > 0){
+	    if(pac.getLives() - 1 > 0){
 	    JOptionPane.showMessageDialog(null,"You Have" + " " + Integer.toString(pac.getLives()) + " " + "Lives Remaining!");
+	    pm.setIcon(null);
+	    panels[pac.getY()][pac.getX()].repaint();
+	    pac.setX(20);
+	    pac.setY(20);
+	    panels[pac.getY()][pac.getX()].add(pm);
+	    pm.setIcon(Pacman);
+	    }
 	    
 	    /*  try{
 	    java.util.concurrent.TimeUnit.SECONDS.sleep(2);
