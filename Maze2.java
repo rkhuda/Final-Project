@@ -372,7 +372,7 @@ ActionListener RedGhost = new ActionListener() {
 			panels[pac.getY()][pac.getX()].add(pm);
 			pm.setIcon(Pacman);
 			//	System.out.println(pac.getY());
-			meet();
+			meetPac();
 		    }
 		    if(pressed == KeyEvent.VK_DOWN && pac.getY() + 1 <= 39){
 			pm.setIcon(null);
@@ -381,7 +381,7 @@ ActionListener RedGhost = new ActionListener() {
 			panels[pac.getY()][pac.getX()].add(pm);
 	  	       	pm.setIcon(Pacman);
 			//	System.out.println(pac.getY());
-			meet();
+			meetPac();
 		    }
 	
 	
@@ -392,7 +392,7 @@ ActionListener RedGhost = new ActionListener() {
 			panels[pac.getY()][pac.getX()].add(pm);
 			pm.setIcon(Pacman);
 			//	System.out.println(pac.getX());
-			meet();
+			meetPac();
 		    }
 	
 
@@ -403,7 +403,7 @@ ActionListener RedGhost = new ActionListener() {
 			panels[pac.getY()][pac.getX()].add(pm);
 			pm.setIcon(Pacman);
 			//	System.out.println(pac.getX());
-			meet();
+			meetPac();
 		    }
 		    
 		    
@@ -421,7 +421,7 @@ ActionListener RedGhost = new ActionListener() {
 	    blue.setY(blue.getY() - 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
 	    bg.setIcon(Inky);
-	    meet();
+	    meetBlue();
 	}
     }
     public void moveDownBlue(){
@@ -431,7 +431,7 @@ ActionListener RedGhost = new ActionListener() {
 	    blue.setY(blue.getY() + 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
 	    bg.setIcon(Inky);
-	    meet();
+	    meetBlue();
 	}
     }
     public void moveRightBlue(){
@@ -441,7 +441,7 @@ ActionListener RedGhost = new ActionListener() {
 	    blue.setX(blue.getX() + 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
 	    bg.setIcon(Inky);
-	    meet();
+	    meetBlue();
 	}
     }
     public void moveLeftBlue(){
@@ -451,7 +451,7 @@ ActionListener RedGhost = new ActionListener() {
 	    blue.setX(blue.getX() - 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
 	    bg.setIcon(Inky);
-	    meet();
+	    meetBlue();
 	}
     }
   
@@ -494,7 +494,7 @@ public void moveUpYellow(){
 	    yellow.setY(yellow.getY() - 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
 	    yg.setIcon(Clyde);
-	    meet();
+	    meetYellow();
 	}
     }
     public void moveDownYellow(){
@@ -504,7 +504,7 @@ public void moveUpYellow(){
 	    yellow.setY(yellow.getY() + 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
 	    yg.setIcon(Clyde);
-	    meet();
+	    meetYellow();
 	}
     }
     public void moveRightYellow(){
@@ -514,7 +514,7 @@ public void moveUpYellow(){
 	    yellow.setX(yellow.getX() + 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
 	    yg.setIcon(Clyde);
-	    meet();
+	    meetYellow();
 	}
     }
     public void moveLeftYellow(){
@@ -524,7 +524,7 @@ public void moveUpYellow(){
 	    yellow.setX(yellow.getX() - 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
 	    yg.setIcon(Clyde);
-	    meet();
+	    meetYellow();
 	}
     }
   
@@ -561,7 +561,7 @@ public void moveUpPink(){
 	    pink.setY(pink.getY() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
-	    meet();
+	    meetPink();
 	}
     }
     public void moveDownPink(){
@@ -571,7 +571,7 @@ public void moveUpPink(){
 	    pink.setY(pink.getY() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
-	    meet();
+	    meetPink();
 	}
     }
     public void moveRightPink(){
@@ -581,7 +581,7 @@ public void moveUpPink(){
 	    pink.setX(pink.getX() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
-	    meet();
+	    meetPink();
 	}
     }
     public void moveLeftPink(){
@@ -591,7 +591,7 @@ public void moveUpPink(){
 	    pink.setX(pink.getX() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
-	    meet();
+	    meetPink();
 	}
     }
   
@@ -627,7 +627,7 @@ public void moveUpRed(){
 	    red.setY(red.getY() - 1);
 	    panels[red.getY()][red.getX()].add(rg);
 	    rg.setIcon(Blinky);
-	    meet();
+	    meetRed();
 	}
     }
     public void moveDownRed(){
@@ -637,7 +637,7 @@ public void moveUpRed(){
 	    red.setY(red.getY() + 1);
 	    panels[red.getY()][red.getX()].add(rg);
 	    rg.setIcon(Blinky);
-	    meet();
+	    meetRed();
 	}
     }
     public void moveRightRed(){
@@ -647,7 +647,7 @@ public void moveUpRed(){
 	    red.setX(red.getX() + 1);
 	    panels[red.getY()][red.getX()].add(rg);
 	    rg.setIcon(Blinky);
-	    meet();
+	    meetRed();
 	}
     }
     public void moveLeftRed(){
@@ -657,7 +657,7 @@ public void moveUpRed(){
 	    red.setX(red.getX() - 1);
 	    panels[red.getY()][red.getX()].add(rg);
 	    rg.setIcon(Blinky);
-	    meet();
+	    meetRed();
 	}
     }
   
