@@ -896,7 +896,18 @@ public void moveUpRed(){
 	    timerYellow.start();
 	    timerPink.start();
     }
-    //  public void checkWin(){
+    public void checkWin(){
+	int sum = 0;
+       	for (int x = 0; x < panels.length;x++) {
+        for (int y = 0; y < panels[x].length;y++) {
+	    sum +=  panels[x][y].getComponentCount();
+	}
+	}
+	if(sum <= 5){
+	    win();
+	}
+    }
+    
 	
     public void win(){
 	int choice = JOptionPane.showConfirmDialog(null, "Congratulations ,You have beat the game!  Do you want to play again?", "Confirm",
@@ -974,9 +985,7 @@ public void moveUpRed(){
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
-	    //  if(panels.getComponentCount() <= 5){
-	    //	win();
-	    //   }
+	    checkWin();
 		
 	   
  	}
@@ -990,6 +999,7 @@ public void moveUpRed(){
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(D);
 	    meetPac();
+	    checkWin();
 	}
 	
 	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 < 24 &&
@@ -1001,6 +1011,7 @@ public void moveUpRed(){
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(R);
 	    meetPac();
+	    checkWin();
 	}
 	
 	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 > 0 &&
@@ -1012,6 +1023,7 @@ public void moveUpRed(){
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(L);
 	    meetPac();
+	    checkWin();
 	}
     }
     
