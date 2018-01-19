@@ -697,8 +697,8 @@ public void moveUpRed(){
 	   ){
 	    pac.setLives(pac.getLives() - 1);
 	  	   	   
-	    if(pac.getLives() - 1 != 0){
-		meet();
+	    if(pac.getLives() > 0){
+		meetLives();
 	    }	    	  
 	}
     }
@@ -707,32 +707,36 @@ public void moveUpRed(){
 	if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){	   
 	     pac.setLives(pac.getLives() - 1);
 	     if(pac.getLives() > 0){
-		 meet();
+		 meetLives();
+	}
 	}
     }
     public void meetRed(){
 	if(red.getY() == pac.getY() && red.getX() == pac.getX()){	    
 	     pac.setLives(pac.getLives() - 1);
-	     System.out.println(pac.getLives());
-	}
-	
-	
+	     if(pac.getLives() > 0){
+		 meetLives();
+	     
+	}	
+       }
     }
     public void meetYellow(){
 	if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){	    
 	     pac.setLives(pac.getLives() - 1);
-	     System.out.println(pac.getLives());
+	     if(pac.getLives() > 0){
+		 meetLives();
 	}
+    }
     }
     public void meetPink(){
 	if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){	   
 	     pac.setLives(pac.getLives() - 1);
-	     System.out.println(pac.getLives());
-
+	     if(pac.getLives() > 0){
+		 meetLives();
+	    	}
 	}
     }
-
-    public void meet(){
+    public void meetLives(){
 	    timerBlue.stop();
 	    timerRed.stop();
 	    timerYellow.stop();
