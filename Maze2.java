@@ -699,7 +699,10 @@ public void moveUpRed(){
 	  	   	   
 	    if(pac.getLives() > 0){
 		meetLives();
-	    }	    	  
+	    }	  
+	    if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
 	}
     }
 
@@ -708,9 +711,13 @@ public void moveUpRed(){
 	     pac.setLives(pac.getLives() - 1);
 	     if(pac.getLives() > 0){
 		 meetLives();
-	}
+	     }
+	     if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
 	}
     }
+    
     public void meetRed(){
 	if(red.getY() == pac.getY() && red.getX() == pac.getX()){	    
 	     pac.setLives(pac.getLives() - 1);
@@ -736,6 +743,22 @@ public void moveUpRed(){
 	    	}
 	}
     }
+
+    public void meetNoLives(){
+	int choice = JOptionPane.showConfirmDialog(null, "You are out of lives! Do you want to restart?", "Confirm",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (choice == JOptionPane.NO_OPTION) {
+                System.exit(0);
+        } 
+            else if (choice == JOptionPane.YES_OPTION) {
+		( new Maze2()).setVisible(true) ;
+		
+        } 
+            else if (choice == JOptionPane.CLOSED_OPTION) {
+                System.exit(0);
+        }
+    }
+
     public void meetLives(){
 	    timerBlue.stop();
 	    timerRed.stop();
