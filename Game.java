@@ -896,7 +896,23 @@ public void moveUpRed(){
 	    timerYellow.start();
 	    timerPink.start();
     }
+    //  public void checkWin(){
 	
+    public void win(){
+	int choice = JOptionPane.showConfirmDialog(null, "Congratulations ,You have beat the game!  Do you want to play again?", "Confirm",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (choice == JOptionPane.NO_OPTION) {
+                System.exit(0);
+        } 
+            else if (choice == JOptionPane.YES_OPTION) {
+		( new Game()).setVisible(true) ;
+		
+        } 
+            else if (choice == JOptionPane.CLOSED_OPTION) {
+                System.exit(0);
+        }
+    }
+
     public void pacRespawn(){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
@@ -958,7 +974,10 @@ public void moveUpRed(){
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
-	    
+	    //  if(panels.getComponentCount() <= 5){
+	    //	win();
+	    //   }
+		
 	   
  	}
     
