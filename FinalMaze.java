@@ -952,9 +952,11 @@ public void moveUpRed(){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() - 1);
+	    panels[pac.getY()][pac.getX()].removeAll();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
+	   
  	}
     
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 < 24 &&
@@ -962,6 +964,7 @@ public void moveUpRed(){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
+	    panels[pac.getY()][pac.getX()].removeAll();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(D);
 	    meetPac();
@@ -972,6 +975,7 @@ public void moveUpRed(){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() + 1);
+	    panels[pac.getY()][pac.getX()].removeAll();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(R);
 	    meetPac();
@@ -982,6 +986,7 @@ public void moveUpRed(){
        	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() - 1);
+	    panels[pac.getY()][pac.getX()].removeAll();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(L);
 	    meetPac();
