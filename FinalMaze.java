@@ -59,7 +59,7 @@ public class FinalMaze extends JFrame implements KeyListener {
        	
 	Pacdot = new ImageIcon("Pacdot.png");
 	Image imageDot = Pacdot.getImage();
-	Image newimgDot = imageDot.getScaledInstance(10, 10, java.awt.Image.SCALE_SMOOTH);
+	Image newimgDot = imageDot.getScaledInstance(4, 4, java.awt.Image.SCALE_SMOOTH);
 	Pacdot = new ImageIcon(newimgDot);
 
 	R = new ImageIcon("PacmanRight.png");
@@ -86,28 +86,28 @@ public class FinalMaze extends JFrame implements KeyListener {
 
 	Inky = new ImageIcon("Inky.png");
 	Image imageI = Inky.getImage();
-	Image newimgI = imageI.getScaledInstance(23, 23, java.awt.Image.SCALE_SMOOTH);
+	Image newimgI = imageI.getScaledInstance(19, 19, java.awt.Image.SCALE_SMOOTH);
 	Inky = new ImageIcon(newimgI);
 	bg = new JLabel();
 	blue = new Enemy(10, 12);
 
 	Clyde = new ImageIcon("Clyde.png");
 	Image image3 = Clyde.getImage(); // transform it
-	Image newimg3 = image3.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	Image newimg3 = image3.getScaledInstance(19,19,  java.awt.Image.SCALE_SMOOTH);
 	Clyde = new ImageIcon(newimg3);  // transform it back
 	yg = new JLabel();
         yellow = new Enemy(9, 12);
 		
        	Pinky = new ImageIcon("Pinky.png");
 	Image image4 = Pinky.getImage(); // transform it
-	Image newimg4 = image4.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	Image newimg4 = image4.getScaledInstance(19,19,  java.awt.Image.SCALE_SMOOTH);
 	Pinky = new ImageIcon(newimg4);  // transform it back
 	pg = new JLabel();
         pink = new Enemy(10, 11);
 		
 	Blinky = new ImageIcon("Blinky.png");
 	Image image5 = Blinky.getImage(); // transform it
-	Image newimg5 = image5.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	Image newimg5 = image5.getScaledInstance(19,19,  java.awt.Image.SCALE_SMOOTH);
 	Blinky = new ImageIcon(newimg5);  // transform it back
 	rg = new JLabel();
         red = new Enemy(10, 13);
@@ -123,10 +123,15 @@ public class FinalMaze extends JFrame implements KeyListener {
 	       	Container c = getContentPane();
 		JLabel b = new JLabel();
 
+		b.setIcon(Pacdot);
+		b.setBackground(Color.BLACK);
+		b.setOpaque(true);
+
 		if (x == pac.getY() && y == pac.getX()) {
 		    pm.setIcon(R);
 		    p.setBackground(Color.BLACK);
 		    p.add(pm);
+		    b.setIcon(null);
 		}
 		if (x == blue.getY() && y == blue.getX()) {
 		    bg.setIcon(Inky);
@@ -144,11 +149,7 @@ public class FinalMaze extends JFrame implements KeyListener {
 		    rg.setIcon(Blinky);
 		    p.add(rg);
 		}
-		
-	
-	        b.setIcon(Pacdot);
-		b.setBackground(Color.BLACK);
-		b.setOpaque(true);
+					       
 	       	p.setBackground(Color.BLACK);
 		pane.add(p);
 		pane.add(b);
