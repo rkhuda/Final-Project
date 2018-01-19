@@ -725,6 +725,9 @@ public void moveUpRed(){
 		 meetLives();
 	     
 	}	
+	       if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
        }
     }
     public void meetYellow(){
@@ -733,6 +736,9 @@ public void moveUpRed(){
 	     if(pac.getLives() > 0){
 		 meetLives();
 	}
+	       if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
     }
     }
     public void meetPink(){
@@ -741,6 +747,9 @@ public void moveUpRed(){
 	     if(pac.getLives() > 0){
 		 meetLives();
 	    	}
+	       if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
 	}
     }
 
