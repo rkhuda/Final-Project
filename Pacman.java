@@ -9,6 +9,7 @@ public class Pacman{
     public Pacman(){
 	xcor = 20;
 	ycor = 20;
+	lives = 3;
     }
 
     public int getX(){
