@@ -64,24 +64,24 @@ public class FinalMaze extends JFrame implements KeyListener {
 
 	R = new ImageIcon("PacmanRight.png");
 	Image imageR = R.getImage(); // transform it
-	Image newimgR = imageR.getScaledInstance(23, 23,  java.awt.Image.SCALE_SMOOTH);
+	Image newimgR = imageR.getScaledInstance(18, 18,  java.awt.Image.SCALE_SMOOTH);
 	R = new ImageIcon(newimgR);  // transform it back
 	pm = new JLabel();
 	pac = new Pacman();
 
         L = new ImageIcon("PacmanLeft.png");
 	Image imageL = L.getImage(); // transform it
-	Image newimgL = imageL.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	Image newimgL = imageL.getScaledInstance(18,18,  java.awt.Image.SCALE_SMOOTH);
 	L = new ImageIcon(newimgL);  // transform it back
 
         D = new ImageIcon("PacmanDown.png");
 	Image imageD = D.getImage(); // transform it
-	Image newimgD = imageD.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	Image newimgD = imageD.getScaledInstance(18,18,  java.awt.Image.SCALE_SMOOTH);
 	D = new ImageIcon(newimgD);  // transform it back
 
         U = new ImageIcon("PacmanUp.png");
 	Image imageU = U.getImage(); // transform it
-	Image newimgU = imageU.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	Image newimgU = imageU.getScaledInstance(18,18,  java.awt.Image.SCALE_SMOOTH);
 	U = new ImageIcon(newimgU);  // transform it back
 
 	Inky = new ImageIcon("Inky.png");
@@ -122,16 +122,16 @@ public class FinalMaze extends JFrame implements KeyListener {
 		JPanel p = panels[x][y];
 	       	Container c = getContentPane();
 		JLabel b = new JLabel();
-
+	
 		b.setIcon(Pacdot);
 		b.setBackground(Color.BLACK);
-		b.setOpaque(true);
-
+	     	b.setOpaque(true);
+		
 		if (x == pac.getY() && y == pac.getX()) {
 		    pm.setIcon(R);
 		    p.setBackground(Color.BLACK);
 		    p.add(pm);
-		    b.setIcon(null);
+		       b.setIcon(null);
 		}
 		if (x == blue.getY() && y == blue.getX()) {
 		    bg.setIcon(Inky);
@@ -152,7 +152,7 @@ public class FinalMaze extends JFrame implements KeyListener {
 					       
 	       	p.setBackground(Color.BLACK);
 		pane.add(p);
-		pane.add(b);
+	       	pane.add(b);
 		
 		if (x == 0) {
 		    p.setBorder(BorderFactory.createMatteBorder(27, 0, 0, 0, Color.BLUE));
