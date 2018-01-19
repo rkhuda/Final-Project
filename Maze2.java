@@ -696,27 +696,9 @@ public void moveUpRed(){
 	   (pac.getY() == blue.getY() && pac.getX() == blue.getX()) 
 	   ){
 	    pac.setLives(pac.getLives() - 1);
-	   
-	   
+	  	   	   
 	    if(pac.getLives() - 1 != 0){
-		 
-
-	    timerBlue.stop();
-	    timerRed.stop();
-	    timerYellow.stop();
-	    timerPink.stop();
-	    /*
-	   
-
-	   
-
-	   
-	    */
-	    pacRespawn();
-	    blueRespawn();
-	    
-	    JOptionPane.showMessageDialog(null,"You Have" + " " + Integer.toString(pac.getLives()) + " " + "Lives Remaining!");
-	   
+		meet();
 	    }	    	  
 	}
     }
@@ -724,7 +706,8 @@ public void moveUpRed(){
     public void meetBlue(){
 	if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){	   
 	     pac.setLives(pac.getLives() - 1);
-	     System.out.println(pac.getLives());
+	     if(pac.getLives() > 0){
+		 meet();
 	}
     }
     public void meetRed(){
@@ -748,6 +731,24 @@ public void moveUpRed(){
 
 	}
     }
+
+    public void meet(){
+	    timerBlue.stop();
+	    timerRed.stop();
+	    timerYellow.stop();
+	    timerPink.stop();	    	   	   
+	    pacRespawn();
+	    blueRespawn();
+	    yellowRespawn();
+	    pinkRespawn();
+	    redRespawn();
+	    JOptionPane.showMessageDialog(null,"You Have" + " " + Integer.toString(pac.getLives()) + " " + "Lives Remaining!");
+	    timerBlue.start();
+	    timerRed.start();
+	    timerYellow.start();
+	    timerPink.start();
+    }
+	
     public void pacRespawn(){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
@@ -782,15 +783,16 @@ public void moveUpRed(){
 	    panels[red.getY()][red.getX()].add(rg);
 	    rg.setIcon(Blinky);
     }
-    /*
+    
     public void pinkRespawn(){
 	    pg.setIcon(null);
 	    panels[pink.getY()][pink.getX()].repaint();
-	    red.setX(red.getX() - 1);
-	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
+	    pink.setX(10);
+	    pink.setY(4);
+	    panels[pink.getY()][pink.getX()].add(pg);
+	    pg.setIcon(Pinky);
     }
-    */
+    
     public void keyPressed(KeyEvent e){
 	int c = e.getKeyCode();
 	
