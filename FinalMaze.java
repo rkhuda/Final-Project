@@ -130,10 +130,15 @@ public class FinalMaze extends JFrame implements KeyListener {
 	       	Container c = getContentPane();
 		JLabel b = new JLabel();
 
+		b.setIcon(Pacdot);
+		b.setBackground(Color.BLACK);
+		b.setOpaque(true);
+
 		if (x == pac.getY() && y == pac.getX()) {
 		    pm.setIcon(R);
-		    p.setBackground(Color.BLACK);
+		    pm.setBackground(Color.BLACK);
 		    p.add(pm);
+		    b.setIcon(null);
 		}
 		if (x == blue.getY() && y == blue.getX()) {
 		    bg.setIcon(Inky);
@@ -152,10 +157,6 @@ public class FinalMaze extends JFrame implements KeyListener {
 		    p.add(rg);
 		}
 		
-	
-	        b.setIcon(Pacdot);
-		b.setBackground(Color.BLACK);
-		b.setOpaque(true);
 	       	p.setBackground(Color.BLACK);
 		pane.add(p);
 		pane.add(b);
