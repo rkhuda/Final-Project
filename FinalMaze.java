@@ -37,22 +37,15 @@ public class FinalMaze extends JFrame implements KeyListener {
     private Enemy pink;
     private Enemy red;
 
-    private Timer timerblue;
-    private Timer t;
-    private TimerTask tt;
-
-    private int tiles;
-    private int actionNum;
-    private int up;
+    private Timer timerBlue;
+    private Timer timerYellow;
+    private Timer timerPink;
+    private Timer timerRed;
+      
     private int upCounter, downCounter, rightCounter, leftCounter;
-    private int down;
-    private int right;
-    private int left;
-    private int lastDirectionBlue;
-    private int lastDirectionYellow;
-    private int lastDirectionPink;
-    private int lastDirectionRed;
-    private int pressed;
+    private int lastDirectionBlue, lastDirectionYellow, lastDirectionPink,lastDirectionRed;
+    
+    
 
     public FinalMaze(){
 	
@@ -332,7 +325,7 @@ public class FinalMaze extends JFrame implements KeyListener {
 		    }
 		}
 	    };
-	Timer timerBlue = new Timer(200, BlueGhost);
+        timerBlue = new Timer(200, BlueGhost);
 	timerBlue.setRepeats(true);
 	timerBlue.start();
 
@@ -396,7 +389,7 @@ public class FinalMaze extends JFrame implements KeyListener {
 		    }
 		}
 	    };
-        Timer timerYellow = new Timer(200, YellowGhost);
+        timerYellow = new Timer(200, YellowGhost);
         timerYellow.setRepeats(true);
         timerYellow.start();
 	
@@ -460,7 +453,7 @@ ActionListener PinkGhost = new ActionListener() {
 		    }
 		}
 	    };
-        Timer timerPink = new Timer(200, PinkGhost);
+        timerPink = new Timer(200, PinkGhost);
         timerPink.setRepeats(true);
         timerPink.start();
 ActionListener RedGhost = new ActionListener() {
@@ -523,24 +516,9 @@ ActionListener RedGhost = new ActionListener() {
 		    }
 		}
 	    };
-        Timer timerRed = new Timer(200, RedGhost);
+        timerRed = new Timer(200, RedGhost);
         timerRed.setRepeats(true);
         timerRed.start();
-	/*
-	new Timer(1000,new ActionListener(){
-		public void actionPerformed(ActionEvent arg0){
-		    if(pressed == KeyEvent.VK_UP && pac.getY() - 1 >= 0){
-			pm.setIcon(null);
-			panels[pac.getY()][pac.getX()].repaint();
-			pac.setY(pac.getY() - 1);
-			panels[pac.getY()][pac.getX()].add(pm);
-			pm.setIcon(R);
-			System.out.println(pac.getY());
-		    }
-		}
-	    }).start();
-	*/
-
     }
 
     public void moveUpBlue(){
@@ -550,6 +528,7 @@ ActionListener RedGhost = new ActionListener() {
 	    blue.setY(blue.getY() - 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
 	    bg.setIcon(Inky);
+	    meetBlue();
 	}
     }
     public void moveDownBlue(){
@@ -559,6 +538,7 @@ ActionListener RedGhost = new ActionListener() {
 	    blue.setY(blue.getY() + 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
 	    bg.setIcon(Inky);
+	    meetBlue();
 	}
     }
     public void moveRightBlue(){
@@ -568,6 +548,7 @@ ActionListener RedGhost = new ActionListener() {
 	    blue.setX(blue.getX() + 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
 	    bg.setIcon(Inky);
+	    meetBlue();
 	}
     }
     public void moveLeftBlue(){
@@ -577,6 +558,7 @@ ActionListener RedGhost = new ActionListener() {
 	    blue.setX(blue.getX() - 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
 	    bg.setIcon(Inky);
+	    meetBlue();
 	}
     }
 
@@ -619,6 +601,7 @@ public void moveUpYellow(){
 	    yellow.setY(yellow.getY() - 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
 	    yg.setIcon(Clyde);
+	    meetYellow();
 	}
     }
     public void moveDownYellow(){
@@ -628,6 +611,7 @@ public void moveUpYellow(){
 	    yellow.setY(yellow.getY() + 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
 	    yg.setIcon(Clyde);
+	    meetYellow();
 	}
     }
     public void moveRightYellow(){
@@ -637,6 +621,7 @@ public void moveUpYellow(){
 	    yellow.setX(yellow.getX() + 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
 	    yg.setIcon(Clyde);
+	    meetYellow();
 	}
     }
     public void moveLeftYellow(){
@@ -646,6 +631,7 @@ public void moveUpYellow(){
 	    yellow.setX(yellow.getX() - 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
 	    yg.setIcon(Clyde);
+	    meetYellow();
 	}
     }
   
@@ -682,6 +668,7 @@ public void moveUpPink(){
 	    pink.setY(pink.getY() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
+	    meetPink();
 	}
     }
     public void moveDownPink(){
@@ -691,6 +678,7 @@ public void moveUpPink(){
 	    pink.setY(pink.getY() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
+	    meetPink();
 	}
     }
     public void moveRightPink(){
@@ -700,6 +688,7 @@ public void moveUpPink(){
 	    pink.setX(pink.getX() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
+	    meetPink();
 	}
     }
     public void moveLeftPink(){
@@ -709,6 +698,7 @@ public void moveUpPink(){
 	    pink.setX(pink.getX() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
+	    meetPink();
 	}
     }
   
@@ -744,6 +734,7 @@ public void moveUpRed(){
 	    red.setY(red.getY() - 1);
 	    panels[red.getY()][red.getX()].add(rg);
 	    rg.setIcon(Blinky);
+	    meetRed();
 	}
     }
     public void moveDownRed(){
@@ -753,6 +744,7 @@ public void moveUpRed(){
 	    red.setY(red.getY() + 1);
 	    panels[red.getY()][red.getX()].add(rg);
 	    rg.setIcon(Blinky);
+	    meetRed();
 	}
     }
     public void moveRightRed(){
@@ -762,6 +754,7 @@ public void moveUpRed(){
 	    red.setX(red.getX() + 1);
 	    panels[red.getY()][red.getX()].add(rg);
 	    rg.setIcon(Blinky);
+	    meetRed();
 	}
     }
     public void moveLeftRed(){
@@ -771,6 +764,7 @@ public void moveUpRed(){
 	    red.setX(red.getX() - 1);
 	    panels[red.getY()][red.getX()].add(rg);
 	    rg.setIcon(Blinky);
+	    meetRed();
 	}
     }
   
@@ -799,7 +793,145 @@ public void moveUpRed(){
 		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
 	}
+ public void meetPac(){
+	if((pac.getY() == yellow.getY() && pac.getX() == yellow.getX()) || 
+	   (pac.getY() == red.getY() && pac.getX() == red.getX()) || 
+	   (pac.getY() == pink.getY() && pac.getX() == pink.getX()) || 
+	   (pac.getY() == blue.getY() && pac.getX() == blue.getX()) 
+	   ){
+	    pac.setLives(pac.getLives() - 1);
+	  	   	   
+	    if(pac.getLives() > 0){
+		meetLives();
+	    }	  
+	    if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
+	}
+    }
 
+    public void meetBlue(){
+	if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){	   
+	     pac.setLives(pac.getLives() - 1);
+	     if(pac.getLives() > 0){
+		 meetLives();
+	     }
+	     if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
+	}
+    }
+    
+    public void meetRed(){
+	if(red.getY() == pac.getY() && red.getX() == pac.getX()){	    
+	     pac.setLives(pac.getLives() - 1);
+	     if(pac.getLives() > 0){
+		 meetLives();
+	     
+	}	
+	       if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
+       }
+    }
+    public void meetYellow(){
+	if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){	    
+	     pac.setLives(pac.getLives() - 1);
+	     if(pac.getLives() > 0){
+		 meetLives();
+	}
+	       if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
+    }
+    }
+    public void meetPink(){
+	if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){	   
+	     pac.setLives(pac.getLives() - 1);
+	     if(pac.getLives() > 0){
+		 meetLives();
+	    	}
+	       if(pac.getLives() == 0){
+		     meetNoLives();
+	     }
+	}
+    }
+
+    public void meetNoLives(){
+	int choice = JOptionPane.showConfirmDialog(null, "You are out of lives! Do you want to restart?", "Confirm",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (choice == JOptionPane.NO_OPTION) {
+                System.exit(0);
+        } 
+            else if (choice == JOptionPane.YES_OPTION) {
+		( new FinalMaze()).setVisible(true) ;
+		
+        } 
+            else if (choice == JOptionPane.CLOSED_OPTION) {
+                System.exit(0);
+        }
+    }
+
+    public void meetLives(){
+	    timerBlue.stop();
+	    timerRed.stop();
+	    timerYellow.stop();
+	    timerPink.stop();	    	   	   
+	    pacRespawn();
+	    blueRespawn();
+	    yellowRespawn();
+	    pinkRespawn();
+	    redRespawn();
+	    JOptionPane.showMessageDialog(null,"You Have" + " " + Integer.toString(pac.getLives()) + " " + "Lives Remaining!");
+	    timerBlue.start();
+	    timerRed.start();
+	    timerYellow.start();
+	    timerPink.start();
+    }
+	
+    public void pacRespawn(){
+	    pm.setIcon(null);
+	    panels[pac.getY()][pac.getX()].repaint();
+	    pac.setX(20);
+	    pac.setY(20);
+	    panels[pac.getY()][pac.getX()].add(pm);
+	    pm.setIcon(R);
+    }
+
+    public void blueRespawn(){
+	    bg.setIcon(null);
+	    panels[blue.getY()][blue.getX()].repaint();
+	    blue.setX(10);
+	    blue.setY(12);
+	    panels[blue.getY()][blue.getX()].add(bg);
+	    bg.setIcon(Inky);
+    }
+    public void yellowRespawn(){
+            yg.setIcon(null);
+	    panels[yellow.getY()][yellow.getX()].repaint();
+	    yellow.setX(9);
+	    yellow.setY(12);
+	    panels[yellow.getY()][yellow.getX()].add(yg);
+	    yg.setIcon(Clyde);
+    }
+
+    public void redRespawn(){
+	    rg.setIcon(null);
+	    panels[red.getY()][red.getX()].repaint();
+	    red.setX(10);
+	    red.setY(13);
+	    panels[red.getY()][red.getX()].add(rg);
+	    rg.setIcon(Blinky);
+    }
+    
+    public void pinkRespawn(){
+	    pg.setIcon(null);
+	    panels[pink.getY()][pink.getX()].repaint();
+	    pink.setX(10);
+	    pink.setY(11);
+	    panels[pink.getY()][pink.getX()].add(pg);
+	    pg.setIcon(Pinky);
+    }
     
     public void keyPressed(KeyEvent e){
 
@@ -812,6 +944,7 @@ public void moveUpRed(){
 	    pac.setY(pac.getY() - 1);
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
+	    meetPac();
  	}
     
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 < 24 &&
@@ -821,6 +954,7 @@ public void moveUpRed(){
 	    pac.setY(pac.getY() + 1);
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(D);
+	    meetPac();
 	}
 	
 	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 < 24 &&
@@ -830,6 +964,7 @@ public void moveUpRed(){
 	    pac.setX(pac.getX() + 1);
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(R);
+	    meetPac();
 	}
 	
 	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 > 0 &&
@@ -839,11 +974,12 @@ public void moveUpRed(){
 	    pac.setX(pac.getX() - 1);
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(L);
+	    meetPac();
 	}
     }
     
     public void keyReleased(KeyEvent e){
-	//pressed = 0;
+	
     }
     public void keyTyped(KeyEvent e){}
     
