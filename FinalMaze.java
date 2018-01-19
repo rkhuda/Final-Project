@@ -19,7 +19,8 @@ public class FinalMaze extends JFrame implements KeyListener {
     private JLabel pg;
     private JLabel rg;
     private JLabel pd;
-
+    private JLabel b;
+    
     private ImageIcon R;
     private ImageIcon L;
     private ImageIcon U;
@@ -52,7 +53,8 @@ public class FinalMaze extends JFrame implements KeyListener {
 	this.setTitle("Pacman");
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	this.setBounds(400, 100, 700, 700);
-	this.setResizable(false);
+       	this.setResizable(false);
+	
 	
 	addKeyListener(this);
 	pane = getContentPane();
@@ -61,6 +63,7 @@ public class FinalMaze extends JFrame implements KeyListener {
 	Image imageDot = Pacdot.getImage();
 	Image newimgDot = imageDot.getScaledInstance(4, 4, java.awt.Image.SCALE_SMOOTH);
 	Pacdot = new ImageIcon(newimgDot);
+	b = new JLabel();
 
 	R = new ImageIcon("PacmanRight.png");
 	Image imageR = R.getImage(); // transform it
@@ -86,28 +89,28 @@ public class FinalMaze extends JFrame implements KeyListener {
 
 	Inky = new ImageIcon("Inky.png");
 	Image imageI = Inky.getImage();
-	Image newimgI = imageI.getScaledInstance(19, 19, java.awt.Image.SCALE_SMOOTH);
+	Image newimgI = imageI.getScaledInstance(13, 13, java.awt.Image.SCALE_SMOOTH);
 	Inky = new ImageIcon(newimgI);
 	bg = new JLabel();
 	blue = new Enemy(10, 12);
 
 	Clyde = new ImageIcon("Clyde.png");
 	Image image3 = Clyde.getImage(); // transform it
-	Image newimg3 = image3.getScaledInstance(19,19,  java.awt.Image.SCALE_SMOOTH);
+	Image newimg3 = image3.getScaledInstance(13,13,  java.awt.Image.SCALE_SMOOTH);
 	Clyde = new ImageIcon(newimg3);  // transform it back
 	yg = new JLabel();
         yellow = new Enemy(9, 12);
 		
        	Pinky = new ImageIcon("Pinky.png");
 	Image image4 = Pinky.getImage(); // transform it
-	Image newimg4 = image4.getScaledInstance(19,19,  java.awt.Image.SCALE_SMOOTH);
+	Image newimg4 = image4.getScaledInstance(13,13,  java.awt.Image.SCALE_SMOOTH);
 	Pinky = new ImageIcon(newimg4);  // transform it back
 	pg = new JLabel();
         pink = new Enemy(10, 11);
 		
 	Blinky = new ImageIcon("Blinky.png");
 	Image image5 = Blinky.getImage(); // transform it
-	Image newimg5 = image5.getScaledInstance(19,19,  java.awt.Image.SCALE_SMOOTH);
+	Image newimg5 = image5.getScaledInstance(13,13,  java.awt.Image.SCALE_SMOOTH);
 	Blinky = new ImageIcon(newimg5);  // transform it back
 	rg = new JLabel();
         red = new Enemy(10, 13);
@@ -121,19 +124,22 @@ public class FinalMaze extends JFrame implements KeyListener {
 		panels[x][y] = new JPanel(new FlowLayout());
 		JPanel p = panels[x][y];
 	       	Container c = getContentPane();
-		JLabel b = new JLabel();
+		//	JLabel b = new JLabel();
 	
-		b.setIcon(Pacdot);
-		b.setBackground(Color.BLACK);
-	     	b.setOpaque(true);
-		
+	
+		//	if(x != pac.getY() || y != pac.getX()){
+		    b.setIcon(Pacdot);
+		    p.setBackground(Color.BLACK);
+		    p.add(b);
+		    pane.add(p);
+		    //	}
 		if (x == pac.getY() && y == pac.getX()) {
 		    pm.setIcon(R);
 		    p.setBackground(Color.BLACK);
 		    p.add(pm);
-		       b.setIcon(null);
+		   
 		}
-		if (x == blue.getY() && y == blue.getX()) {
+	       	if (x == blue.getY() && y == blue.getX())  {
 		    bg.setIcon(Inky);
 		    p.add(bg);
 		}
@@ -152,8 +158,8 @@ public class FinalMaze extends JFrame implements KeyListener {
 					       
 	       	p.setBackground(Color.BLACK);
 		pane.add(p);
-	       	pane.add(b);
-		
+	
+		/*
 		if (x == 0) {
 		    p.setBorder(BorderFactory.createMatteBorder(27, 0, 0, 0, Color.BLUE));
 		    b.setIcon(null);
@@ -250,22 +256,23 @@ public class FinalMaze extends JFrame implements KeyListener {
 		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 13 ||
 					    y == 14)) {
 		    p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
-		    b.setIcon(null);
+		       b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
 		if (x == 10 && (y == 10 || y == 14)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
+		      b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
 		if (x == 11 && y == 12) {
 		     p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
-		     b.setIcon(null);
+		       b.setIcon(null);
 		     b.setBackground(Color.BLUE);
+*/
 		}
 		
 	    }
-	}
+    
 
 	ActionListener BlueGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
@@ -933,6 +940,8 @@ public void moveUpRed(){
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
     }
+  
+	
     
     public void keyPressed(KeyEvent e){
 
