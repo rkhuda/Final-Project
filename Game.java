@@ -126,13 +126,14 @@ public class Game extends JFrame implements KeyListener {
 	       	Container c = getContentPane();
 			JLabel b = new JLabel();
 	
-	
+			
 	      	if(x != pac.getY() || y != pac.getX()){
 		    b.setIcon(Pacdot);
 		    p.setBackground(Color.BLACK);
 		    p.add(b);
 		   
 		    	}
+			
 		if (x == pac.getY() && y == pac.getX()) {
 		    pm.setIcon(R);
 		    p.setBackground(Color.BLACK);
@@ -903,13 +904,18 @@ public void moveUpRed(){
 	    sum +=  panels[x][y].getComponentCount();
 	}
 	}
-	if(sum <= 5){
-	    win();
+
+	if(sum < 303){
+	   win();
 	}
     }
     
 	
     public void win(){
+	timerBlue.stop();
+	timerRed.stop();
+	timerYellow.stop();
+	timerPink.stop();
 	int choice = JOptionPane.showConfirmDialog(null, "Congratulations ,You have beat the game!  Do you want to play again?", "Confirm",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (choice == JOptionPane.NO_OPTION) {
