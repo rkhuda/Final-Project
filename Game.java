@@ -251,7 +251,7 @@ public class Game extends JFrame implements KeyListener {
 		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
-		
+		/*
 		//make center box
 		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 13 ||
 					    y == 14)) {
@@ -270,6 +270,7 @@ public class Game extends JFrame implements KeyListener {
 		     b.setBackground(Color.BLUE);
 
 		}
+		*/
 		
 	    }
 	}
@@ -574,27 +575,46 @@ ActionListener RedGhost = new ActionListener() {
 	int rand = (1 + (int)(Math.random() * (4)));
  		
 		if(rand == 1){
-		   moveUpBlue();
-		   lastDirectionBlue = 1;
-		   upCounter = (1 + (int)(Math.random() * (7)));
-		   	}
+		    if (panels[blue.getY() - 1][blue.getX()].getBorder() == null) {
+			moveUpBlue();
+			lastDirectionBlue = 1;
+			upCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
+		}
 		if(rand == 2){
-		  moveDownBlue();
-		  lastDirectionBlue = 2;
-		   downCounter = (1 + (int)(Math.random() * (7)));
-		  
-		 }
+		    if (panels[blue.getY() + 1][blue.getX()].getBorder() == null) {
+			moveDownBlue();
+			lastDirectionBlue = 2;
+			downCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
+		}
 		if(rand == 3){
-		    moveRightBlue();
-		    lastDirectionBlue = 3;
-		   rightCounter = (1 + (int)(Math.random() * (7)));
+		    if (panels[blue.getY()][blue.getX() + 1].getBorder() == null) {
+			moveRightBlue();
+			lastDirectionBlue = 3;
+			rightCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
 		}
 		if(rand == 4){
-		    moveLeftBlue();
-		    lastDirectionBlue = 4;
-		   leftCounter = (1 + (int)(Math.random() * (7)));
+		    if (panels[blue.getY()][blue.getX() - 1].getBorder() == null) {
+			moveLeftBlue();
+			lastDirectionBlue = 4;
+			leftCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else{
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
 		}
-	}
+    }
 
 
 
