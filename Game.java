@@ -30,6 +30,7 @@ public class Game extends JFrame implements KeyListener {
     private ImageIcon Pinky;
     private ImageIcon Blinky;
     private ImageIcon Pacdot;
+    private ImageIcon Power;
 
     private Pacman pac;
 
@@ -46,7 +47,7 @@ public class Game extends JFrame implements KeyListener {
     private int upCounter, downCounter, rightCounter, leftCounter;
     private int lastDirectionBlue, lastDirectionYellow, lastDirectionPink,lastDirectionRed;
     
-    
+    private Boolean isPower;
 
     public Game(){
 	
@@ -58,6 +59,11 @@ public class Game extends JFrame implements KeyListener {
 	
 	addKeyListener(this);
 	pane = getContentPane();
+	
+	Power = new ImageIcon("Pacdot.png");
+	Image imagePower = Power.getImage();
+	Image newimgPower = imagePower.getScaledInstance(10, 10, java.awt.Image.SCALE_SMOOTH);
+	Power = new ImageIcon(newimgPower);
        	
 	Pacdot = new ImageIcon("Pacdot.png");
 	Image imageDot = Pacdot.getImage();
@@ -126,8 +132,8 @@ public class Game extends JFrame implements KeyListener {
 	       	Container c = getContentPane();
 			JLabel b = new JLabel();
 	
-			
-	      	if(x != pac.getY() || y != pac.getX()){
+			if((x != pac.getY() || y != pac.getX()) && (x != 23 || y != 23) && (x != 1 || y != 23)
+			   && (x != 23 || y != 1)  && ( x != 1 || y != 1)){
 		    b.setIcon(Pacdot);
 		    p.setBackground(Color.BLACK);
 		    p.add(b);
@@ -873,6 +879,7 @@ public void moveUpRed(){
                 System.exit(0);
         } 
             else if (choice == JOptionPane.YES_OPTION) {
+		//	Game.setVisible(false);
 		( new Game()).setVisible(true) ;
 		
         } 
@@ -922,6 +929,7 @@ public void moveUpRed(){
                 System.exit(0);
         } 
             else if (choice == JOptionPane.YES_OPTION) {
+		
 		( new Game()).setVisible(true) ;
 		
         } 
@@ -992,7 +1000,7 @@ public void moveUpRed(){
 	    pm.setIcon(U);
 	    meetPac();
 	    checkWin();
-		
+	   
 	   
  	}
     
@@ -1006,6 +1014,7 @@ public void moveUpRed(){
 	    pm.setIcon(D);
 	    meetPac();
 	    checkWin();
+  
 	}
 	
 	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 < 24 &&
@@ -1018,6 +1027,7 @@ public void moveUpRed(){
 	    pm.setIcon(R);
 	    meetPac();
 	    checkWin();
+  
 	}
 	
 	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 > 0 &&
@@ -1030,6 +1040,7 @@ public void moveUpRed(){
 	    pm.setIcon(L);
 	    meetPac();
 	    checkWin();
+ 
 	}
     }
     
