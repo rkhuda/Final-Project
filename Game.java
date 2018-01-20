@@ -994,6 +994,9 @@ public void moveUpRed(){
 	    ( pac.getY() != 1 || pac.getX() != 1) && (pac.getY() != 1 || pac.getX() != 23)){
 	     panels[pac.getY()][pac.getX()].removeAll();
 	 }
+	 else{
+	      panels[pac.getY()][pac.getX()].removeAll();
+     }
      }
     
     public void keyPressed(KeyEvent e){
