@@ -46,7 +46,7 @@ public class Maze2 extends JFrame implements KeyListener {
     private TimerTask tt;
     private Timer t;
     private int pressed;
-    
+    private boolean isPower = false;
     public Maze2(){
 	
 	this.setTitle("Pacman");
@@ -315,12 +315,14 @@ ActionListener PinkGhost = new ActionListener() {
         timerPink = new Timer(200, PinkGhost);
         timerPink.setRepeats(true);
         timerPink.start();
-	/*
+	
 ActionListener RedGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
+		    if(isPower){
+			if (lastDirectionRed == 0){
+			    randomMoveRed(scaredGhost);
+			    }
 
-		    if (lastDirectionRed == 0)
-			randomMoveRed();
 		    else{
 	
 	
@@ -328,30 +330,30 @@ ActionListener RedGhost = new ActionListener() {
 			    {
 				if (upCounter !=0)
 				    {
-					moveUpRed();
+					moveUpRed(scaredGhost);
 					upCounter--;
 				    }else
-				    randomMoveRed();			
+				    randomMoveRed(scaredGhost);			
 
 			    }
 			if (lastDirectionRed == 2)
 			    {
 				if (downCounter !=0)
 				    {
-					moveDownRed();
+					moveDownRed(scaredGhost);
 					downCounter--;
 				    }else
-				    randomMoveRed();			
+				    randomMoveRed(scaredGhost);			
 
 			    }
 			if (lastDirectionRed == 3)
 			    {
 				if (rightCounter !=0)
 				    {
-					moveRightRed();
+					moveRightRed(scaredGhost);
 					rightCounter--;
 				    }else
-				    randomMoveRed();			
+				    randomMoveRed(scaredGhost);			
 
 			    }
 		    
@@ -359,10 +361,10 @@ ActionListener RedGhost = new ActionListener() {
 			    {
 				if (leftCounter !=0)
 				    {
-					moveLeftRed();
+					moveLeftRed(scaredGhost);
 					leftCounter--;
 				    }else
-				    randomMoveRed();			
+				    randomMoveRed(scaredGhost);			
 
 			    }
 		    
@@ -370,12 +372,65 @@ ActionListener RedGhost = new ActionListener() {
 
 	
 		    }
+		    }
+		    else{
+	if (lastDirectionRed == 0){
+	    randomMoveRed(Blinky);
+			    }
+
+		    else{
+	
+	
+			if (lastDirectionRed == 1)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpRed(Blinky);
+					upCounter--;
+				    }else
+				    randomMoveRed(Blinky);			
+
+			    }
+			if (lastDirectionRed == 2)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownRed(Blinky);
+					downCounter--;
+				    }else
+				    randomMoveRed(Blinky);			
+
+			    }
+			if (lastDirectionRed == 3)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightRed(Blinky);
+					rightCounter--;
+				    }else
+				    randomMoveRed(Blinky);			
+
+			    }
+		    
+			if (lastDirectionRed == 4)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftRed(Blinky);
+					leftCounter--;
+				    }else
+				    randomMoveRed(Blinky);			
+
+			    }
+		    }
+		    }
+		    
 		}
 	    };
         timerRed = new Timer(100, RedGhost);
         timerRed.setRepeats(true);
         timerRed.start();
-	*/
+	
 	/*
 	new Timer(100,new ActionListener(){
 		public void actionPerformed(ActionEvent a){
@@ -633,68 +688,72 @@ public void moveUpPink(){
 		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
 	}
-public void moveUpRed(){
+public void moveUpRed(ImageIcon image){
 	if(red.getY()- 1 >= 0){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setY(red.getY() - 1);
 	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
+	    rg.setIcon(image);
+	    panels[red.getY()][red.getX()].setBackground(Color.BLACK);
 	    meetRed();
 	}
     }
-    public void moveDownRed(){
+    public void moveDownRed(ImageIcon image){
 	if(red.getY() + 1 <= 39){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setY(red.getY() + 1);
 	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
+	    rg.setIcon(image);
+	     panels[red.getY()][red.getX()].setBackground(Color.BLACK);
 	    meetRed();
 	}
     }
-    public void moveRightRed(){
+    public void moveRightRed(ImageIcon image){
 	if(red.getX()+ 1 <= 39){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setX(red.getX() + 1);
 	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
+	    rg.setIcon(image);
+	     panels[red.getY()][red.getX()].setBackground(Color.BLACK);
 	    meetRed();
 	}
     }
-    public void moveLeftRed(){
+    public void moveLeftRed(ImageIcon image){
 	if(red.getX()- 1 >= 0){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setX(red.getX() - 1);
 	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
+	    rg.setIcon(image);
+	     panels[red.getY()][red.getX()].setBackground(Color.BLACK);
 	    meetRed();
 	}
     }
   
-    public void randomMoveRed(){
+    public void randomMoveRed(ImageIcon image){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
 		if(rand == 1){
-		   moveUpRed();
+		   moveUpRed(image);
 		   lastDirectionRed = 1;
 		   upCounter = (1 + (int)(Math.random() * (7)));
 		   	}
 		if(rand == 2){
-		  moveDownRed();
+		  moveDownRed(image);
 		  lastDirectionRed = 2;
 		   downCounter = (1 + (int)(Math.random() * (7)));
 		  
 		 }
 		if(rand == 3){
-		    moveRightRed();
+		    moveRightRed(image);
 		    lastDirectionRed = 3;
 		   rightCounter = (1 + (int)(Math.random() * (7)));
 		}
 		if(rand == 4){
-		    moveLeftRed();
+		    moveLeftRed(image);
 		    lastDirectionRed = 4;
 		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
@@ -840,11 +899,13 @@ public void moveUpRed(){
     }
     
     public void power(){
+	//	timerRed.setRepeats(false);
 	//	timerRed.stop();
-	panels[red.getY()][red.getX()].removeAll();
-	rg.setIcon(scaredGhost);
-	panels[red.getY()][red.getX()].add(rg);
-
+	
+	//	panels[red.getY()][red.getX()].removeAll();
+	//	rg.setIcon(scaredGhost);
+	//	panels[red.getY()][red.getX()].add(rg);
+	isPower = true;
     }
 	
 	
@@ -860,7 +921,7 @@ public void moveUpRed(){
 	    pm.setIcon(Pacman);
 	    //  System.out.println(pac.getY());
 	    meetPac();
-	    power();
+	     power();
  	}
 	
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 <= 39){
@@ -872,6 +933,7 @@ public void moveUpRed(){
 	    pm.setIcon(Pacman);
 	    // System.out.println(pac.getY());
 	    meetPac();
+	    //  power();
 	}
 	
 	
