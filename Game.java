@@ -989,7 +989,12 @@ public void moveUpRed(){
 	    pg.setIcon(Pinky);
     }
   
-	
+     public void checkPower(){
+	 if((pac.getY() != 23 || pac.getX() != 23) && (pac.getY() != 23 || pac.getX() != 1) &&
+	    ( pac.getY() != 1 || pac.getX() != 1) && (pac.getY() != 1 || pac.getX() != 23)){
+	     panels[pac.getY()][pac.getX()].removeAll();
+	 }
+     }
     
     public void keyPressed(KeyEvent e){
 
@@ -1000,9 +1005,9 @@ public void moveUpRed(){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() - 1);
-	    if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){
-	    panels[pac.getY()][pac.getX()].removeAll();
-	    }
+	    // if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){
+	    //panels[pac.getY()][pac.getX()].removeAll();
+	    checkPower();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
@@ -1011,12 +1016,14 @@ public void moveUpRed(){
 	   
  	}
     
+    
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 < 24 &&
 	   (panels[pac.getY() + 1][pac.getX()].getBorder() == null)){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
-	    panels[pac.getY()][pac.getX()].removeAll();
+	    // panels[pac.getY()][pac.getX()].removeAll();
+	    checkPower();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(D);
 	    meetPac();
@@ -1029,7 +1036,8 @@ public void moveUpRed(){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() + 1);
-	    panels[pac.getY()][pac.getX()].removeAll();
+	    // panels[pac.getY()][pac.getX()].removeAll();
+	    checkPower();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(R);
 	    meetPac();
@@ -1042,7 +1050,8 @@ public void moveUpRed(){
        	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() - 1);
-	    panels[pac.getY()][pac.getX()].removeAll();
+	    //  panels[pac.getY()][pac.getX()].removeAll();
+	    checkPower();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(L);
 	    meetPac();
