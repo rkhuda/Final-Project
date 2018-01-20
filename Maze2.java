@@ -1,3 +1,5 @@
+
+			
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.Timer;
@@ -13,6 +15,7 @@ public class Maze2 extends JFrame implements KeyListener {
     private ImageIcon Clyde;
     private ImageIcon Pinky;
     private ImageIcon Blinky;
+    private ImageIcon scaredGhost;
     private Pacman pac;
     private Enemy blue;
     private Enemy yellow;
@@ -28,6 +31,7 @@ public class Maze2 extends JFrame implements KeyListener {
     private JLabel yg;
     private JLabel pg;
     private JLabel rg;
+    private JLabel sg;
     private int tiles;
     private int actionNum;
     private int up;
@@ -86,7 +90,12 @@ public class Maze2 extends JFrame implements KeyListener {
 	rg = new JLabel();
         red = new Enemy(9,4);
 		       	
-
+	scaredGhost = new ImageIcon("scaredGhost.png");
+	Image image6 = scaredGhost.getImage(); // transform it
+	Image newimg6 = image6.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	scaredGhost = new ImageIcon(newimg6);  // transform it back
+	sg = new JLabel();
+       
 	
 	 
 	   
@@ -306,6 +315,7 @@ ActionListener PinkGhost = new ActionListener() {
         timerPink = new Timer(200, PinkGhost);
         timerPink.setRepeats(true);
         timerPink.start();
+	/*
 ActionListener RedGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
 
@@ -365,6 +375,7 @@ ActionListener RedGhost = new ActionListener() {
         timerRed = new Timer(100, RedGhost);
         timerRed.setRepeats(true);
         timerRed.start();
+	*/
 	/*
 	new Timer(100,new ActionListener(){
 		public void actionPerformed(ActionEvent a){
@@ -398,7 +409,6 @@ ActionListener RedGhost = new ActionListener() {
 			meetPac();
 		    }
 	
-
 		    if(pressed == KeyEvent.VK_LEFT && pac.getX() - 1 >= 0){
 			pm.setIcon(null);
 			panels[pac.getY()][pac.getX()].repaint();
@@ -829,6 +839,15 @@ public void moveUpRed(){
 	    pg.setIcon(Pinky);
     }
     
+    public void power(){
+	//	timerRed.stop();
+	panels[red.getY()][red.getX()].removeAll();
+	rg.setIcon(scaredGhost);
+	panels[red.getY()][red.getX()].add(rg);
+
+    }
+	
+	
     public void keyPressed(KeyEvent e){
 	int c = e.getKeyCode();
 	
@@ -841,7 +860,7 @@ public void moveUpRed(){
 	    pm.setIcon(Pacman);
 	    //  System.out.println(pac.getY());
 	    meetPac();
-	    
+	    power();
  	}
 	
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 <= 39){
@@ -894,4 +913,3 @@ public void moveUpRed(){
 
     }
 }
-
