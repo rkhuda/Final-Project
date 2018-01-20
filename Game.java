@@ -265,7 +265,7 @@ public class Game extends JFrame implements KeyListener {
 		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
-		
+		/*
 		//make center box
 		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 13 ||
 					    y == 14)) {
@@ -284,7 +284,7 @@ public class Game extends JFrame implements KeyListener {
 		    b.setBackground(Color.BLUE);
 
 		}
-		
+		*/
 	    }
 	}
 
