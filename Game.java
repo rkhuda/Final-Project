@@ -20,7 +20,8 @@ public class Game extends JFrame implements KeyListener {
     private JLabel rg;
     private JLabel pd;
     private JLabel b;
-    
+    private JLabel power;
+
     private ImageIcon R;
     private ImageIcon L;
     private ImageIcon U;
@@ -62,7 +63,7 @@ public class Game extends JFrame implements KeyListener {
 	
 	Power = new ImageIcon("Pacdot.png");
 	Image imagePower = Power.getImage();
-	Image newimgPower = imagePower.getScaledInstance(10, 10, java.awt.Image.SCALE_SMOOTH);
+	Image newimgPower = imagePower.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH);
 	Power = new ImageIcon(newimgPower);
        	
 	Pacdot = new ImageIcon("Pacdot.png");
@@ -130,22 +131,28 @@ public class Game extends JFrame implements KeyListener {
 		panels[x][y] = new JPanel(new FlowLayout());
 		JPanel p = panels[x][y];
 	       	Container c = getContentPane();
-			JLabel b = new JLabel();
+		JLabel b = new JLabel();
+		JLabel power = new JLabel();
 	
-			if((x != pac.getY() || y != pac.getX()) && (x != 23 || y != 23) && (x != 1 || y != 23)
-			   && (x != 23 || y != 1)  && ( x != 1 || y != 1)){
+		if((x != pac.getY() || y != pac.getX()) && (x != 23 || y != 23) && (x != 1 || y != 23)
+		   && (x != 23 || y != 1)  && ( x != 1 || y != 1)){
 		    b.setIcon(Pacdot);
 		    p.setBackground(Color.BLACK);
 		    p.add(b);
 		   
-		    	}
-			
-		if (x == pac.getY() && y == pac.getX()) {
-		    pm.setIcon(R);
-		    p.setBackground(Color.BLACK);
-		    p.add(pm);
-		   
 		}
+		
+		if((x == 23  && y == 1) || (x == 1 && y == 23) || ( x == 23 && y == 23) || ( x == 1 && y == 1)){
+			power.setIcon(Power);
+			p.setBackground(Color.BLACK);
+			p.add(power);
+		    }
+	        if (x == pac.getY() && y == pac.getX()) {
+			pm.setIcon(R);
+			p.setBackground(Color.BLACK);
+			p.add(pm);
+		   
+		    }
 	       	if (x == blue.getY() && y == blue.getX())  {
 		    bg.setIcon(Inky);
 		    p.add(bg);
@@ -188,11 +195,11 @@ public class Game extends JFrame implements KeyListener {
 		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 2 || y == 22) && (x == 2 || x == 3 || x == 4 || x == 6 || x == 8 ||
-			       x == 9 || x == 10 || x == 12 || x == 13 || x == 14 || x == 16 ||
-			       x == 18 || x == 20 || x == 22)) {
-		     p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		     b.setIcon(null);
-		     b.setBackground(Color.BLUE);
+					    x == 9 || x == 10 || x == 12 || x == 13 || x == 14 || x == 16 ||
+					    x == 18 || x == 20 || x == 22)) {
+		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 3 || y == 21) && (x == 2 || x == 6 || x == 14 || x == 16 || x == 18 ||
 					    x == 20 || x == 22)){
@@ -203,9 +210,9 @@ public class Game extends JFrame implements KeyListener {
 		if ((y == 4 || y == 20) && (x == 2 || x == 4 || x == 6 || x == 8 || x == 9 ||
 					    x == 10 || x == 11 || x == 12 || x == 14 ||
 					    x == 18 || x == 22)) {
-		     p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		     b.setIcon(null);
-		     b.setBackground(Color.BLUE);
+		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 5 || y == 19) && (x == 4 || x == 12 || x == 16 || x == 17 || x == 18 ||
 					    x == 20 || x == 21 || x == 22)){
@@ -216,9 +223,9 @@ public class Game extends JFrame implements KeyListener {
 		if ((y == 6 || y == 18) && (x == 2 || x == 3|| x == 4 || x == 6 || x == 7||
 					    x == 9 || x == 10 || x == 11 || x == 12 || x == 13 ||
 					    x == 14)) {
-		     p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		     b.setIcon(null);
-		     b.setBackground(Color.BLUE);
+		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 7 || y == 17) && (x == 7 || x == 12 || x == 16 || x == 17 || x == 18 ||
 					    x == 20 || x == 21 || x == 22)) {
@@ -229,9 +236,9 @@ public class Game extends JFrame implements KeyListener {
 		if ((y == 8 || y == 16) && (x == 2 || x == 3|| x == 4 || x == 5|| x == 7 ||
 					    x == 9 || x == 10 || x == 12 || x == 13 ||
 					    x == 22)) {
-		     p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		     b.setIcon(null);
-		     b.setBackground(Color.BLUE);
+		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 		}
 		if ((y == 9 || y == 15) && (x == 2 || x == 7 || x == 16 || x == 17 || x == 18 ||
 					    x == 19 || x == 20 || x == 22)) {
@@ -263,18 +270,18 @@ public class Game extends JFrame implements KeyListener {
 		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 13 ||
 					    y == 14)) {
 		    p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
-		       b.setIcon(null);
+		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
 		if (x == 10 && (y == 10 || y == 14)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		      b.setIcon(null);
+		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
 		if (x == 11 && y == 12) {
-		     p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
-		       b.setIcon(null);
-		     b.setBackground(Color.BLUE);
+		    p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
+		    b.setIcon(null);
+		    b.setBackground(Color.BLUE);
 
 		}
 		
