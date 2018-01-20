@@ -680,25 +680,44 @@ public void moveUpYellow(){
 	int rand = (3 + (int)(Math.random() * (5)));
  		
 		if(rand == 3){
-		   moveUpYellow();
-		   lastDirectionYellow = 3;
-		   upCounter = (1 + (int)(Math.random() * (7)));
-		   	}
+		    if (panels[yellow.getY() - 1][yellow.getX()].getBorder() == null) {
+			moveUpYellow();
+			lastDirectionYellow = 3;
+			upCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (3 + (int)(Math.random() * (5)));
+		    }
+		}
 		if(rand == 4){
-		  moveDownYellow();
-		  lastDirectionYellow = 4;
-		   downCounter = (1 + (int)(Math.random() * (7)));
-		  
+		    if (panels[yellow.getY() + 1][yellow.getX()].getBorder() == null) {
+			moveDownYellow();
+			lastDirectionYellow = 4;
+			downCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (3 + (int)(Math.random() * (5)));
+		    }
 		 }
 		if(rand == 5){
-		    moveRightYellow();
-		    lastDirectionYellow = 5;
-		   rightCounter = (1 + (int)(Math.random() * (7)));
+		    if (panels[yellow.getY()][yellow.getX() + 1].getBorder() == null) {
+			moveRightYellow();
+			lastDirectionYellow = 5;
+			rightCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (3 + (int)(Math.random() * (5)));
+		    }
 		}
 		if(rand == 6 || rand == 7){
-		    moveLeftYellow();
-		    lastDirectionYellow = 6;
-		   leftCounter = (1 + (int)(Math.random() * (7)));
+		    if (panels[yellow.getY()][yellow.getX() - 1].getBorder() == null) {
+			moveLeftYellow();
+			lastDirectionYellow = 6;
+			leftCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (3 + (int)(Math.random() * (5)));
+		    }
 		}
     }
 
