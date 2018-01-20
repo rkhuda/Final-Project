@@ -851,27 +851,46 @@ public void moveUpRed(){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
 		if(rand == 1){
-		   moveUpRed();
-		   lastDirectionRed = 1;
-		   upCounter = (1 + (int)(Math.random() * (7)));
-		   	}
+		    if (panels[red.getY() - 1][red.getX()].getBorder() == null) {
+			moveUpRed();
+			lastDirectionRed = 1;
+			upCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
+		}
 		if(rand == 2){
-		  moveDownRed();
-		  lastDirectionRed = 2;
-		   downCounter = (1 + (int)(Math.random() * (7)));
-		  
+		    if (panels[red.getY() + 1][red.getX()].getBorder() == null) {
+			moveDownRed();
+			lastDirectionRed = 2;
+			downCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
 		 }
 		if(rand == 3){
-		    moveRightRed();
-		    lastDirectionRed = 3;
-		   rightCounter = (1 + (int)(Math.random() * (7)));
+		    if (panels[red.getY()][red.getX() + 1].getBorder() == null) {
+			moveRightRed();
+			lastDirectionRed = 3;
+			rightCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
 		}
 		if(rand == 4){
-		    moveLeftRed();
-		    lastDirectionRed = 4;
-		   leftCounter = (1 + (int)(Math.random() * (7)));
+		    if (panels[red.getY()][red.getX() - 1].getBorder() == null) {
+			moveLeftRed();
+			lastDirectionRed = 4;
+			leftCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
 		}
-	}
+    }
  public void meetPac(){
 	if((pac.getY() == yellow.getY() && pac.getX() == yellow.getX()) || 
 	   (pac.getY() == red.getY() && pac.getX() == red.getX()) || 
