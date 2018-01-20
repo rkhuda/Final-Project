@@ -766,27 +766,46 @@ public void moveUpPink(){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
 		if(rand == 1){
-		   moveUpPink();
-		   lastDirectionPink = 1;
-		   upCounter = (1 + (int)(Math.random() * (7)));
-		   	}
+		    if (panels[pink.getY() - 1][pink.getX()].getBorder() == null) {
+			moveUpPink();
+			lastDirectionPink = 1;
+			upCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
+		}
 		if(rand == 2){
-		  moveDownPink();
-		  lastDirectionPink = 2;
-		   downCounter = (1 + (int)(Math.random() * (7)));
-		  
+		    if (panels[pink.getY() + 1][pink.getX()].getBorder() == null) {
+			moveDownPink();
+			lastDirectionPink = 2;
+			downCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
 		 }
 		if(rand == 3){
-		    moveRightPink();
-		    lastDirectionPink = 3;
-		   rightCounter = (1 + (int)(Math.random() * (7)));
+		    if (panels[pink.getY()][pink.getX() + 1].getBorder() == null) {
+			moveRightPink();
+			lastDirectionPink = 3;
+			rightCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
 		}
 		if(rand == 4){
-		    moveLeftPink();
-		    lastDirectionPink = 4;
-		   leftCounter = (1 + (int)(Math.random() * (7)));
+		    if (panels[pink.getY()][pink.getX() - 1].getBorder() == null) {
+			moveLeftPink();
+			lastDirectionPink = 4;
+			leftCounter = (1 + (int)(Math.random() * (4)));
+		    }
+		    else {
+			rand = (1 + (int)(Math.random() * (4)));
+		    }
 		}
-	}
+    }
 public void moveUpRed(){
 	if(red.getY()- 1 > 0){
 	    rg.setIcon(null);
