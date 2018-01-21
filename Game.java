@@ -27,13 +27,13 @@ public class Game extends JFrame implements KeyListener {
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	this.setBounds(400, 100, 700, 700);
        	this.setResizable(false);
-	
-	
 	addKeyListener(this);
 	pane = getContentPane();
 
+	//to display score in maze
 	score = new JLabel();
-	
+
+	//scales images so they are fully visible on maze
 	Pellet = new ImageIcon("Pacdot.png");
 	Image imagePower = Pellet.getImage();
 	Image newimgPower = imagePower.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH);
@@ -44,28 +44,27 @@ public class Game extends JFrame implements KeyListener {
 	Image newimgDot = imageDot.getScaledInstance(4, 4, java.awt.Image.SCALE_SMOOTH);
 	Pacdot = new ImageIcon(newimgDot);
 
-
 	R = new ImageIcon("PacmanRight.png");
-	Image imageR = R.getImage(); // transform it
+	Image imageR = R.getImage(); 
 	Image newimgR = imageR.getScaledInstance(18, 18,  java.awt.Image.SCALE_SMOOTH);
-	R = new ImageIcon(newimgR);  // transform it back
+	R = new ImageIcon(newimgR);
 	pm = new JLabel();
 	pac = new Pacman();
 
         L = new ImageIcon("PacmanLeft.png");
-	Image imageL = L.getImage(); // transform it
+	Image imageL = L.getImage();
 	Image newimgL = imageL.getScaledInstance(18,18,  java.awt.Image.SCALE_SMOOTH);
-	L = new ImageIcon(newimgL);  // transform it back
+	L = new ImageIcon(newimgL);
 
         D = new ImageIcon("PacmanDown.png");
-	Image imageD = D.getImage(); // transform it
+	Image imageD = D.getImage();
 	Image newimgD = imageD.getScaledInstance(18,18,  java.awt.Image.SCALE_SMOOTH);
-	D = new ImageIcon(newimgD);  // transform it back
+	D = new ImageIcon(newimgD);
 
         U = new ImageIcon("PacmanUp.png");
-	Image imageU = U.getImage(); // transform it
+	Image imageU = U.getImage();
 	Image newimgU = imageU.getScaledInstance(18,18,  java.awt.Image.SCALE_SMOOTH);
-	U = new ImageIcon(newimgU);  // transform it back
+	U = new ImageIcon(newimgU);
 
 	Inky = new ImageIcon("Inky.png");
 	Image imageI = Inky.getImage();
@@ -75,63 +74,61 @@ public class Game extends JFrame implements KeyListener {
 	blue = new Enemy(10, 12);
 
 	Clyde = new ImageIcon("Clyde.png");
-	Image image3 = Clyde.getImage(); // transform it
+	Image image3 = Clyde.getImage();
 	Image newimg3 = image3.getScaledInstance(13,13,  java.awt.Image.SCALE_SMOOTH);
-	Clyde = new ImageIcon(newimg3);  // transform it back
+	Clyde = new ImageIcon(newimg3);
 	yg = new JLabel();
         yellow = new Enemy(9, 12);
 		
        	Pinky = new ImageIcon("Pinky.png");
-	Image image4 = Pinky.getImage(); // transform it
+	Image image4 = Pinky.getImage();
 	Image newimg4 = image4.getScaledInstance(13,13,  java.awt.Image.SCALE_SMOOTH);
-	Pinky = new ImageIcon(newimg4);  // transform it back
+	Pinky = new ImageIcon(newimg4);
 	pg = new JLabel();
         pink = new Enemy(10, 11);
 		
 	Blinky = new ImageIcon("Blinky.png");
-	Image image5 = Blinky.getImage(); // transform it
+	Image image5 = Blinky.getImage();
 	Image newimg5 = image5.getScaledInstance(13,13,  java.awt.Image.SCALE_SMOOTH);
-	Blinky = new ImageIcon(newimg5);  // transform it back
+	Blinky = new ImageIcon(newimg5);
 	rg = new JLabel();
         red = new Enemy(10, 13);
 	
         scaredGhost = new ImageIcon("scaredGhost.png");
-	Image image6 = scaredGhost.getImage(); // transform it
+	Image image6 = scaredGhost.getImage();
 	Image newimg6 = image6.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
-	scaredGhost = new ImageIcon(newimg6);  // transform it back
+	scaredGhost = new ImageIcon(newimg6);
 
-
-
+	//creates grid layout for maze
 	pane.setLayout(new GridLayout(26, 25));
 	panels = new JPanel[26][25];
 	
 	for (int x = 0; x < panels.length;x++) {
             for (int y = 0; y < panels[x].length;y++) {
-
-		panels[x][y] = new JPanel(new FlowLayout());
+		panels[x][y] = new JPanel(new FlowLayout()); //each individual "cell" of grid has FlowLayout
 		JPanel p = panels[x][y];
-	       	Container c = getContentPane();
 		JLabel b = new JLabel();
 		JLabel power = new JLabel();
-	
-		if((x != pac.getY() || y != pac.getX()) && (x != 23 || y != 23) && (x != 1 || y != 23)
-		   && (x != 23 || y != 1)  && ( x != 1 || y != 1)){
+
+		//places Pacdots everywhere except location of Pacman and Pac-Dots
+		if ((x != pac.getY() || y != pac.getX()) && (x != 23 || y != 23) && (x != 1 || y != 23) && (x != 23 || y != 1) && (x != 1 || y != 1)) {
 		    b.setIcon(Pacdot);
 		    p.setBackground(Color.BLACK);
 		    p.add(b);
-		   
 		}
-		
-		if((x == 23  && y == 1) || (x == 1 && y == 23) || ( x == 23 && y == 23) || ( x == 1 && y == 1)){
+
+		//places Pac-Dots in four corners 
+		if ((x == 23  && y == 1) || (x == 1 && y == 23) || (x == 23 && y == 23) || (x == 1 && y == 1)) {
 		    power.setIcon(Pellet);
 		    p.setBackground(Color.BLACK);
 		    p.add(power);
 		}
+
+		//places characters (Pacman and ghosts) in their starting locations
 	        if (x == pac.getY() && y == pac.getX()) {
 		    pm.setIcon(R);
 		    p.setBackground(Color.BLACK);
 		    p.add(pm);
-		   
 		}
 	       	if (x == blue.getY() && y == blue.getX())  {
 		    bg.setIcon(Inky);
@@ -149,102 +146,66 @@ public class Game extends JFrame implements KeyListener {
 		    rg.setIcon(Blinky);
 		    p.add(rg);
 		}
-					       
-	       	p.setBackground(Color.BLACK);
-		pane.add(p);
-	
-		
+
+		//makes walls of maze
 		if (x == 0) {
-		    p.setBorder(BorderFactory.createMatteBorder(27, 0, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		    makeTopBorder(p, b);
 		}
 		if (x == 24) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 27, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		    makeBottomBorder(p, b);
 		}
 		if (y == 0 && (x != 0 && x != 24 && x != 25)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		    makeLeftBorder(p, b);
 		}
 		if (y == 24 && (x != 0 && x != 24 && x != 25)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 28, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		    makeRightBorder(p,b);
 		}
-		if ((y == 2 || y == 22) && (x == 2 || x == 3 || x == 4 || x == 6 || x == 8 ||
-					    x == 9 || x == 10 || x == 12 || x == 13 || x == 14 || x == 16 ||
-					    x == 18 || x == 20 || x == 22)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 2 || y == 22) &&
+		(x == 2 || x == 3 || x == 4 || x == 6 || x == 8 || x == 9 || x == 10 || x == 12 || x == 13 || x == 14 || x == 16 || x == 18 || x == 20 || x == 22)) {
+		   makeLeftBorder(p, b);
 		}
-		if ((y == 3 || y == 21) && (x == 2 || x == 6 || x == 14 || x == 16 || x == 18 ||
-					    x == 20 || x == 22)){
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 3 || y == 21) &&
+		(x == 2 || x == 6 || x == 14 || x == 16 || x == 18 || x == 20 || x == 22)) {
+		   makeLeftBorder(p, b);
 		}
-		if ((y == 4 || y == 20) && (x == 2 || x == 4 || x == 6 || x == 8 || x == 9 ||
-					    x == 10 || x == 11 || x == 12 || x == 14 ||
-					    x == 18 || x == 22)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 4 || y == 20) &&
+		(x == 2 || x == 4 || x == 6 || x == 8 || x == 9 || x == 10 || x == 11 || x == 12 || x == 14 || x == 18 || x == 22)) {
+		    makeLeftBorder(p, b);
 		}
-		if ((y == 5 || y == 19) && (x == 4 || x == 12 || x == 16 || x == 17 || x == 18 ||
-					    x == 20 || x == 21 || x == 22)){
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 5 || y == 19) &&
+		(x == 4 || x == 12 || x == 16 || x == 17 || x == 18 || x == 20 || x == 21 || x == 22)) {
+		    makeLeftBorder(p, b);
 		}
-		if ((y == 6 || y == 18) && (x == 2 || x == 3|| x == 4 || x == 6 || x == 7||
-					    x == 9 || x == 10 || x == 11 || x == 12 || x == 13 ||
-					    x == 14)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 6 || y == 18) &&
+		(x == 2 || x == 3|| x == 4 || x == 6 || x == 7|| x == 9 || x == 10 || x == 11 || x == 12 || x == 13 || x == 14)) {
+		    makeLeftBorder(p, b);
 		}
-		if ((y == 7 || y == 17) && (x == 7 || x == 12 || x == 16 || x == 17 || x == 18 ||
-					    x == 20 || x == 21 || x == 22)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 7 || y == 17) &&
+		(x == 7 || x == 12 || x == 16 || x == 17 || x == 18 || x == 20 || x == 21 || x == 22)) {
+		   makeLeftBorder(p, b);
 		}
-		if ((y == 8 || y == 16) && (x == 2 || x == 3|| x == 4 || x == 5|| x == 7 ||
-					    x == 9 || x == 10 || x == 12 || x == 13 ||
-					    x == 22)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 8 || y == 16) &&
+		(x == 2 || x == 3|| x == 4 || x == 5|| x == 7 || x == 9 || x == 10 || x == 12 || x == 13 || x == 22)) {
+		    makeLeftBorder(p, b);
 		}
-		if ((y == 9 || y == 15) && (x == 2 || x == 7 || x == 16 || x == 17 || x == 18 ||
-					    x == 19 || x == 20 || x == 22)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 9 || y == 15) &&
+		(x == 2 || x == 7 || x == 16 || x == 17 || x == 18 || x == 19 || x == 20 || x == 22)) {
+		    makeLeftBorder(p, b);
 		}
-		if ((y == 10 || y == 14) && (x == 2 || x == 4 || x == 5 || x == 13  ||
-					     x == 22)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 10 || y == 14) &&
+		(x == 2 || x == 4 || x == 5 || x == 13 || x == 22)) {
+		    makeLeftBorder(p, b);
 		}
-		if ((y == 11 || y == 13) && (x == 7 || x == 13 || x == 15 || x == 16 ||
-					     x == 18 || x == 20)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if ((y == 11 || y == 13) &&
+		(x == 7 || x == 13 || x == 15 || x == 16 || x == 18 || x == 20)) {
+		    makeLeftBorder(p, b);
 		}
-		if (y == 12 && (x == 1 || x == 2 || x == 4 || x == 5 || x == 6 || x == 7 ||
-				x == 13 || x == 14 || x == 15 || x == 16 || x == 18 || x == 20 ||
-				x == 22 || x == 23)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		if (y == 12 &&
+		(x == 1 || x == 2 || x == 4 || x == 5 || x == 6 || x == 7 || x == 13 || x == 14 || x == 15 || x == 16 || x == 18 || x == 20 || x == 22 || x == 23)) {
+		    makeLeftBorder(p, b);
 		}
+
+		//makes score visible
 		if (x == 25) {
 		    b.setIcon(null);
 		    if (y == 10){
@@ -262,149 +223,123 @@ public class Game extends JFrame implements KeyListener {
 		    }
 		}
 		
-		//make center box
-		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 12 || y == 13 ||
-					    y == 14)) {
-		    p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		//make center box and makes sure there are no Pac-Dots in the box
+		if ((x == 9 || x == 11) &&
+		   (y == 10 || y == 11 ||  y == 12 || y == 13 || y == 14)) {
+		    makeTopBorder(p, b);
 		}
 		if (x == 10 && (y == 10 || y == 14)) {
-		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		    makeLeftBorder(p, b);
 		}
 		if (x == 11 && y == 12) {
-		    p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
-		    b.setIcon(null);
-		    b.setBackground(Color.BLUE);
+		    makeTopBorder(p, b);
 
 		}
 		if (x == 10 && (y == 11 || y == 12 || y == 13)) {
 		    b.setIcon(null);
 		}
 		
+		//makes entire maze have a black background
+		p.setBackground(Color.BLACK);
+		pane.add(p);
+		
 	    }
 	}
+
+	//ActionListener used to trigger random ghost movements
 	ActionListener BlueGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-		    if(isPower == false){
-			if (lastDirectionBlue == 0)
+		    //ghost movements when Power Pellet is inactivated
+		    if (isPower == false) {
+			if (lastDirectionBlue == 0) {
 			    randomMoveBlue(Inky);
-			else{
-	
-	
-			    if (lastDirectionBlue == 1)
-				{
-				    if (upCounter !=0 &&
-					(panels[blue.getY() - 1][blue.getX()].getBorder() == null))
-					{
-					    moveUpBlue(Inky);
-					    upCounter--;
-					}else
-					randomMoveBlue(Inky);			
-
+			}
+			else {
+			    if (lastDirectionBlue == 1)	{
+				//checks for walls so ghosts do not go through walls
+				if (upCounter !=0 && (panels[blue.getY() - 1][blue.getX()].getBorder() == null)) {
+				    moveUpBlue(Inky);
+				    upCounter--;
 				}
-			    if (lastDirectionBlue == 2)
-				{
-				    if (downCounter !=0 &&
-					(panels[blue.getY() + 1][blue.getX()].getBorder() == null))
-					{
-					    moveDownBlue(Inky);
-					    downCounter--;
-					}else
-					randomMoveBlue(Inky);			
-
+				else{
+				    randomMoveBlue(Inky);
 				}
-			    if (lastDirectionBlue == 3)
-				{
-				    if (rightCounter !=0 &&
-					(panels[blue.getY()][blue.getX() + 1].getBorder() == null))
-					{
-					    moveRightBlue(Inky);
-					    rightCounter--;
-					}else
-					randomMoveBlue(Inky);			
-
+			    }
+			    if (lastDirectionBlue == 2) {
+				if (downCounter !=0 && (panels[blue.getY() + 1][blue.getX()].getBorder() == null)) {
+				    moveDownBlue(Inky);
+				    downCounter--;
 				}
-		    
-			    if (lastDirectionBlue == 4)
-				{
-				    if (leftCounter !=0 &&
-					(panels[blue.getY()][blue.getX() - 1].getBorder() == null))
-					{
-					    moveLeftBlue(Inky);
-					    leftCounter--;
-					}else
-					randomMoveBlue(Inky);			
-
+				else{
+				    randomMoveBlue(Inky);	
 				}
-		    
-
-
-	
+			    }
+			    if (lastDirectionBlue == 3)	{
+				if (rightCounter !=0 && (panels[blue.getY()][blue.getX() + 1].getBorder() == null)) {
+				    moveRightBlue(Inky);
+				    rightCounter--;
+				}
+				else{
+				    randomMoveBlue(Inky);	
+				}
+			    }
+			    if (lastDirectionBlue == 4) {
+				if (leftCounter !=0 && (panels[blue.getY()][blue.getX() - 1].getBorder() == null)) {
+				    moveLeftBlue(Inky);
+				    leftCounter--;
+				}
+				else{
+				    randomMoveBlue(Inky);	
+				}
+			    }
 			}
 		    }
-		    if(isPower){
-			if (lastDirectionBlue == 0)
+		    //ghost movements when Power Pellet is activated
+		    if (isPower) {
+			if (lastDirectionBlue == 0) {
 			    randomMoveBlue(scaredGhost);
-			else{
-	
-	
-			    if (lastDirectionBlue == 1)
-				{
-				    if (upCounter !=0 &&
-					(panels[blue.getY() - 1][blue.getX()].getBorder() == null))
-					{
-					    moveUpBlue(scaredGhost);
-					    upCounter--;
-					}else
-					randomMoveBlue(scaredGhost);			
-
+			}
+			else {
+			    if (lastDirectionBlue == 1) {
+				if (upCounter !=0 && (panels[blue.getY() - 1][blue.getX()].getBorder() == null)) {
+				    moveUpBlue(scaredGhost);
+				    upCounter--;
 				}
-			    if (lastDirectionBlue == 2)
-				{
-				    if (downCounter !=0 &&
-					(panels[blue.getY() + 1][blue.getX()].getBorder() == null))
-					{
-					    moveDownBlue(scaredGhost);
-					    downCounter--;
-					}else
-					randomMoveBlue(scaredGhost);			
-
+				else{
+				    randomMoveBlue(scaredGhost);
 				}
-			    if (lastDirectionBlue == 3)
-				{
-				    if (rightCounter !=0 &&
-					(panels[blue.getY()][blue.getX() + 1].getBorder() == null))
-					{
-					    moveRightBlue(scaredGhost);
-					    rightCounter--;
-					}else
-					randomMoveBlue(scaredGhost);			
-
+			    }
+			    if (lastDirectionBlue == 2) {
+				if (downCounter !=0 && (panels[blue.getY() + 1][blue.getX()].getBorder() == null)) {
+				    moveDownBlue(scaredGhost);
+				    downCounter--;
 				}
+				else{
+				    randomMoveBlue(scaredGhost);
+				}
+			    }
+			    if (lastDirectionBlue == 3) {
+				if (rightCounter !=0 &&	(panels[blue.getY()][blue.getX() + 1].getBorder() == null)) {
+				    moveRightBlue(scaredGhost);
+				    rightCounter--;
+				}
+				else {
+				    randomMoveBlue(scaredGhost);
+				}
+			    }
 		    
-			    if (lastDirectionBlue == 4)
-				{
-				    if (leftCounter !=0 &&
-					(panels[blue.getY()][blue.getX() - 1].getBorder() == null))
-					{
-					    moveLeftBlue(scaredGhost);
-					    leftCounter--;
-					}else
-					randomMoveBlue(scaredGhost);			
-
+			    if (lastDirectionBlue == 4) {
+				if (leftCounter !=0 && (panels[blue.getY()][blue.getX() - 1].getBorder() == null)) {
+				    moveLeftBlue(scaredGhost);
+				    leftCounter--;
 				}
-		    
-
-
-	
+				else {
+				    randomMoveBlue(scaredGhost);
+				}
+			    }
 			}
 		    }
-		}
-
-			
+		}	
 	    };
         timerBlue = new Timer(200, BlueGhost);
         timerBlue.setRepeats(true);
@@ -412,118 +347,90 @@ public class Game extends JFrame implements KeyListener {
 	
 	ActionListener YellowGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-		    if(isPower == false){
-			if (lastDirectionYellow == 0)
+		    if (isPower == false) {
+			if (lastDirectionYellow == 0) {
 			    randomMoveYellow(Clyde);
-			else{
-	
-	
-			    if (lastDirectionYellow == 3)
-				{
-				    if (upCounter !=0 &&
-					(panels[yellow.getY() - 1][yellow.getX()].getBorder() == null))
-					{
-					    moveUpYellow(Clyde);
-					    upCounter--;
-					}else
-					randomMoveYellow(Clyde);			
-
+			}
+			else {
+			    if (lastDirectionYellow == 3) {
+				if (upCounter !=0 && (panels[yellow.getY() - 1][yellow.getX()].getBorder() == null)) {
+				    moveUpYellow(Clyde);
+				    upCounter--;
 				}
-			    if (lastDirectionYellow == 4)
-				{
-				    if (downCounter !=0 &&
-					(panels[yellow.getY() + 1][yellow.getX()].getBorder() == null))
-					{
-					    moveDownYellow(Clyde);
-					    downCounter--;
-					}else
-					randomMoveYellow(Clyde);			
-
+				else {
+				    randomMoveYellow(Clyde);
 				}
-			    if (lastDirectionYellow == 5)
-				{
-				    if (rightCounter !=0 &&
-					(panels[yellow.getY()][yellow.getX() + 1].getBorder() == null))
-					{
-					    moveRightYellow(Clyde);
-					    rightCounter--;
-					}else
-					randomMoveYellow(Clyde);			
-
+			    }
+			    if (lastDirectionYellow == 4) {
+				if (downCounter !=0 && (panels[yellow.getY() + 1][yellow.getX()].getBorder() == null)) {
+				    moveDownYellow(Clyde);
+				    downCounter--;
 				}
-		    
-			    if (lastDirectionYellow == 6)
-				{
-				    if (leftCounter !=0 &&
-					(panels[yellow.getY()][yellow.getX() - 1].getBorder() == null))
-					{
-					    moveLeftYellow(Clyde);
-					    leftCounter--;
-					}else
-					randomMoveYellow(Clyde);			
-
+				else {
+				    randomMoveYellow(Clyde);
 				}
-		    
-
-
-	
+			    }
+			    if (lastDirectionYellow == 5) {
+				if (rightCounter !=0 && (panels[yellow.getY()][yellow.getX() + 1].getBorder() == null))	{
+				    moveRightYellow(Clyde);
+				    rightCounter--;
+				}
+				else {
+				    randomMoveYellow(Clyde);
+				}
+			    }
+			    if (lastDirectionYellow == 6) {
+				if (leftCounter !=0 && (panels[yellow.getY()][yellow.getX() - 1].getBorder() == null)) {
+				    moveLeftYellow(Clyde);
+				    leftCounter--;
+				}
+				else {
+				    randomMoveYellow(Clyde);
+				}
+			    }
 			}
 		    }
 		    if(isPower){
-			if (lastDirectionYellow == 0)
+			if (lastDirectionYellow == 0) {
 			    randomMoveYellow(scaredGhost);
+			}
 			else{
-	
-	
-			    if (lastDirectionYellow == 3)
-				{
-				    if (upCounter !=0 &&
-					(panels[yellow.getY() - 1][yellow.getX()].getBorder() == null))
-					{
-					    moveUpYellow(scaredGhost);
-					    upCounter--;
-					}else
-					randomMoveYellow(scaredGhost);			
-
+			    if (lastDirectionYellow == 3) {
+				if (upCounter !=0 && (panels[yellow.getY() - 1][yellow.getX()].getBorder() == null)) {
+				    moveUpYellow(scaredGhost);
+				    upCounter--;
 				}
-			    if (lastDirectionYellow == 4)
-				{
-				    if (downCounter !=0 &&
-					(panels[yellow.getY() + 1][yellow.getX()].getBorder() == null))
-					{
-					    moveDownYellow(scaredGhost);
-					    downCounter--;
-					}else
-					randomMoveYellow(scaredGhost);			
-
+				else {
+				    randomMoveYellow(scaredGhost);
 				}
-			    if (lastDirectionYellow == 5)
-				{
-				    if (rightCounter !=0 &&
-					(panels[yellow.getY()][yellow.getX() + 1].getBorder() == null))
-					{
-					    moveRightYellow(scaredGhost);
-					    rightCounter--;
-					}else
-					randomMoveYellow(scaredGhost);	
-
+			    }
+			    if (lastDirectionYellow == 4) {
+				if (downCounter !=0 && (panels[yellow.getY() + 1][yellow.getX()].getBorder() == null)) {
+				    moveDownYellow(scaredGhost);
+				    downCounter--;
 				}
-		    
-			    if (lastDirectionYellow == 6)
-				{
-				    if (leftCounter !=0 &&
-					(panels[yellow.getY()][yellow.getX() - 1].getBorder() == null))
-					{
-					    moveLeftYellow(scaredGhost);
-					    leftCounter--;
-					}else
-					randomMoveYellow(scaredGhost);			
-
+				else {
+				    randomMoveYellow(scaredGhost);
 				}
-		    
-
-
-	
+			    }
+			    if (lastDirectionYellow == 5) {
+				if (rightCounter !=0 &&	(panels[yellow.getY()][yellow.getX() + 1].getBorder() == null)) {
+				    moveRightYellow(scaredGhost);
+				    rightCounter--;
+				}
+				else {
+				    randomMoveYellow(scaredGhost);
+				}
+			    }
+			    if (lastDirectionYellow == 6) {
+				if (leftCounter !=0 && (panels[yellow.getY()][yellow.getX() - 1].getBorder() == null)) {
+				    moveLeftYellow(scaredGhost);
+				    leftCounter--;
+				}
+				else {
+				    randomMoveYellow(scaredGhost);
+				}
+			    }
 			}
 		    }
 		}
@@ -535,119 +442,93 @@ public class Game extends JFrame implements KeyListener {
 	
 	ActionListener PinkGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-		    if(isPower == false){
-			if (lastDirectionPink == 0)
+		    if (isPower == false) {
+			if (lastDirectionPink == 0) {
 			    randomMovePink(Pinky);
-			else{
-	
-	
-			    if (lastDirectionPink == 1)
-				{
-				    if (upCounter !=0 &&
-					(panels[pink.getY() - 1][pink.getX()].getBorder() == null))
-					{
-					    moveUpPink(Pinky);
-					    upCounter--;
-					}else
-					randomMovePink(Pinky);			
-
+			}
+			else {
+			    if (lastDirectionPink == 1) {
+				if (upCounter !=0 && (panels[pink.getY() - 1][pink.getX()].getBorder() == null)) {
+				    moveUpPink(Pinky);
+				    upCounter--;
 				}
-			    if (lastDirectionPink == 2)
-				{
-				    if (downCounter !=0 &&
-					(panels[pink.getY() + 1][pink.getX()].getBorder() == null))
-					{
-					    moveDownPink(Pinky);
-					    downCounter--;
-					}else
-					randomMovePink(Pinky);			
-
+				else {
+				    randomMovePink(Pinky);
 				}
-			    if (lastDirectionPink == 3)
-				{
-				    if (rightCounter !=0 &&
-					(panels[pink.getY()][pink.getX() + 1].getBorder() == null))
-					{
-					    moveRightPink(Pinky);
-					    rightCounter--;
-					}else
-					randomMovePink(Pinky);			
-
+			    }
+			    if (lastDirectionPink == 2) {
+				if (downCounter !=0 && (panels[pink.getY() + 1][pink.getX()].getBorder() == null)) {
+				    moveDownPink(Pinky);
+				    downCounter--;
 				}
-		    
-			    if (lastDirectionPink == 4)
-				{
-				    if (leftCounter !=0 &&
-					(panels[pink.getY()][pink.getX() - 1].getBorder() == null))
-					{
-					    moveLeftPink(Pinky);
-					    leftCounter--;
-					}else
-					randomMovePink(Pinky);			
-
+				else {
+				    randomMovePink(Pinky);
 				}
-		    
-
-
-	
+			    }
+			    if (lastDirectionPink == 3) {
+				if (rightCounter !=0 && (panels[pink.getY()][pink.getX() + 1].getBorder() == null)) {
+				    moveRightPink(Pinky);
+				    rightCounter--;
+				}
+				else {
+				    randomMovePink(Pinky);
+				}
+			    }
+			    if (lastDirectionPink == 4) {
+				if (leftCounter !=0 && (panels[pink.getY()][pink.getX() - 1].getBorder() == null)) {
+				    moveLeftPink(Pinky);
+				    leftCounter--;
+				}
+				else {
+				    randomMovePink(Pinky);
+				}
+			    }
 			}
 		    }
-		    if(isPower){
-			if (lastDirectionPink == 0)
+		    if (isPower) {
+			if (lastDirectionPink == 0) {
 			    randomMovePink(scaredGhost);
-			else{
-	
-	
-			    if (lastDirectionPink == 1)
-				{
-				    if (upCounter !=0 &&
-					(panels[pink.getY() - 1][pink.getX()].getBorder() == null))
-					{
-					    moveUpPink(scaredGhost);
-					    upCounter--;
-					}else
-					randomMovePink(scaredGhost);			
-
+			}
+			else {
+			    if (lastDirectionPink == 1)	{
+				if (upCounter !=0 && (panels[pink.getY() - 1][pink.getX()].getBorder() == null)) {
+				    moveUpPink(scaredGhost);
+				    upCounter--;
 				}
-			    if (lastDirectionPink == 2)
-				{
-				    if (downCounter !=0 &&
-					(panels[pink.getY() + 1][pink.getX()].getBorder() == null))
-					{
-					    moveDownPink(scaredGhost);
-					    downCounter--;
-					}else
-					randomMovePink(scaredGhost);			
-
+				else {
+				    randomMovePink(scaredGhost);
 				}
-			    if (lastDirectionPink == 3)
-				{
-				    if (rightCounter !=0 &&
-					(panels[pink.getY()][pink.getX() + 1].getBorder() == null))
-					{
-					    moveRightPink(scaredGhost);
-					    rightCounter--;
-					}else
-					randomMovePink(scaredGhost);			
-
+			    }
+			    if (lastDirectionPink == 2) {
+				if (downCounter !=0 && (panels[pink.getY() + 1][pink.getX()].getBorder() == null)) {
+				    moveDownPink(scaredGhost);
+				    downCounter--;
 				}
-		    
-			    if (lastDirectionPink == 4)
-				{
-				    if (leftCounter !=0 &&
-					(panels[pink.getY()][pink.getX() - 1].getBorder() == null))
-					{
-					    moveLeftPink(scaredGhost);
-					    leftCounter--;
-					}else
-					randomMovePink(scaredGhost);			
-
+				else {
+				    randomMovePink(scaredGhost);
 				}
+			    }
+			    if (lastDirectionPink == 3)	{
+				if (rightCounter !=0 && (panels[pink.getY()][pink.getX() + 1].getBorder() == null)) {
+				    moveRightPink(scaredGhost);
+				    rightCounter--;
+				}
+				else {
+				    randomMovePink(scaredGhost);
+				}
+			    }
+			    if (lastDirectionPink == 4)	{
+				if (leftCounter !=0 && (panels[pink.getY()][pink.getX() - 1].getBorder() == null)) {
+				    moveLeftPink(scaredGhost);
+				    leftCounter--;
+				}
+				else {
+				    randomMovePink(scaredGhost);
+				}
+			    }
 			}
 		    }
 		}
-		
-		
 	    };
         timerPink = new Timer(200, PinkGhost);
         timerPink.setRepeats(true);
@@ -655,127 +536,99 @@ public class Game extends JFrame implements KeyListener {
 	
 	ActionListener RedGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-		    if(isPower){
+		    if (isPower) {
 			if (lastDirectionRed == 0){
 			    randomMoveRed(scaredGhost);
 			}
-
-			else{
-	
-	
-			    if (lastDirectionRed == 1)
-				{
-				    if (upCounter !=0 &&
-					(panels[red.getY() - 1][red.getX()].getBorder() == null))
-					{
-					    moveUpRed(scaredGhost);
-					    upCounter--;
-					}else
-					randomMoveRed(scaredGhost);			
-
+			else {
+			    if (lastDirectionRed == 1) {
+				if (upCounter !=0 && (panels[red.getY() - 1][red.getX()].getBorder() == null)) {
+				    moveUpRed(scaredGhost);
+				    upCounter--;
 				}
-			    if (lastDirectionRed == 2)
-				{
-				    if (downCounter !=0 &&
-					(panels[red.getY() + 1][red.getX()].getBorder() == null))
-					{
-					    moveDownRed(scaredGhost);
-					    downCounter--;
-					}else
-					randomMoveRed(scaredGhost);			
-
+				else {
+				    randomMoveRed(scaredGhost);
 				}
-			    if (lastDirectionRed == 3)
-				{
-				    if (rightCounter !=0 &&
-					(panels[red.getY()][red.getX() + 1].getBorder() == null))
-					{
-					    moveRightRed(scaredGhost);
-					    rightCounter--;
-					}else
-					randomMoveRed(scaredGhost);			
-
+			    }
+			    if (lastDirectionRed == 2) {
+				if (downCounter !=0 && (panels[red.getY() + 1][red.getX()].getBorder() == null)) {
+				    moveDownRed(scaredGhost);
+				    downCounter--;
 				}
-		    
-			    if (lastDirectionRed == 4)
-				{
-				    if (leftCounter !=0 &&
-					(panels[red.getY()][red.getX() - 1].getBorder() == null))
-					{
-					    moveLeftRed(scaredGhost);
-					    leftCounter--;
-					}else
-					randomMoveRed(scaredGhost);			
-
+				else {
+				    randomMoveRed(scaredGhost);
 				}
-		    
-
-
-	
+			    }
+			    if (lastDirectionRed == 3) {
+				if (rightCounter !=0 && (panels[red.getY()][red.getX() + 1].getBorder() == null)) {
+				    moveRightRed(scaredGhost);
+				    rightCounter--;
+				}
+				else {
+				    randomMoveRed(scaredGhost);
+				}
+			    }
+			    if (lastDirectionRed == 4) {
+				if (leftCounter !=0 && (panels[red.getY()][red.getX() - 1].getBorder() == null)) {
+				    moveLeftRed(scaredGhost);
+				    leftCounter--;
+				}
+				else {
+				    randomMoveRed(scaredGhost);
+				}
+			    }
 			}
 		    }
-		    else{
+		    else {
 			if (lastDirectionRed == 0){
 			    randomMoveRed(Blinky);
 			}
-
 			else{
-	
-	
-			    if (lastDirectionRed == 1)
-				{
-				    if (upCounter !=0 &&
-					(panels[red.getY() - 1][red.getX()].getBorder() == null))
-					{
-					    moveUpRed(Blinky);
-					    upCounter--;
-					}else
-					randomMoveRed(Blinky);			
-
+			    if (lastDirectionRed == 1) {
+				if (upCounter !=0 && (panels[red.getY() - 1][red.getX()].getBorder() == null)) {
+				    moveUpRed(Blinky);
+				    upCounter--;
 				}
-			    if (lastDirectionRed == 2)
-				{
-				    if (downCounter !=0 &&
-					(panels[red.getY() + 1][red.getX()].getBorder() == null))
-					{
-					    moveDownRed(Blinky);
-					    downCounter--;
-					}else
-					randomMoveRed(Blinky);			
-
+				else {
+				    randomMoveRed(Blinky);
 				}
-			    if (lastDirectionRed == 3)
-				{
-				    if (rightCounter !=0 &&
-					(panels[red.getY()][red.getX() + 1].getBorder() == null))
-					{
-					    moveRightRed(Blinky);
-					    rightCounter--;
-					}else
-					randomMoveRed(Blinky);			
-
+			    }
+			    if (lastDirectionRed == 2) {
+				if (downCounter !=0 && (panels[red.getY() + 1][red.getX()].getBorder() == null)) {
+				    moveDownRed(Blinky);
+				    downCounter--;
 				}
-		    
-			    if (lastDirectionRed == 4)
-				{
-				    if (leftCounter !=0 &&
-					(panels[red.getY()][red.getX() - 1].getBorder() == null))
-					{
-					    moveLeftRed(Blinky);
-					    leftCounter--;
-					}else
-					randomMoveRed(Blinky);			
-
+				else {
+				    randomMoveRed(Blinky);
 				}
+			    }
+			    if (lastDirectionRed == 3) {
+				if (rightCounter !=0 &&	(panels[red.getY()][red.getX() + 1].getBorder() == null)) {
+				    moveRightRed(Blinky);
+				    rightCounter--;
+				}
+				else {
+				    randomMoveRed(Blinky);
+				}
+			    }
+			    if (lastDirectionRed == 4) {
+				if (leftCounter !=0 && (panels[red.getY()][red.getX() - 1].getBorder() == null)) {
+				    moveLeftRed(Blinky);
+				    leftCounter--;
+				}
+				else {
+				    randomMoveRed(Blinky);
+				}
+			    }
 			}
 		    }
-		    
 		}
 	    };
         timerRed = new Timer(200, RedGhost);
         timerRed.setRepeats(true);
         timerRed.start();
-	
+
+	//triggers Power Pellet mode
 	ActionListener invincible = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
 		    isPower = false;
@@ -783,10 +636,31 @@ public class Game extends JFrame implements KeyListener {
 	    };
 	timerPower = new Timer(7000,invincible);
 	timerPower.setRepeats(false);
-
-
+    }
+    
+    //methods used to make walls of maze
+    public void makeTopBorder(JPanel panel, JLabel label) {
+	panel.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
+	label.setIcon(null);
+	label.setBackground(Color.BLUE);
+    }
+    public void makeLeftBorder(JPanel panel, JLabel label){
+	panel.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
+	label.setIcon(null);
+	label.setBackground(Color.BLUE);
+    }
+    public void makeBottomBorder(JPanel panel, JLabel label){
+	panel.setBorder(BorderFactory.createMatteBorder(0, 0, 28, 0, Color.BLUE));
+	label.setIcon(null);
+	label.setBackground(Color.BLUE);
+    }
+    public void makeRightBorder(JPanel panel, JLabel label) {
+	panel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 28, Color.BLUE));
+	label.setIcon(null);
+	label.setBackground(Color.BLUE);
     }
 
+    //methods used to move blue ghost
     public void moveUpBlue(ImageIcon image){
 	if(blue.getY()- 1 > 0){
 	    bg.setIcon(null);
@@ -827,15 +701,14 @@ public class Game extends JFrame implements KeyListener {
 	    meetBlue();
 	}
     }
-  
     public void randomMoveBlue(ImageIcon image){
-	int rand = (1 + (int)(Math.random() * (4)));
+	int rand = (1 + (int)(Math.random() * (4))); //determines which direction ghost should move
  		
 	if(rand == 1){
 	    if(panels[blue.getY() - 1][blue.getX()].getBorder() == null){
 		moveUpBlue(image);
 		lastDirectionBlue = 1;
-		upCounter = (1 + (int)(Math.random() * (7)));
+		upCounter = (1 + (int)(Math.random() * (7))); //determines how long ghost should move before changing direction
 	    }
 	    else{
 		rand = (1 + (int)(Math.random() * (4)));
@@ -874,12 +747,7 @@ public class Game extends JFrame implements KeyListener {
 	}
     }
 
-
-
-
-
-
-
+    //methods to make yellow ghost move
     public void moveUpYellow(ImageIcon image){
 	if(yellow.getY()- 1 > 0){
 	    yg.setIcon(null);
@@ -920,7 +788,6 @@ public class Game extends JFrame implements KeyListener {
 	    meetYellow();
 	}
     }
-  
     public void randomMoveYellow(ImageIcon image){
 	int rand = (3 + (int)(Math.random() * (5)));
  		
@@ -967,6 +834,7 @@ public class Game extends JFrame implements KeyListener {
 	}  
     }
 
+    //methods to make pink ghost move
     public void moveUpPink(ImageIcon image){
 	if(pink.getY()- 1 > 0){
 	    pg.setIcon(null);
@@ -1007,8 +875,6 @@ public class Game extends JFrame implements KeyListener {
 	    meetPink();
 	}
     }
-
-  
     public void randomMovePink(ImageIcon image){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
@@ -1053,6 +919,8 @@ public class Game extends JFrame implements KeyListener {
 	    }
 	}    
     }
+
+    //methods to make red ghost move
     public void moveUpRed(ImageIcon image){
 	if(red.getY()- 1 > 0){
 	    rg.setIcon(null);
@@ -1101,7 +969,6 @@ public class Game extends JFrame implements KeyListener {
 	    meetRed();
 	}
     }
-  
     public void randomMoveRed(ImageIcon image){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
@@ -1146,7 +1013,9 @@ public class Game extends JFrame implements KeyListener {
 	    }
 	}
     }
+
     public void meetPac(){
+	//determines what happens when ghost meets Pacman not in Power Pellet mode
 	if(isPower == false){
 	    if((pac.getY() == yellow.getY() && pac.getX() == yellow.getX()) || 
 	       (pac.getY() == red.getY() && pac.getX() == red.getX()) || 
@@ -1163,23 +1032,33 @@ public class Game extends JFrame implements KeyListener {
 		}
 	    }
 	}
+	//determines what happens when ghost meets Pacman in Power Pellet mode
 	if(isPower){
 	    if(pac.getY() == yellow.getY() && pac.getX() == yellow.getX()){
+		scoreCounter = scoreCounter + 200;
+		score.setText("" + scoreCounter);
 		yellowRespawn();
 	    } 
 	    if(pac.getY() == red.getY() && pac.getX() == red.getX()){
 		redRespawn();
+		scoreCounter = scoreCounter + 200;
+		score.setText("" + scoreCounter);
 	    }	    
 	    if(pac.getY() == pink.getY() && pac.getX() == pink.getX()){
 		pinkRespawn();
+		scoreCounter = scoreCounter + 200;
+		score.setText("" + scoreCounter);
 	    }
 	    if(pac.getY() == blue.getY() && pac.getX() == blue.getX()){
 		blueRespawn();
+		scoreCounter = scoreCounter + 200;
+		score.setText("" + scoreCounter);
 	    }
 	   
 	}
     }
 
+    //determines what happens when Pacman meets ghosts
     public void meetBlue(){
 	if(isPower == false){
 	    if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){	   
@@ -1195,7 +1074,6 @@ public class Game extends JFrame implements KeyListener {
 	if(isPower){
 	    if(blue.getY() == pac.getY() && blue.getX() == pac.getX()){
 		blueRespawn();
-
 	    }
 	}
     }    
@@ -1256,18 +1134,13 @@ public class Game extends JFrame implements KeyListener {
 	}
     }
 
-    
-
- 
-
+    //Game Over window
     public void meetNoLives(){
-	int choice = JOptionPane.showConfirmDialog(null, "You are out of lives! Do you want to restart?", "Confirm",
-						   JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	int choice = JOptionPane.showConfirmDialog(null, "You are out of lives! Do you want to restart?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (choice == JOptionPane.NO_OPTION) {
 	    System.exit(0);
         } 
 	else if (choice == JOptionPane.YES_OPTION) {
-	    //	Game.setVisible(false);
 	    ( new Game()).setVisible(true) ;
 		
         } 
@@ -1276,6 +1149,7 @@ public class Game extends JFrame implements KeyListener {
         }
     }
 
+    //Window when you touch a ghost but you still have lives left
     public void meetLives(){
 	timerBlue.stop();
 	timerRed.stop();
@@ -1292,41 +1166,39 @@ public class Game extends JFrame implements KeyListener {
 	timerYellow.start();
 	timerPink.start();
     }
+
+    //method that checks if Pacman ate all of the Pac-Dots
     public void checkWin(){
 	int sum = 0;
        	for (int x = 0; x < panels.length;x++) {
 	    for (int y = 0; y < panels[x].length;y++) {
-		sum +=  panels[x][y].getComponentCount();
+		sum += panels[x][y].getComponentCount();
 	    }
 	}
-
 	if(sum < 333){
 	    win();
 	}
-
     }
     
-	
+    //Win screen	
     public void win(){
 	timerBlue.stop();
 	timerRed.stop();
 	timerYellow.stop();
 	timerPink.stop();
-	int choice = JOptionPane.showConfirmDialog(null, "Congratulations ,You have beat the game!  Do you want to play again?", "Confirm",
-						   JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	int choice = JOptionPane.showConfirmDialog(null, "Congratulations, you have beat the game! Do you want to play again?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (choice == JOptionPane.NO_OPTION) {
 	    System.exit(0);
         } 
 	else if (choice == JOptionPane.YES_OPTION) {
-		
 	    ( new Game()).setVisible(true) ;
-		
         } 
 	else if (choice == JOptionPane.CLOSED_OPTION) {
 	    System.exit(0);
         }
     }
-
+    
+    //methods used to respawn Pacman and ghosts after being in contact with each other
     public void pacRespawn(){
 	pm.setIcon(null);
 	panels[pac.getY()][pac.getX()].repaint();
@@ -1335,7 +1207,6 @@ public class Game extends JFrame implements KeyListener {
 	panels[pac.getY()][pac.getX()].add(pm);
 	pm.setIcon(R);
     }
-
     public void blueRespawn(){
 	bg.setIcon(null);
 	panels[blue.getY()][blue.getX()].repaint();
@@ -1352,7 +1223,6 @@ public class Game extends JFrame implements KeyListener {
 	panels[yellow.getY()][yellow.getX()].add(yg);
 	yg.setIcon(Clyde);
     }
-
     public void redRespawn(){
 	rg.setIcon(null);
 	panels[red.getY()][red.getX()].repaint();
@@ -1361,7 +1231,6 @@ public class Game extends JFrame implements KeyListener {
 	panels[red.getY()][red.getX()].add(rg);
 	rg.setIcon(Blinky);
     }
-    
     public void pinkRespawn(){
 	pg.setIcon(null);
 	panels[pink.getY()][pink.getX()].repaint();
@@ -1371,7 +1240,7 @@ public class Game extends JFrame implements KeyListener {
 	pg.setIcon(Pinky);
     }
    
-	
+    //makes Pacman eat dots and updates score; starts Power Pellet mode if Pacman eats a Power Pellet	
     public void checkPower(){
 	if((pac.getY() != 23 || pac.getX() != 23) && (pac.getY() != 23 || pac.getX() != 1) &&
 	   ( pac.getY() != 1 || pac.getX() != 1) && (pac.getY() != 1 || pac.getX() != 23)){
@@ -1387,80 +1256,75 @@ public class Game extends JFrame implements KeyListener {
 	    timerPower.start();
 	}
     }
-    
-    public void keyPressed(KeyEvent e){
 
+    //KeyListener interface to control Pacman's movements
+    public void keyPressed(KeyEvent e){
 	int c = e.getKeyCode();
 	
-	if(c == KeyEvent.VK_UP && pac.getY() - 1 > 0 &&
-	   (panels[pac.getY() - 1][pac.getX()].getBorder() == null)){
+	if (c == KeyEvent.VK_UP && pac.getY() - 1 > 0 && (panels[pac.getY() - 1][pac.getX()].getBorder() == null)) {
+
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() - 1);
-	    if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){	   
-	    checkPower();
+
+	    if (panels[pac.getY()][pac.getX()].getComponentCount() > 0) {
+		checkPower();
 	    }
+	    
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
 	    checkWin();
-	   
-	   
-	   
-	   
  	}
-    
-    
-	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 < 24 &&
-	   (panels[pac.getY() + 1][pac.getX()].getBorder() == null)){
+	if (c == KeyEvent.VK_DOWN && pac.getY() + 1 < 24 && (panels[pac.getY() + 1][pac.getX()].getBorder() == null)) {
+
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
-	    if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){	   
-	    checkPower();
+
+	    if (panels[pac.getY()][pac.getX()].getComponentCount() > 0) {
+		checkPower();
 	    }
+
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(D);
 	    meetPac();
 	    checkWin();
-	   
 	}
-	
-	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 < 24 &&
-	   (panels[pac.getY()][pac.getX() + 1].getBorder() == null)){
+	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 < 24 && (panels[pac.getY()][pac.getX() + 1].getBorder() == null)) {
+	    
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() + 1);
-	    if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){	   
-	    checkPower();
+	    
+	    if (panels[pac.getY()][pac.getX()].getComponentCount() > 0) {
+		checkPower();
 	    }
+
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(R);
 	    meetPac();
 	    checkWin();
-	    
-  
 	}
 	
-	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 > 0 &&
-	   (panels[pac.getY()][pac.getX() - 1].getBorder() == null)){
+	if(c == KeyEvent.VK_LEFT && pac.getX() - 1 > 0 && (panels[pac.getY()][pac.getX() - 1].getBorder() == null)) {
+	    
        	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() - 1);
-	    if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){	   
-	    checkPower();
+	    
+	    if (panels[pac.getY()][pac.getX()].getComponentCount() > 0) {
+		checkPower();
 	    }
+
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(L);
 	    meetPac();
 	    checkWin();
-	   
 	}
     }
     
-    public void keyReleased(KeyEvent e){
-	
-    }
+    public void keyReleased(KeyEvent e){}
     public void keyTyped(KeyEvent e){}
     
     public static void main(String[] args){
