@@ -1300,9 +1300,10 @@ public class Game extends JFrame implements KeyListener {
 	    }
 	}
 
-	if(sum < 303){
+	if(sum < 333){
 	    win();
 	}
+	System.out.println(sum);
     }
     
 	
