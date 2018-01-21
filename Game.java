@@ -242,7 +242,7 @@ public class Game extends JFrame implements KeyListener {
 		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
-		
+		/*
 		//make center box
 		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 13 ||
 					    y == 14)) {
@@ -261,6 +261,7 @@ public class Game extends JFrame implements KeyListener {
 		    b.setBackground(Color.BLUE);
 
 		}
+		*/
 		
 	    }
 	}
@@ -274,7 +275,8 @@ public class Game extends JFrame implements KeyListener {
 	
 			    if (lastDirectionBlue == 1)
 				{
-				    if (upCounter !=0)
+				    if (upCounter !=0 &&
+					(panels[blue.getY() - 1][blue.getX()].getBorder() == null))
 					{
 					    moveUpBlue(Inky);
 					    upCounter--;
@@ -284,7 +286,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionBlue == 2)
 				{
-				    if (downCounter !=0)
+				    if (downCounter !=0 &&
+					(panels[blue.getY() + 1][blue.getX()].getBorder() == null))
 					{
 					    moveDownBlue(Inky);
 					    downCounter--;
@@ -294,7 +297,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionBlue == 3)
 				{
-				    if (rightCounter !=0)
+				    if (rightCounter !=0 &&
+					(panels[blue.getY()][blue.getX() + 1].getBorder() == null))
 					{
 					    moveRightBlue(Inky);
 					    rightCounter--;
@@ -305,7 +309,8 @@ public class Game extends JFrame implements KeyListener {
 		    
 			    if (lastDirectionBlue == 4)
 				{
-				    if (leftCounter !=0)
+				    if (leftCounter !=0 &&
+					(panels[blue.getY()][blue.getX() - 1].getBorder() == null))
 					{
 					    moveLeftBlue(Inky);
 					    leftCounter--;
@@ -327,7 +332,8 @@ public class Game extends JFrame implements KeyListener {
 	
 			    if (lastDirectionBlue == 1)
 				{
-				    if (upCounter !=0)
+				    if (upCounter !=0 &&
+					(panels[blue.getY() - 1][blue.getX()].getBorder() == null))
 					{
 					    moveUpBlue(scaredGhost);
 					    upCounter--;
@@ -337,7 +343,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionBlue == 2)
 				{
-				    if (downCounter !=0)
+				    if (downCounter !=0 &&
+					(panels[blue.getY() + 1][blue.getX()].getBorder() == null))
 					{
 					    moveDownBlue(scaredGhost);
 					    downCounter--;
@@ -347,7 +354,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionBlue == 3)
 				{
-				    if (rightCounter !=0)
+				    if (rightCounter !=0 &&
+					(panels[blue.getY()][blue.getX() + 1].getBorder() == null))
 					{
 					    moveRightBlue(scaredGhost);
 					    rightCounter--;
@@ -358,7 +366,8 @@ public class Game extends JFrame implements KeyListener {
 		    
 			    if (lastDirectionBlue == 4)
 				{
-				    if (leftCounter !=0)
+				    if (leftCounter !=0 &&
+					(panels[blue.getY()][blue.getX() - 1].getBorder() == null))
 					{
 					    moveLeftBlue(scaredGhost);
 					    leftCounter--;
@@ -390,7 +399,8 @@ public class Game extends JFrame implements KeyListener {
 	
 			    if (lastDirectionYellow == 3)
 				{
-				    if (upCounter !=0)
+				    if (upCounter !=0 &&
+					(panels[yellow.getY() - 1][yellow.getX()].getBorder() == null))
 					{
 					    moveUpYellow(Clyde);
 					    upCounter--;
@@ -400,7 +410,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionYellow == 4)
 				{
-				    if (downCounter !=0)
+				    if (downCounter !=0 &&
+					(panels[yellow.getY() + 1][yellow.getX()].getBorder() == null))
 					{
 					    moveDownYellow(Clyde);
 					    downCounter--;
@@ -410,7 +421,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionYellow == 5)
 				{
-				    if (rightCounter !=0)
+				    if (rightCounter !=0 &&
+					(panels[yellow.getY()][yellow.getX() + 1].getBorder() == null))
 					{
 					    moveRightYellow(Clyde);
 					    rightCounter--;
@@ -421,7 +433,8 @@ public class Game extends JFrame implements KeyListener {
 		    
 			    if (lastDirectionYellow == 6)
 				{
-				    if (leftCounter !=0)
+				    if (leftCounter !=0 &&
+					(panels[yellow.getY()][yellow.getX() - 1].getBorder() == null))
 					{
 					    moveLeftYellow(Clyde);
 					    leftCounter--;
@@ -443,7 +456,8 @@ public class Game extends JFrame implements KeyListener {
 	
 			    if (lastDirectionYellow == 3)
 				{
-				    if (upCounter !=0)
+				    if (upCounter !=0 &&
+					(panels[yellow.getY() - 1][yellow.getX()].getBorder() == null))
 					{
 					    moveUpYellow(scaredGhost);
 					    upCounter--;
@@ -453,7 +467,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionYellow == 4)
 				{
-				    if (downCounter !=0)
+				    if (downCounter !=0 &&
+					(panels[yellow.getY() + 1][yellow.getX()].getBorder() == null))
 					{
 					    moveDownYellow(scaredGhost);
 					    downCounter--;
@@ -463,7 +478,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionYellow == 5)
 				{
-				    if (rightCounter !=0)
+				    if (rightCounter !=0 &&
+					(panels[yellow.getY()][yellow.getX() + 1].getBorder() == null))
 					{
 					    moveRightYellow(scaredGhost);
 					    rightCounter--;
@@ -474,7 +490,8 @@ public class Game extends JFrame implements KeyListener {
 		    
 			    if (lastDirectionYellow == 6)
 				{
-				    if (leftCounter !=0)
+				    if (leftCounter !=0 &&
+					(panels[yellow.getY()][yellow.getX() - 1].getBorder() == null))
 					{
 					    moveLeftYellow(scaredGhost);
 					    leftCounter--;
@@ -505,7 +522,8 @@ public class Game extends JFrame implements KeyListener {
 	
 			    if (lastDirectionPink == 1)
 				{
-				    if (upCounter !=0)
+				    if (upCounter !=0 &&
+					(panels[pink.getY() - 1][pink.getX()].getBorder() == null))
 					{
 					    moveUpPink(Pinky);
 					    upCounter--;
@@ -515,7 +533,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionPink == 2)
 				{
-				    if (downCounter !=0)
+				    if (downCounter !=0 &&
+					(panels[pink.getY() + 1][pink.getX()].getBorder() == null))
 					{
 					    moveDownPink(Pinky);
 					    downCounter--;
@@ -525,7 +544,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionPink == 3)
 				{
-				    if (rightCounter !=0)
+				    if (rightCounter !=0 &&
+					(panels[pink.getY()][pink.getX() + 1].getBorder() == null))
 					{
 					    moveRightPink(Pinky);
 					    rightCounter--;
@@ -536,7 +556,8 @@ public class Game extends JFrame implements KeyListener {
 		    
 			    if (lastDirectionPink == 4)
 				{
-				    if (leftCounter !=0)
+				    if (leftCounter !=0 &&
+					(panels[pink.getY()][pink.getX() - 1].getBorder() == null))
 					{
 					    moveLeftPink(Pinky);
 					    leftCounter--;
@@ -558,7 +579,8 @@ public class Game extends JFrame implements KeyListener {
 	
 			    if (lastDirectionPink == 1)
 				{
-				    if (upCounter !=0)
+				    if (upCounter !=0 &&
+					(panels[pink.getY() - 1][pink.getX()].getBorder() == null))
 					{
 					    moveUpPink(scaredGhost);
 					    upCounter--;
@@ -568,7 +590,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionPink == 2)
 				{
-				    if (downCounter !=0)
+				    if (downCounter !=0 &&
+					(panels[pink.getY() + 1][pink.getX()].getBorder() == null))
 					{
 					    moveDownPink(scaredGhost);
 					    downCounter--;
@@ -578,7 +601,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionPink == 3)
 				{
-				    if (rightCounter !=0)
+				    if (rightCounter !=0 &&
+					(panels[pink.getY()][pink.getX() + 1].getBorder() == null))
 					{
 					    moveRightPink(scaredGhost);
 					    rightCounter--;
@@ -589,7 +613,8 @@ public class Game extends JFrame implements KeyListener {
 		    
 			    if (lastDirectionPink == 4)
 				{
-				    if (leftCounter !=0)
+				    if (leftCounter !=0 &&
+					(panels[pink.getY()][pink.getX() - 1].getBorder() == null))
 					{
 					    moveLeftPink(scaredGhost);
 					    leftCounter--;
@@ -619,7 +644,8 @@ public class Game extends JFrame implements KeyListener {
 	
 			    if (lastDirectionRed == 1)
 				{
-				    if (upCounter !=0)
+				    if (upCounter !=0 &&
+					(panels[red.getY() - 1][red.getX()].getBorder() == null))
 					{
 					    moveUpRed(scaredGhost);
 					    upCounter--;
@@ -629,7 +655,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionRed == 2)
 				{
-				    if (downCounter !=0)
+				    if (downCounter !=0 &&
+					(panels[red.getY() + 1][red.getX()].getBorder() == null))
 					{
 					    moveDownRed(scaredGhost);
 					    downCounter--;
@@ -639,7 +666,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionRed == 3)
 				{
-				    if (rightCounter !=0)
+				    if (rightCounter !=0 &&
+					(panels[red.getY()][red.getX() + 1].getBorder() == null))
 					{
 					    moveRightRed(scaredGhost);
 					    rightCounter--;
@@ -650,7 +678,8 @@ public class Game extends JFrame implements KeyListener {
 		    
 			    if (lastDirectionRed == 4)
 				{
-				    if (leftCounter !=0)
+				    if (leftCounter !=0 &&
+					(panels[red.getY()][red.getX() - 1].getBorder() == null))
 					{
 					    moveLeftRed(scaredGhost);
 					    leftCounter--;
@@ -674,7 +703,8 @@ public class Game extends JFrame implements KeyListener {
 	
 			    if (lastDirectionRed == 1)
 				{
-				    if (upCounter !=0)
+				    if (upCounter !=0 &&
+					(panels[red.getY() - 1][red.getX()].getBorder() == null))
 					{
 					    moveUpRed(Blinky);
 					    upCounter--;
@@ -684,7 +714,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionRed == 2)
 				{
-				    if (downCounter !=0)
+				    if (downCounter !=0 &&
+					(panels[red.getY() + 1][red.getX()].getBorder() == null))
 					{
 					    moveDownRed(Blinky);
 					    downCounter--;
@@ -694,7 +725,8 @@ public class Game extends JFrame implements KeyListener {
 				}
 			    if (lastDirectionRed == 3)
 				{
-				    if (rightCounter !=0)
+				    if (rightCounter !=0 &&
+					(panels[red.getY()][red.getX() + 1].getBorder() == null))
 					{
 					    moveRightRed(Blinky);
 					    rightCounter--;
@@ -705,7 +737,8 @@ public class Game extends JFrame implements KeyListener {
 		    
 			    if (lastDirectionRed == 4)
 				{
-				    if (leftCounter !=0)
+				    if (leftCounter !=0 &&
+					(panels[red.getY()][red.getX() - 1].getBorder() == null))
 					{
 					    moveLeftRed(Blinky);
 					    leftCounter--;
