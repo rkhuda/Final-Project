@@ -99,8 +99,8 @@ public class Game extends JFrame implements KeyListener {
 
 
 
-	pane.setLayout(new GridLayout(25, 25));
-	panels = new JPanel[25][25];
+	pane.setLayout(new GridLayout(26, 25));
+	panels = new JPanel[26][25];
 	
 	for (int x = 0; x < panels.length;x++) {
             for (int y = 0; y < panels[x].length;y++) {
@@ -161,12 +161,12 @@ public class Game extends JFrame implements KeyListener {
 		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
-		if (y == 0 && (x != 0 && x != 24)) {
+		if (y == 0 && (x != 0 && x != 24 && x != 25)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 28, 0, 0, Color.BLUE));
 		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
-		if (y == 24 && (x != 0 && x != 24)) {
+		if (y == 24 && (x != 0 && x != 24 && x != 25)) {
 		    p.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 28, Color.BLUE));
 		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
@@ -242,9 +242,12 @@ public class Game extends JFrame implements KeyListener {
 		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
-		/*
+		if (x == 25) {
+		    b.setIcon(null);
+		}
+		
 		//make center box
-		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 13 ||
+		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 12 || y == 13 ||
 					    y == 14)) {
 		    p.setBorder(BorderFactory.createMatteBorder(28, 0, 0, 0, Color.BLUE));
 		    b.setIcon(null);
@@ -261,7 +264,9 @@ public class Game extends JFrame implements KeyListener {
 		    b.setBackground(Color.BLUE);
 
 		}
-		*/
+		if (x == 10 && (y == 11 || y == 12 || y == 13)) {
+		    b.setIcon(null);
+		}
 		
 	    }
 	}
