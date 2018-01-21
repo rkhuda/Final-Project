@@ -11,13 +11,14 @@ public class Game extends JFrame implements KeyListener {
 
     private Container pane;
     private JPanel[][] panels;
-    private JLabel con, pm, bg, yg, pg, rg, pd, b;
+    private JLabel con, pm, bg, yg, pg, rg, pd, b, score;
     private ImageIcon R, L, U, D, Inky, Clyde, Pinky, Blinky, Pacdot, scaredGhost,Pellet;  
     private Pacman pac;
     private Enemy blue, yellow, pink , red;
     private Timer timerBlue, timerYellow, timerRed, timerPower, timerPink;
     private int upCounter, downCounter, rightCounter, leftCounter;
     private int lastDirectionBlue, lastDirectionYellow, lastDirectionPink,lastDirectionRed;
+    private int scoreCounter;
     private boolean isPower = false;
 
     public Game(){
@@ -30,6 +31,8 @@ public class Game extends JFrame implements KeyListener {
 	
 	addKeyListener(this);
 	pane = getContentPane();
+
+	score = new JLabel();
 	
 	Pellet = new ImageIcon("Pacdot.png");
 	Image imagePower = Pellet.getImage();
@@ -244,6 +247,19 @@ public class Game extends JFrame implements KeyListener {
 		}
 		if (x == 25) {
 		    b.setIcon(null);
+		    if (y == 10){
+			b.setText("     S");
+			b.setForeground(Color.RED);
+		    }
+		    if (y == 11) {
+			b.setText("core");
+			b.setForeground(Color.RED);
+		    }
+		    if (y == 12) {
+			score.setText("" + scoreCounter);
+			score.setForeground(Color.RED);
+			p.add(score);
+		    }
 		}
 		
 		//make center box
@@ -1359,9 +1375,13 @@ public class Game extends JFrame implements KeyListener {
 	if((pac.getY() != 23 || pac.getX() != 23) && (pac.getY() != 23 || pac.getX() != 1) &&
 	   ( pac.getY() != 1 || pac.getX() != 1) && (pac.getY() != 1 || pac.getX() != 23)){
 	    panels[pac.getY()][pac.getX()].removeAll();
+	    scoreCounter = scoreCounter + 1;
+	    score.setText("" + scoreCounter);
 	}
 	else{	    
 	    panels[pac.getY()][pac.getX()].removeAll();
+	    scoreCounter = scoreCounter + 1;
+	    score.setText("" + scoreCounter);
 	    isPower = true;
 	    timerPower.start();
 	}
@@ -1382,6 +1402,7 @@ public class Game extends JFrame implements KeyListener {
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
+	    checkWin();
 	   
 	   
 	   
