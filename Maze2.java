@@ -26,6 +26,7 @@ public class Maze2 extends JFrame implements KeyListener {
     private Timer timerRed;
     private Timer timerYellow;
     private Timer timerPink;
+    private Timer timerPower;
     private JLabel pm;
     private JLabel bg;
     private JLabel yg;
@@ -110,7 +111,7 @@ public class Maze2 extends JFrame implements KeyListener {
 	      	Container c = getContentPane();			    
 	 	if (x == pac.getY() && y == pac.getX()) {
       		    pm.setIcon(Pacman);
-		    p.setBackground(Color.BLACK);
+		    //  p.setBackground(Color.BLACK);
 		    p.add(pm);
 		}
 		if(x == blue.getY() && y == blue.getX()){
@@ -431,6 +432,13 @@ ActionListener RedGhost = new ActionListener() {
         timerRed.setRepeats(true);
         timerRed.start();
 	
+	ActionListener invincible = new ActionListener() {
+		public void actionPerformed(ActionEvent evt) {
+		    isPower = false;
+		}
+	    };
+	timerPower = new Timer(7000,invincible);
+	timerPower.setRepeats(false);
 	/*
 	new Timer(100,new ActionListener(){
 		public void actionPerformed(ActionEvent a){
@@ -693,9 +701,10 @@ public void moveUpRed(ImageIcon image){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setY(red.getY() - 1);
-	    panels[red.getY()][red.getX()].add(rg);
+	    
 	    rg.setIcon(image);
 	    panels[red.getY()][red.getX()].setBackground(Color.BLACK);
+	    panels[red.getY()][red.getX()].add(rg);
 	    meetRed();
 	}
     }
@@ -704,9 +713,10 @@ public void moveUpRed(ImageIcon image){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setY(red.getY() + 1);
-	    panels[red.getY()][red.getX()].add(rg);
+	   
 	    rg.setIcon(image);
 	     panels[red.getY()][red.getX()].setBackground(Color.BLACK);
+	     panels[red.getY()][red.getX()].add(rg);
 	    meetRed();
 	}
     }
@@ -715,9 +725,10 @@ public void moveUpRed(ImageIcon image){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setX(red.getX() + 1);
-	    panels[red.getY()][red.getX()].add(rg);
+	   
 	    rg.setIcon(image);
 	     panels[red.getY()][red.getX()].setBackground(Color.BLACK);
+	     panels[red.getY()][red.getX()].add(rg);
 	    meetRed();
 	}
     }
@@ -726,9 +737,10 @@ public void moveUpRed(ImageIcon image){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setX(red.getX() - 1);
-	    panels[red.getY()][red.getX()].add(rg);
+	    
 	    rg.setIcon(image);
-	     panels[red.getY()][red.getX()].setBackground(Color.BLACK);
+	    panels[red.getY()][red.getX()].setBackground(Color.BLACK);
+	    panels[red.getY()][red.getX()].add(rg);
 	    meetRed();
 	}
     }
@@ -838,6 +850,7 @@ public void moveUpRed(ImageIcon image){
     }
 
     public void meetLives(){
+	
 	    timerBlue.stop();
 	    timerRed.stop();
 	    timerYellow.stop();
@@ -852,6 +865,9 @@ public void moveUpRed(ImageIcon image){
 	    timerRed.start();
 	    timerYellow.start();
 	    timerPink.start();
+	
+	
+	    
     }
 	
     public void pacRespawn(){
@@ -899,13 +915,8 @@ public void moveUpRed(ImageIcon image){
     }
     
     public void power(){
-	//	timerRed.setRepeats(false);
-	//	timerRed.stop();
-	
-	//	panels[red.getY()][red.getX()].removeAll();
-	//	rg.setIcon(scaredGhost);
-	//	panels[red.getY()][red.getX()].add(rg);
-	isPower = true;
+       	isPower = true;
+
     }
 	
 	
@@ -921,7 +932,8 @@ public void moveUpRed(ImageIcon image){
 	    pm.setIcon(Pacman);
 	    //  System.out.println(pac.getY());
 	    meetPac();
-	     power();
+	      power();
+	      timerPower.start();
  	}
 	
 	if(c == KeyEvent.VK_DOWN && pac.getY() + 1 <= 39){
