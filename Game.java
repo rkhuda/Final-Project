@@ -11,14 +11,14 @@ public class Game extends JFrame implements KeyListener {
 
     private Container pane;
     private JPanel[][] panels;
-    private JLabel con, pm, bg, yg, pg, rg, pd, b ,power;
-    private ImageIcon R, L, U, D, Inky, Clyde, Pinky, Blinky, Pacdot, scaredGhost;  
+    private JLabel con, pm, bg, yg, pg, rg, pd, b;
+    private ImageIcon R, L, U, D, Inky, Clyde, Pinky, Blinky, Pacdot, scaredGhost,Pellet;  
     private Pacman pac;
     private Enemy blue, yellow, pink , red;
     private Timer timerBlue, timerYellow, timerRed, timerPower, timerPink;
     private int upCounter, downCounter, rightCounter, leftCounter;
     private int lastDirectionBlue, lastDirectionYellow, lastDirectionPink,lastDirectionRed;
-    private boolean isPower;
+    private boolean isPower = false;
 
     public Game(){
 	
@@ -31,10 +31,10 @@ public class Game extends JFrame implements KeyListener {
 	addKeyListener(this);
 	pane = getContentPane();
 	
-	Power = new ImageIcon("Pacdot.png");
-	Image imagePower = Power.getImage();
+	Pellet = new ImageIcon("Pacdot.png");
+	Image imagePower = Pellet.getImage();
 	Image newimgPower = imagePower.getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH);
-	Power = new ImageIcon(newimgPower);
+	Pellet = new ImageIcon(newimgPower);
        	
 	Pacdot = new ImageIcon("Pacdot.png");
 	Image imageDot = Pacdot.getImage();
@@ -96,7 +96,7 @@ public class Game extends JFrame implements KeyListener {
 	Image image6 = scaredGhost.getImage(); // transform it
 	Image newimg6 = image6.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
 	scaredGhost = new ImageIcon(newimg6);  // transform it back
-	sg = new JLabel();
+
 
 
 	pane.setLayout(new GridLayout(25, 25));
@@ -120,16 +120,16 @@ public class Game extends JFrame implements KeyListener {
 		}
 		
 		if((x == 23  && y == 1) || (x == 1 && y == 23) || ( x == 23 && y == 23) || ( x == 1 && y == 1)){
-			power.setIcon(Power);
-			p.setBackground(Color.BLACK);
-			p.add(power);
-		    }
+		    power.setIcon(Pellet);
+		    p.setBackground(Color.BLACK);
+		    p.add(power);
+		}
 	        if (x == pac.getY() && y == pac.getX()) {
-			pm.setIcon(R);
-			p.setBackground(Color.BLACK);
-			p.add(pm);
+		    pm.setIcon(R);
+		    p.setBackground(Color.BLACK);
+		    p.add(pm);
 		   
-		    }
+		}
 	       	if (x == blue.getY() && y == blue.getX())  {
 		    bg.setIcon(Inky);
 		    p.add(bg);
@@ -264,328 +264,561 @@ public class Game extends JFrame implements KeyListener {
 		
 	    }
 	}
-
 	ActionListener BlueGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-		    if (lastDirectionBlue == 0)
-			randomMoveBlue();
-		    else{
+		    if(isPower == false){
+			if (lastDirectionBlue == 0)
+			    randomMoveBlue(Inky);
+			else{
 	
 	
-			if (lastDirectionBlue == 1)
-			    {
-				if (upCounter !=0 &&
-				    (panels[blue.getY() - 1][blue.getX()].getBorder() == null))
-				    {
-					moveUpBlue();
-					upCounter--;
-				    }else
-				    randomMoveBlue();			
+			    if (lastDirectionBlue == 1)
+				{
+				    if (upCounter !=0)
+					{
+					    moveUpBlue(Inky);
+					    upCounter--;
+					}else
+					randomMoveBlue(Inky);			
 
-			    }
-			if (lastDirectionBlue == 2)
-			    {
-				if (downCounter !=0 &&
-				    (panels[blue.getY() + 1][blue.getX()].getBorder() == null))
-				    {
-					moveDownBlue();
-					downCounter--;
-				    }else
-				    randomMoveBlue();			
+				}
+			    if (lastDirectionBlue == 2)
+				{
+				    if (downCounter !=0)
+					{
+					    moveDownBlue(Inky);
+					    downCounter--;
+					}else
+					randomMoveBlue(Inky);			
 
-			    }
-			if (lastDirectionBlue == 3)
-			    {
-				if (rightCounter !=0 &&
-				    (panels[blue.getY()][blue.getX() + 1].getBorder() == null))
-				    {
-					moveRightBlue();
-					rightCounter--;
-				    }else
-				    randomMoveBlue();			
+				}
+			    if (lastDirectionBlue == 3)
+				{
+				    if (rightCounter !=0)
+					{
+					    moveRightBlue(Inky);
+					    rightCounter--;
+					}else
+					randomMoveBlue(Inky);			
 
-			    }
+				}
 		    
-			if (lastDirectionBlue == 4)
-			    {
-				if (leftCounter !=0 &&
-				    (panels[blue.getY()][blue.getX() - 1].getBorder() == null))
-				    {
-					moveLeftBlue();
-					leftCounter--;
-				    }else
-				    randomMoveBlue();			
+			    if (lastDirectionBlue == 4)
+				{
+				    if (leftCounter !=0)
+					{
+					    moveLeftBlue(Inky);
+					    leftCounter--;
+					}else
+					randomMoveBlue(Inky);			
 
-			    }
+				}
 		    
 
 
 	
+			}
+		    }
+		    if(isPower){
+			if (lastDirectionBlue == 0)
+			    randomMoveBlue(scaredGhost);
+			else{
+	
+	
+			    if (lastDirectionBlue == 1)
+				{
+				    if (upCounter !=0)
+					{
+					    moveUpBlue(scaredGhost);
+					    upCounter--;
+					}else
+					randomMoveBlue(scaredGhost);			
+
+				}
+			    if (lastDirectionBlue == 2)
+				{
+				    if (downCounter !=0)
+					{
+					    moveDownBlue(scaredGhost);
+					    downCounter--;
+					}else
+					randomMoveBlue(scaredGhost);			
+
+				}
+			    if (lastDirectionBlue == 3)
+				{
+				    if (rightCounter !=0)
+					{
+					    moveRightBlue(scaredGhost);
+					    rightCounter--;
+					}else
+					randomMoveBlue(scaredGhost);			
+
+				}
+		    
+			    if (lastDirectionBlue == 4)
+				{
+				    if (leftCounter !=0)
+					{
+					    moveLeftBlue(scaredGhost);
+					    leftCounter--;
+					}else
+					randomMoveBlue(scaredGhost);			
+
+				}
+		    
+
+
+	
+			}
 		    }
 		}
+
+			
 	    };
         timerBlue = new Timer(200, BlueGhost);
-	timerBlue.setRepeats(true);
-	timerBlue.start();
-
+        timerBlue.setRepeats(true);
+        timerBlue.start();
+	
 	ActionListener YellowGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-
-		    if (lastDirectionYellow == 0)
-			randomMoveYellow();
-		    else{
+		    if(isPower == false){
+			if (lastDirectionYellow == 0)
+			    randomMoveYellow(Clyde);
+			else{
 	
 	
-			if (lastDirectionYellow == 3)
-			    {
-				if (upCounter !=0 &&
-				    (panels[yellow.getY() - 1][yellow.getX()].getBorder() == null))
-				    {
-					moveUpYellow();
-					upCounter--;
-				    }else
-				    randomMoveYellow();			
+			    if (lastDirectionYellow == 3)
+				{
+				    if (upCounter !=0)
+					{
+					    moveUpYellow(Clyde);
+					    upCounter--;
+					}else
+					randomMoveYellow(Clyde);			
 
-			    }
-			if (lastDirectionYellow == 4)
-			    {
-				if (downCounter !=0 &&
-				    (panels[yellow.getY() + 1][yellow.getX()].getBorder() == null))
-				    {
-					moveDownYellow();
-					downCounter--;
-				    }else
-				    randomMoveYellow();			
+				}
+			    if (lastDirectionYellow == 4)
+				{
+				    if (downCounter !=0)
+					{
+					    moveDownYellow(Clyde);
+					    downCounter--;
+					}else
+					randomMoveYellow(Clyde);			
 
-			    }
-			if (lastDirectionYellow == 5)
-			    {
-				if (rightCounter !=0 &&
-				    (panels[yellow.getY()][yellow.getX() + 1].getBorder() == null))
-				    {
-					moveRightYellow();
-					rightCounter--;
-				    }else
-				    randomMoveYellow();			
+				}
+			    if (lastDirectionYellow == 5)
+				{
+				    if (rightCounter !=0)
+					{
+					    moveRightYellow(Clyde);
+					    rightCounter--;
+					}else
+					randomMoveYellow(Clyde);			
 
-			    }
+				}
 		    
-			if (lastDirectionYellow == 6)
-			    {
-				if (leftCounter !=0 &&
-				    (panels[yellow.getY()][yellow.getX() - 1].getBorder() == null))
-				    {
-					moveLeftYellow();
-					leftCounter--;
-				    }else
-				    randomMoveYellow();			
+			    if (lastDirectionYellow == 6)
+				{
+				    if (leftCounter !=0)
+					{
+					    moveLeftYellow(Clyde);
+					    leftCounter--;
+					}else
+					randomMoveYellow(Clyde);			
 
-			    }
+				}
 		    
 
 
 	
+			}
+		    }
+		    if(isPower){
+			if (lastDirectionYellow == 0)
+			    randomMoveYellow(scaredGhost);
+			else{
+	
+	
+			    if (lastDirectionYellow == 3)
+				{
+				    if (upCounter !=0)
+					{
+					    moveUpYellow(scaredGhost);
+					    upCounter--;
+					}else
+					randomMoveYellow(scaredGhost);			
+
+				}
+			    if (lastDirectionYellow == 4)
+				{
+				    if (downCounter !=0)
+					{
+					    moveDownYellow(scaredGhost);
+					    downCounter--;
+					}else
+					randomMoveYellow(scaredGhost);			
+
+				}
+			    if (lastDirectionYellow == 5)
+				{
+				    if (rightCounter !=0)
+					{
+					    moveRightYellow(scaredGhost);
+					    rightCounter--;
+					}else
+					randomMoveYellow(scaredGhost);	
+
+				}
+		    
+			    if (lastDirectionYellow == 6)
+				{
+				    if (leftCounter !=0)
+					{
+					    moveLeftYellow(scaredGhost);
+					    leftCounter--;
+					}else
+					randomMoveYellow(scaredGhost);			
+
+				}
+		    
+
+
+	
+			}
 		    }
 		}
+		
 	    };
         timerYellow = new Timer(200, YellowGhost);
         timerYellow.setRepeats(true);
         timerYellow.start();
 	
-ActionListener PinkGhost = new ActionListener() {
+	ActionListener PinkGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-
-		    if (lastDirectionPink == 0)
-			randomMovePink();
-		    else{
+		    if(isPower == false){
+			if (lastDirectionPink == 0)
+			    randomMovePink(Pinky);
+			else{
 	
 	
-			if (lastDirectionPink == 1)
-			    {
-				if (upCounter !=0 &&
-				    (panels[pink.getY() - 1][pink.getX()].getBorder() == null))
-				    {
-					moveUpPink();
-					upCounter--;
-				    }else
-				    randomMovePink();			
+			    if (lastDirectionPink == 1)
+				{
+				    if (upCounter !=0)
+					{
+					    moveUpPink(Pinky);
+					    upCounter--;
+					}else
+					randomMovePink(Pinky);			
 
-			    }
-			if (lastDirectionPink == 2)
-			    {
-				if (downCounter !=0 &&
-				    (panels[pink.getY() + 1][pink.getX()].getBorder() == null))
-				    {
-					moveDownPink();
-					downCounter--;
-				    }else
-				    randomMovePink();			
+				}
+			    if (lastDirectionPink == 2)
+				{
+				    if (downCounter !=0)
+					{
+					    moveDownPink(Pinky);
+					    downCounter--;
+					}else
+					randomMovePink(Pinky);			
 
-			    }
-			if (lastDirectionPink == 3)
-			    {
-				if (rightCounter !=0 &&
-				    (panels[pink.getY()][pink.getX() + 1].getBorder() == null))
-				    {
-					moveRightPink();
-					rightCounter--;
-				    }else
-				    randomMovePink();			
+				}
+			    if (lastDirectionPink == 3)
+				{
+				    if (rightCounter !=0)
+					{
+					    moveRightPink(Pinky);
+					    rightCounter--;
+					}else
+					randomMovePink(Pinky);			
 
-			    }
+				}
 		    
-			if (lastDirectionPink == 4)
-			    {
-				if (leftCounter !=0 &&
-				    (panels[pink.getY()][pink.getX() - 1].getBorder() == null))
-				    {
-					moveLeftPink();
-					leftCounter--;
-				    }else
-				    randomMovePink();			
+			    if (lastDirectionPink == 4)
+				{
+				    if (leftCounter !=0)
+					{
+					    moveLeftPink(Pinky);
+					    leftCounter--;
+					}else
+					randomMovePink(Pinky);			
 
-			    }
+				}
 		    
 
 
 	
+			}
+		    }
+		    if(isPower){
+			if (lastDirectionPink == 0)
+			    randomMovePink(scaredGhost);
+			else{
+	
+	
+			    if (lastDirectionPink == 1)
+				{
+				    if (upCounter !=0)
+					{
+					    moveUpPink(scaredGhost);
+					    upCounter--;
+					}else
+					randomMovePink(scaredGhost);			
+
+				}
+			    if (lastDirectionPink == 2)
+				{
+				    if (downCounter !=0)
+					{
+					    moveDownPink(scaredGhost);
+					    downCounter--;
+					}else
+					randomMovePink(scaredGhost);			
+
+				}
+			    if (lastDirectionPink == 3)
+				{
+				    if (rightCounter !=0)
+					{
+					    moveRightPink(scaredGhost);
+					    rightCounter--;
+					}else
+					randomMovePink(scaredGhost);			
+
+				}
+		    
+			    if (lastDirectionPink == 4)
+				{
+				    if (leftCounter !=0)
+					{
+					    moveLeftPink(scaredGhost);
+					    leftCounter--;
+					}else
+					randomMovePink(scaredGhost);			
+
+				}
+			}
 		    }
 		}
+		
+		
 	    };
         timerPink = new Timer(200, PinkGhost);
         timerPink.setRepeats(true);
         timerPink.start();
-ActionListener RedGhost = new ActionListener() {
+	
+	ActionListener RedGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
+		    if(isPower){
+			if (lastDirectionRed == 0){
+			    randomMoveRed(scaredGhost);
+			}
 
-		    if (lastDirectionRed == 0)
-			randomMoveRed();
-		    else{
+			else{
 	
 	
-			if (lastDirectionRed == 1)
-			    {
-				if (upCounter !=0 &&
-				    (panels[red.getY() - 1][red.getX()].getBorder() == null))
-				    {
-					moveUpRed();
-					upCounter--;
-				    }else
-				    randomMoveRed();			
+			    if (lastDirectionRed == 1)
+				{
+				    if (upCounter !=0)
+					{
+					    moveUpRed(scaredGhost);
+					    upCounter--;
+					}else
+					randomMoveRed(scaredGhost);			
 
-			    }
-			if (lastDirectionRed == 2)
-			    {
-				if (downCounter !=0 &&
-				    (panels[red.getY() + 1][red.getX()].getBorder() == null))
-				    {
-					moveDownRed();
-					downCounter--;
-				    }else
-				    randomMoveRed();			
+				}
+			    if (lastDirectionRed == 2)
+				{
+				    if (downCounter !=0)
+					{
+					    moveDownRed(scaredGhost);
+					    downCounter--;
+					}else
+					randomMoveRed(scaredGhost);			
 
-			    }
-			if (lastDirectionRed == 3)
-			    {
-				if (rightCounter !=0 &&
-				    (panels[red.getY()][red.getX() + 1].getBorder() == null))
-				    {
-					moveRightRed();
-					rightCounter--;
-				    }else
-				    randomMoveRed();			
+				}
+			    if (lastDirectionRed == 3)
+				{
+				    if (rightCounter !=0)
+					{
+					    moveRightRed(scaredGhost);
+					    rightCounter--;
+					}else
+					randomMoveRed(scaredGhost);			
 
-			    }
+				}
 		    
-			if (lastDirectionRed == 4)
-			    {
-				if (leftCounter !=0 &&
-				    (panels[red.getY()][red.getX() - 1].getBorder() == null))
-				    {
-					moveLeftRed();
-					leftCounter--;
-				    }else
-				    randomMoveRed();			
+			    if (lastDirectionRed == 4)
+				{
+				    if (leftCounter !=0)
+					{
+					    moveLeftRed(scaredGhost);
+					    leftCounter--;
+					}else
+					randomMoveRed(scaredGhost);			
 
-			    }
+				}
 		    
 
 
 	
+			}
 		    }
+		    else{
+			if (lastDirectionRed == 0){
+			    randomMoveRed(Blinky);
+			}
+
+			else{
+	
+	
+			    if (lastDirectionRed == 1)
+				{
+				    if (upCounter !=0)
+					{
+					    moveUpRed(Blinky);
+					    upCounter--;
+					}else
+					randomMoveRed(Blinky);			
+
+				}
+			    if (lastDirectionRed == 2)
+				{
+				    if (downCounter !=0)
+					{
+					    moveDownRed(Blinky);
+					    downCounter--;
+					}else
+					randomMoveRed(Blinky);			
+
+				}
+			    if (lastDirectionRed == 3)
+				{
+				    if (rightCounter !=0)
+					{
+					    moveRightRed(Blinky);
+					    rightCounter--;
+					}else
+					randomMoveRed(Blinky);			
+
+				}
+		    
+			    if (lastDirectionRed == 4)
+				{
+				    if (leftCounter !=0)
+					{
+					    moveLeftRed(Blinky);
+					    leftCounter--;
+					}else
+					randomMoveRed(Blinky);			
+
+				}
+			}
+		    }
+		    
 		}
 	    };
         timerRed = new Timer(200, RedGhost);
         timerRed.setRepeats(true);
         timerRed.start();
+	
+	ActionListener invincible = new ActionListener() {
+		public void actionPerformed(ActionEvent evt) {
+		    isPower = false;
+		}
+	    };
+	timerPower = new Timer(7000,invincible);
+	timerPower.setRepeats(false);
+
+
     }
 
-    public void moveUpBlue(){
-	if(blue.getY()- 1 > 0) {
+    public void moveUpBlue(ImageIcon image){
+	if(blue.getY()- 1 > 0){
 	    bg.setIcon(null);
 	    panels[blue.getY()][blue.getX()].repaint();
 	    blue.setY(blue.getY() - 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
-	    bg.setIcon(Inky);
+	    bg.setIcon(image);
 	    meetBlue();
 	}
     }
-    public void moveDownBlue(){
+    public void moveDownBlue(ImageIcon image){
 	if(blue.getY() + 1 < 24){
 	    bg.setIcon(null);
 	    panels[blue.getY()][blue.getX()].repaint();
 	    blue.setY(blue.getY() + 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
-	    bg.setIcon(Inky);
+	    bg.setIcon(image);
 	    meetBlue();
 	}
     }
-    public void moveRightBlue(){
+    public void moveRightBlue(ImageIcon image){
 	if(blue.getX()+ 1 < 24){
 	    bg.setIcon(null);
 	    panels[blue.getY()][blue.getX()].repaint();
 	    blue.setX(blue.getX() + 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
-	    bg.setIcon(Inky);
+	    bg.setIcon(image);
 	    meetBlue();
 	}
     }
-    public void moveLeftBlue(){
-	if (blue.getX() - 1 > 0){
+    public void moveLeftBlue(ImageIcon image){
+	if(blue.getX()- 1 > 0){
 	    bg.setIcon(null);
 	    panels[blue.getY()][blue.getX()].repaint();
 	    blue.setX(blue.getX() - 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
-	    bg.setIcon(Inky);
+	    bg.setIcon(image);
 	    meetBlue();
 	}
     }
-
-    public void randomMoveBlue(){
+  
+    public void randomMoveBlue(ImageIcon image){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
-		if(rand == 1){
-		   moveUpBlue();
-		   lastDirectionBlue = 1;
-		   upCounter = (1 + (int)(Math.random() * (7)));
-		   	}
-		if(rand == 2){
-		  moveDownBlue();
-		  lastDirectionBlue = 2;
-		   downCounter = (1 + (int)(Math.random() * (7)));
-		  
-		 }
-		if(rand == 3){
-		    moveRightBlue();
-		    lastDirectionBlue = 3;
-		   rightCounter = (1 + (int)(Math.random() * (7)));
-		}
-		if(rand == 4){
-		    moveLeftBlue();
-		    lastDirectionBlue = 4;
-		   leftCounter = (1 + (int)(Math.random() * (7)));
-		}
+	if(rand == 1){
+	    if(panels[blue.getY() - 1][blue.getX()].getBorder() == null){
+		moveUpBlue(image);
+		lastDirectionBlue = 1;
+		upCounter = (1 + (int)(Math.random() * (7)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
 	}
+	if(rand == 2){
+	    if(panels[blue.getY() + 1][blue.getX()].getBorder() == null){
+		moveDownBlue(image);
+		lastDirectionBlue = 2;
+		downCounter = (1 + (int)(Math.random() * (7)));
+		  
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
+	}
+	if(rand == 3){
+	    if(panels[blue.getY()][blue.getX() + 1].getBorder() == null){
+		moveRightBlue(image);
+		lastDirectionBlue = 3;
+		rightCounter = (1 + (int)(Math.random() * (7)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
+	}
+	if(rand == 4){
+	    if(panels[blue.getY()][blue.getX() - 1].getBorder() == null){
+		moveLeftBlue(image);
+		lastDirectionBlue = 4;
+		leftCounter = (1 + (int)(Math.random() * (7)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
+	}
+    }
 
 
 
@@ -593,311 +826,428 @@ ActionListener RedGhost = new ActionListener() {
 
 
 
-public void moveUpYellow(){
+    public void moveUpYellow(ImageIcon image){
 	if(yellow.getY()- 1 > 0){
 	    yg.setIcon(null);
 	    panels[yellow.getY()][yellow.getX()].repaint();
 	    yellow.setY(yellow.getY() - 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
-	    yg.setIcon(Clyde);
+	    yg.setIcon(image);
 	    meetYellow();
 	}
     }
-    public void moveDownYellow(){
+    public void moveDownYellow(ImageIcon image){
 	if(yellow.getY() + 1 < 24){
 	    yg.setIcon(null);
 	    panels[yellow.getY()][yellow.getX()].repaint();
 	    yellow.setY(yellow.getY() + 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
-	    yg.setIcon(Clyde);
+	    yg.setIcon(image);
 	    meetYellow();
 	}
     }
-    public void moveRightYellow(){
+    public void moveRightYellow(ImageIcon image){
 	if(yellow.getX()+ 1 < 24){
 	    yg.setIcon(null);
 	    panels[yellow.getY()][yellow.getX()].repaint();
 	    yellow.setX(yellow.getX() + 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
-	    yg.setIcon(Clyde);
+	    yg.setIcon(image);
 	    meetYellow();
 	}
     }
-    public void moveLeftYellow(){
+    public void moveLeftYellow(ImageIcon image){
 	if(yellow.getX()- 1 > 0){
 	    yg.setIcon(null);
 	    panels[yellow.getY()][yellow.getX()].repaint();
 	    yellow.setX(yellow.getX() - 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
-	    yg.setIcon(Clyde);
+	    yg.setIcon(image);
 	    meetYellow();
 	}
     }
   
-    public void randomMoveYellow(){
+    public void randomMoveYellow(ImageIcon image){
 	int rand = (3 + (int)(Math.random() * (5)));
  		
-		if(rand == 3){
-		   moveUpYellow();
-		   lastDirectionYellow = 3;
-		   upCounter = (1 + (int)(Math.random() * (7)));
-		   	}
-		if(rand == 4){
-		  moveDownYellow();
-		  lastDirectionYellow = 4;
-		   downCounter = (1 + (int)(Math.random() * (7)));
+	if(rand == 3){
+	    if(panels[yellow.getY() - 1][yellow.getX()].getBorder() == null){
+		moveUpYellow(image);
+		lastDirectionYellow = 3;
+		upCounter = (1 + (int)(Math.random() * (7)));
+	    }
+	    else{
+		rand = (3 +(int)(Math.random() * (5)));
+	    }
+	}
+	if(rand == 4){
+	    if(panels[yellow.getY() + 1][yellow.getX()].getBorder() == null){
+		moveDownYellow(image);
+		lastDirectionYellow = 4;
+		downCounter = (1 + (int)(Math.random() * (7)));
 		  
-		 }
-		if(rand == 5){
-		    moveRightYellow();
-		    lastDirectionYellow = 5;
-		   rightCounter = (1 + (int)(Math.random() * (7)));
-		}
-		if(rand == 6 || rand == 7){
-		    moveLeftYellow();
-		    lastDirectionYellow = 6;
-		   leftCounter = (1 + (int)(Math.random() * (7)));
-		}
+	    }
+	    else{
+		rand = (3 +(int)(Math.random() * (5)));
+	    }
+	}
+	if(rand == 5){
+	    if(panels[yellow.getY()][yellow.getX() + 1].getBorder() == null){
+		moveRightYellow(image);
+		lastDirectionYellow = 5;
+		rightCounter = (1 + (int)(Math.random() * (7)));
+	    }
+	    else{
+		rand = (3 +(int)(Math.random() * (5)));
+	    }
+	}
+	if(rand == 6 || rand == 7){
+	    if(panels[yellow.getY()][yellow.getX() - 1].getBorder() == null){
+		moveLeftYellow(image);
+		lastDirectionYellow = 6;
+		leftCounter = (1 + (int)(Math.random() * (7)));
+	    }
+	    else{
+		rand = (3 +(int)(Math.random() * (5)));
+	    }
+	}  
     }
 
-public void moveUpPink(){
+    public void moveUpPink(ImageIcon image){
 	if(pink.getY()- 1 > 0){
 	    pg.setIcon(null);
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setY(pink.getY() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Pinky);
+	    pg.setIcon(image);
 	    meetPink();
 	}
     }
-    public void moveDownPink(){
+    public void moveDownPink(ImageIcon image){
 	if(pink.getY() + 1 < 24){
 	    pg.setIcon(null);
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setY(pink.getY() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Pinky);
+	    pg.setIcon(image);
 	    meetPink();
 	}
     }
-    public void moveRightPink(){
+    public void moveRightPink(ImageIcon image){
 	if(pink.getX()+ 1 < 24){
 	    pg.setIcon(null);
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setX(pink.getX() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Pinky);
+	    pg.setIcon(image);
 	    meetPink();
 	}
     }
-    public void moveLeftPink(){
+    public void moveLeftPink(ImageIcon image){
 	if(pink.getX()- 1 > 0){
 	    pg.setIcon(null);
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setX(pink.getX() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Pinky);
+	    pg.setIcon(image);
 	    meetPink();
 	}
     }
+
   
-    public void randomMovePink(){
+    public void randomMovePink(ImageIcon image){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
-		if(rand == 1){
-		   moveUpPink();
-		   lastDirectionPink = 1;
-		   upCounter = (1 + (int)(Math.random() * (7)));
-		   	}
-		if(rand == 2){
-		  moveDownPink();
-		  lastDirectionPink = 2;
-		   downCounter = (1 + (int)(Math.random() * (7)));
-		  
-		 }
-		if(rand == 3){
-		    moveRightPink();
-		    lastDirectionPink = 3;
-		   rightCounter = (1 + (int)(Math.random() * (7)));
-		}
-		if(rand == 4){
-		    moveLeftPink();
-		    lastDirectionPink = 4;
-		   leftCounter = (1 + (int)(Math.random() * (7)));
-		}
+	if(rand == 1){
+	    if(panels[pink.getY() - 1][pink.getX()].getBorder() == null){
+		moveUpPink(image);
+		lastDirectionPink = 1;
+		upCounter = (1 + (int)(Math.random() * (4)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
 	}
-public void moveUpRed(){
+	if(rand == 2){
+	    if(panels[pink.getY() + 1][pink.getX()].getBorder() == null){ 
+		moveDownPink(image);
+		lastDirectionPink = 2;
+		downCounter = (1 + (int)(Math.random() * (4)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
+	}
+	if(rand == 3){
+	    if(panels[pink.getY()][pink.getX() + 1].getBorder() == null){ 
+		moveRightPink(image);
+		lastDirectionPink = 3;
+		rightCounter = (1 + (int)(Math.random() * (4)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
+	} 
+	if(rand == 4){
+	    if(panels[pink.getY()][pink.getX() - 1].getBorder() == null){ 
+		moveLeftPink(image);
+		lastDirectionPink = 4;
+		leftCounter = (1 + (int)(Math.random() * (4)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
+	}    
+    }
+    public void moveUpRed(ImageIcon image){
 	if(red.getY()- 1 > 0){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setY(red.getY() - 1);
+	    
+	    rg.setIcon(image);
+	    panels[red.getY()][red.getX()].setBackground(Color.BLACK);
 	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
 	    meetRed();
 	}
     }
-    public void moveDownRed(){
+    public void moveDownRed(ImageIcon image){
 	if(red.getY() + 1 < 24){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setY(red.getY() + 1);
+	   
+	    rg.setIcon(image);
+	    panels[red.getY()][red.getX()].setBackground(Color.BLACK);
 	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
 	    meetRed();
 	}
     }
-    public void moveRightRed(){
+    public void moveRightRed(ImageIcon image){
 	if(red.getX()+ 1 < 24){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setX(red.getX() + 1);
+	   
+	    rg.setIcon(image);
+	    panels[red.getY()][red.getX()].setBackground(Color.BLACK);
 	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
 	    meetRed();
 	}
     }
-    public void moveLeftRed(){
+    public void moveLeftRed(ImageIcon image){
 	if(red.getX()- 1 > 0){
 	    rg.setIcon(null);
 	    panels[red.getY()][red.getX()].repaint();
 	    red.setX(red.getX() - 1);
+	    
+	    rg.setIcon(image);
+	    panels[red.getY()][red.getX()].setBackground(Color.BLACK);
 	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
 	    meetRed();
 	}
     }
   
-    public void randomMoveRed(){
+    public void randomMoveRed(ImageIcon image){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
-		if(rand == 1){
-		   moveUpRed();
-		   lastDirectionRed = 1;
-		   upCounter = (1 + (int)(Math.random() * (7)));
-		   	}
-		if(rand == 2){
-		  moveDownRed();
-		  lastDirectionRed = 2;
-		   downCounter = (1 + (int)(Math.random() * (7)));
-		  
-		 }
-		if(rand == 3){
-		    moveRightRed();
-		    lastDirectionRed = 3;
-		   rightCounter = (1 + (int)(Math.random() * (7)));
-		}
-		if(rand == 4){
-		    moveLeftRed();
-		    lastDirectionRed = 4;
-		   leftCounter = (1 + (int)(Math.random() * (7)));
-		}
+	if(rand == 1){
+	    if(panels[red.getY() - 1][red.getX()].getBorder() == null){
+		moveUpRed(image);
+		lastDirectionRed = 1;
+		upCounter = (1 + (int)(Math.random() * (4)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
 	}
- public void meetPac(){
-	if((pac.getY() == yellow.getY() && pac.getX() == yellow.getX()) || 
-	   (pac.getY() == red.getY() && pac.getX() == red.getX()) || 
-	   (pac.getY() == pink.getY() && pac.getX() == pink.getX()) || 
-	   (pac.getY() == blue.getY() && pac.getX() == blue.getX()) 
-	   ){
-	    pac.setLives(pac.getLives() - 1);
+	if(rand == 2){
+	    if(panels[red.getY() + 1][red.getX()].getBorder() == null){
+		moveDownRed(image);
+		lastDirectionRed = 2;
+		downCounter = (1 + (int)(Math.random() * (4)));		  
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
+	}
+	if(rand == 3){
+	    if(panels[red.getY()][red.getX() + 1].getBorder() == null){
+		moveRightRed(image);
+		lastDirectionRed = 3;
+		rightCounter = (1 + (int)(Math.random() * (4)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
+	}
+	if(rand == 4){
+	    if(panels[red.getY()][red.getX() - 1].getBorder() == null){
+		moveLeftRed(image);
+		lastDirectionRed = 4;
+		leftCounter = (1 + (int)(Math.random() * (4)));
+	    }
+	    else{
+		rand = (1 + (int)(Math.random() * (4)));
+	    }
+	}
+    }
+    public void meetPac(){
+	if(isPower == false){
+	    if((pac.getY() == yellow.getY() && pac.getX() == yellow.getX()) || 
+	       (pac.getY() == red.getY() && pac.getX() == red.getX()) || 
+	       (pac.getY() == pink.getY() && pac.getX() == pink.getX()) || 
+	       (pac.getY() == blue.getY() && pac.getX() == blue.getX()) 
+	       ){
+		pac.setLives(pac.getLives() - 1);
 	  	   	   
-	    if(pac.getLives() > 0){
-		meetLives();
-	    }	  
-	    if(pac.getLives() == 0){
-		     meetNoLives();
-	     }
+		if(pac.getLives() > 0){
+		    meetLives();
+		}	  
+		if(pac.getLives() == 0){
+		    meetNoLives();
+		}
+	    }
+	}
+	if(isPower){
+	    if(pac.getY() == yellow.getY() && pac.getX() == yellow.getX()){
+		yellowRespawn();
+	    } 
+	    if(pac.getY() == red.getY() && pac.getX() == red.getX()){
+		redRespawn();
+	    }	    
+	    if(pac.getY() == pink.getY() && pac.getX() == pink.getX()){
+		pinkRespawn();
+	    }
+	    if(pac.getY() == blue.getY() && pac.getX() == blue.getX()){
+		blueRespawn();
+	    }
+	   
 	}
     }
 
     public void meetBlue(){
-	if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){	   
-	     pac.setLives(pac.getLives() - 1);
-	     if(pac.getLives() > 0){
-		 meetLives();
-	     }
-	     if(pac.getLives() == 0){
-		     meetNoLives();
-	     }
+	if(isPower == false){
+	    if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){	   
+		pac.setLives(pac.getLives() - 1);
+		if(pac.getLives() > 0){
+		    meetLives();
+		}
+		if(pac.getLives() == 0){
+		    meetNoLives();
+		}
+	    }
 	}
-    }
-    
+	if(isPower){
+	    if(blue.getY() == pac.getY() && blue.getX() == pac.getX()){
+		blueRespawn();
+
+	    }
+	}
+    }    
     public void meetRed(){
-	if(red.getY() == pac.getY() && red.getX() == pac.getX()){	    
-	     pac.setLives(pac.getLives() - 1);
-	     if(pac.getLives() > 0){
-		 meetLives();
+	if(isPower == false){
+	    if(red.getY() == pac.getY() && red.getX() == pac.getX()){	    
+		pac.setLives(pac.getLives() - 1);
+		if(pac.getLives() > 0){
+		    meetLives();
 	     
-	}	
-	       if(pac.getLives() == 0){
-		     meetNoLives();
-	     }
-       }
+		}	
+		if(pac.getLives() == 0){
+		    meetNoLives();
+		}
+	    }
+	}
+	if(isPower){
+	    if(red.getY() == pac.getY() && red.getX() == pac.getX()){
+		redRespawn();
+	    }
+	}
     }
     public void meetYellow(){
-	if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){	    
-	     pac.setLives(pac.getLives() - 1);
-	     if(pac.getLives() > 0){
-		 meetLives();
+	if(isPower == false){
+	    if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){	    
+		pac.setLives(pac.getLives() - 1);
+		if(pac.getLives() > 0){
+		    meetLives();
+		}
+		if(pac.getLives() == 0){
+		    meetNoLives();
+		}
+	    }
 	}
-	       if(pac.getLives() == 0){
-		     meetNoLives();
-	     }
-    }
+	if(isPower){
+	    if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){
+		yellowRespawn();
+	    }
+
+	}
     }
     public void meetPink(){
-	if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){	   
-	     pac.setLives(pac.getLives() - 1);
-	     if(pac.getLives() > 0){
-		 meetLives();
+	if(isPower == false){
+	    if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){	   
+		pac.setLives(pac.getLives() - 1);
+		if(pac.getLives() > 0){
+		    meetLives();
 	    	}
-	       if(pac.getLives() == 0){
-		     meetNoLives();
-	     }
+		if(pac.getLives() == 0){
+		    meetNoLives();
+		}
+	    }
+	}
+        if(isPower){
+	    if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){
+		pinkRespawn();
+	    }
 	}
     }
 
+    
+
+ 
+
     public void meetNoLives(){
 	int choice = JOptionPane.showConfirmDialog(null, "You are out of lives! Do you want to restart?", "Confirm",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+						   JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (choice == JOptionPane.NO_OPTION) {
-                System.exit(0);
+	    System.exit(0);
         } 
-            else if (choice == JOptionPane.YES_OPTION) {
-		//	Game.setVisible(false);
-		( new Game()).setVisible(true) ;
+	else if (choice == JOptionPane.YES_OPTION) {
+	    //	Game.setVisible(false);
+	    ( new Game()).setVisible(true) ;
 		
         } 
-            else if (choice == JOptionPane.CLOSED_OPTION) {
-                System.exit(0);
+	else if (choice == JOptionPane.CLOSED_OPTION) {
+	    System.exit(0);
         }
     }
 
     public void meetLives(){
-	    timerBlue.stop();
-	    timerRed.stop();
-	    timerYellow.stop();
-	    timerPink.stop();	    	   	   
-	    pacRespawn();
-	    blueRespawn();
-	    yellowRespawn();
-	    pinkRespawn();
-	    redRespawn();
-	    JOptionPane.showMessageDialog(null,"You Have" + " " + Integer.toString(pac.getLives()) + " " + "Lives Remaining!");
-	    timerBlue.start();
-	    timerRed.start();
-	    timerYellow.start();
-	    timerPink.start();
+	timerBlue.stop();
+	timerRed.stop();
+	timerYellow.stop();
+	timerPink.stop();	    	   	   
+	pacRespawn();
+	blueRespawn();
+	yellowRespawn();
+	pinkRespawn();
+	redRespawn();
+	JOptionPane.showMessageDialog(null,"You Have" + " " + Integer.toString(pac.getLives()) + " " + "Lives Remaining!");
+	timerBlue.start();
+	timerRed.start();
+	timerYellow.start();
+	timerPink.start();
     }
     public void checkWin(){
 	int sum = 0;
        	for (int x = 0; x < panels.length;x++) {
-        for (int y = 0; y < panels[x].length;y++) {
-	    sum +=  panels[x][y].getComponentCount();
-	}
+	    for (int y = 0; y < panels[x].length;y++) {
+		sum +=  panels[x][y].getComponentCount();
+	    }
 	}
 
 	if(sum < 303){
-	   win();
+	    win();
 	}
     }
     
@@ -908,74 +1258,76 @@ public void moveUpRed(){
 	timerYellow.stop();
 	timerPink.stop();
 	int choice = JOptionPane.showConfirmDialog(null, "Congratulations ,You have beat the game!  Do you want to play again?", "Confirm",
-                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+						   JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (choice == JOptionPane.NO_OPTION) {
-                System.exit(0);
+	    System.exit(0);
         } 
-            else if (choice == JOptionPane.YES_OPTION) {
+	else if (choice == JOptionPane.YES_OPTION) {
 		
-		( new Game()).setVisible(true) ;
+	    ( new Game()).setVisible(true) ;
 		
         } 
-            else if (choice == JOptionPane.CLOSED_OPTION) {
-                System.exit(0);
+	else if (choice == JOptionPane.CLOSED_OPTION) {
+	    System.exit(0);
         }
     }
 
     public void pacRespawn(){
-	    pm.setIcon(null);
-	    panels[pac.getY()][pac.getX()].repaint();
-	    pac.setX(20);
-	    pac.setY(20);
-	    panels[pac.getY()][pac.getX()].add(pm);
-	    pm.setIcon(R);
+	pm.setIcon(null);
+	panels[pac.getY()][pac.getX()].repaint();
+	pac.setX(20);
+	pac.setY(20);
+	panels[pac.getY()][pac.getX()].add(pm);
+	pm.setIcon(R);
     }
 
     public void blueRespawn(){
-	    bg.setIcon(null);
-	    panels[blue.getY()][blue.getX()].repaint();
-	    blue.setX(10);
-	    blue.setY(12);
-	    panels[blue.getY()][blue.getX()].add(bg);
-	    bg.setIcon(Inky);
+	bg.setIcon(null);
+	panels[blue.getY()][blue.getX()].repaint();
+	blue.setX(10);
+	blue.setY(12);
+	panels[blue.getY()][blue.getX()].add(bg);
+	bg.setIcon(Inky);
     }
     public void yellowRespawn(){
-            yg.setIcon(null);
-	    panels[yellow.getY()][yellow.getX()].repaint();
-	    yellow.setX(9);
-	    yellow.setY(12);
-	    panels[yellow.getY()][yellow.getX()].add(yg);
-	    yg.setIcon(Clyde);
+	yg.setIcon(null);
+	panels[yellow.getY()][yellow.getX()].repaint();
+	yellow.setX(9);
+	yellow.setY(12);
+	panels[yellow.getY()][yellow.getX()].add(yg);
+	yg.setIcon(Clyde);
     }
 
     public void redRespawn(){
-	    rg.setIcon(null);
-	    panels[red.getY()][red.getX()].repaint();
-	    red.setX(10);
-	    red.setY(13);
-	    panels[red.getY()][red.getX()].add(rg);
-	    rg.setIcon(Blinky);
+	rg.setIcon(null);
+	panels[red.getY()][red.getX()].repaint();
+	red.setX(10);
+	red.setY(13);
+	panels[red.getY()][red.getX()].add(rg);
+	rg.setIcon(Blinky);
     }
     
     public void pinkRespawn(){
-	    pg.setIcon(null);
-	    panels[pink.getY()][pink.getX()].repaint();
-	    pink.setX(10);
-	    pink.setY(11);
-	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Pinky);
+	pg.setIcon(null);
+	panels[pink.getY()][pink.getX()].repaint();
+	pink.setX(10);
+	pink.setY(11);
+	panels[pink.getY()][pink.getX()].add(pg);
+	pg.setIcon(Pinky);
     }
-    //  public void eatPower(){
+   
 	
-     public void checkPower(){
-	 if((pac.getY() != 23 || pac.getX() != 23) && (pac.getY() != 23 || pac.getX() != 1) &&
-	    ( pac.getY() != 1 || pac.getX() != 1) && (pac.getY() != 1 || pac.getX() != 23)){
-	     panels[pac.getY()][pac.getX()].removeAll();
-	 }
-	 else{
-	      panels[pac.getY()][pac.getX()].removeAll();
-     }
-     }
+    public void checkPower(){
+	if((pac.getY() != 23 || pac.getX() != 23) && (pac.getY() != 23 || pac.getX() != 1) &&
+	   ( pac.getY() != 1 || pac.getX() != 1) && (pac.getY() != 1 || pac.getX() != 23)){
+	    panels[pac.getY()][pac.getX()].removeAll();
+	}
+	else{
+	    panels[pac.getY()][pac.getX()].removeAll();
+	    isPower = true;
+	    timerPower.start();
+	}
+    }
     
     public void keyPressed(KeyEvent e){
 
@@ -992,7 +1344,8 @@ public void moveUpRed(){
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
-	    checkWin();
+	   
+	   
 	   
 	   
  	}
@@ -1003,13 +1356,13 @@ public void moveUpRed(){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
-	    // panels[pac.getY()][pac.getX()].removeAll();
+	   
 	    checkPower();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(D);
 	    meetPac();
 	    checkWin();
-  
+	   
 	}
 	
 	if(c == KeyEvent.VK_RIGHT && pac.getX() + 1 < 24 &&
@@ -1017,12 +1370,12 @@ public void moveUpRed(){
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() + 1);
-	    // panels[pac.getY()][pac.getX()].removeAll();
 	    checkPower();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(R);
 	    meetPac();
 	    checkWin();
+	    
   
 	}
 	
@@ -1031,13 +1384,13 @@ public void moveUpRed(){
        	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() - 1);
-	    //  panels[pac.getY()][pac.getX()].removeAll();
+	   
 	    checkPower();
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(L);
 	    meetPac();
 	    checkWin();
- 
+	   
 	}
     }
     
