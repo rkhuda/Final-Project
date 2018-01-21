@@ -5,6 +5,7 @@ Compiling and Run Instructions
 2. Once you run Game.java, the game will start. 
 
 Usage Instructions
+
 1.Use the arrow keys to control Pacman. The up arrow key makes Pacman go up, the down arrow key makes Pacman go down, the right arrow key makes Pacman go right, and the left arrow key makes Pacman go left.
 2. Run Pacman into a ghost, and Pacman will lose one life. Pacman has a total of 3 lives. Once you lose all three lives, you lose the game. Then, you will be given the option of restarting the game or exiting.
 3. If Pacman eats one of the four power pellets(the oversized pac-dots that are located in each corner of the maze), the ghosts will go into "Blue-Mode" for seven seconds which means that they will be eaten by Pacman if they run into each other.  
