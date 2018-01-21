@@ -1380,7 +1380,7 @@ public class Game extends JFrame implements KeyListener {
 	}
 	else{	    
 	    panels[pac.getY()][pac.getX()].removeAll();
-	    scoreCounter = scoreCounter + 1;
+	    scoreCounter = scoreCounter + 20;
 	    score.setText("" + scoreCounter);
 	    isPower = true;
 	    timerPower.start();
@@ -1402,7 +1402,7 @@ public class Game extends JFrame implements KeyListener {
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
-	    //checkWin();
+	    checkWin();
 	   
 	   
 	   
