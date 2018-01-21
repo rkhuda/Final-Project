@@ -7,7 +7,8 @@ Compiling and Run Instructions
 Usage Instructions
 1. Use the arrow keys to control Pacman. The up arrow key makes Pacman go up, the down arrow key makes Pacman go down, the right arrow key makes Pacman go right, and the left arrow key makes Pacman go left.
 2. Run Pacman into a ghost, and Pacman will lose one life. Pacman has a total of 3 lives. Once you lose all three lives, you lose the game. Then, you will be given the option of restarting the game or exiting.
-3. If Pacman eats one of the four power pellets (the oversized pac-dots that are located in each corner of the maze), the ghosts will go into "Blue-Mode" for seven seconds which means that they will be eaten by Pacman if they run into each other. In addition, your score increases by 20 points. 
+3. If Pacman eats one of the four power pellets (the oversized pac-dots that are located in each corner of the maze), the ghosts will go into "Blue-Mode" for seven seconds which means that they will be eaten by Pacman if they run into each other. Your score increases by 20 points if you eat the Power Pellet, and your score increases by 200 points every time you eat a ghost. 
+
 4. Have Pacman eat all of the dots (without touching a ghost) in order to win the game. Each time Pacman eats one of the dots, the score (displayed under the maze) increases by 1. Each time Pacman eats one of the Power Pellets, the score increases by 20.
 5. If you win the game, you will be given an option to exit the game or restart the game.
 
