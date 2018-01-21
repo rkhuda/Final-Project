@@ -1402,7 +1402,7 @@ public class Game extends JFrame implements KeyListener {
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
-	    checkWin();
+	    //checkWin();
 	   
 	   
 	   
