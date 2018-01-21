@@ -1,4 +1,4 @@
-Rai's and Luo's Pacman Game
+                                              Rai's and Luo's Pacman Game
 
 Compiling and Run Instructions
 1. Compile and run Game.java from the master branch.
