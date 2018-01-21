@@ -771,6 +771,7 @@ public void moveUpRed(ImageIcon image){
 		}
     }
     public void meetPac(){
+	if(isPower == false){
 	if((pac.getY() == yellow.getY() && pac.getX() == yellow.getX()) || 
 	   (pac.getY() == red.getY() && pac.getX() == red.getX()) || 
 	   (pac.getY() == pink.getY() && pac.getX() == pink.getX()) || 
@@ -784,6 +785,22 @@ public void moveUpRed(ImageIcon image){
 	    if(pac.getLives() == 0){
 		     meetNoLives();
 	     }
+	}
+	}
+	if(isPower){
+	    if(pac.getY() == yellow.getY() && pac.getX() == yellow.getX()){
+		yellowRespawn();
+	    } 
+	    if(pac.getY() == red.getY() && pac.getX() == red.getX()){
+		redRespawn();
+	    }	    
+	    if(pac.getY() == pink.getY() && pac.getX() == pink.getX()){
+		pinkRespawn();
+	    }
+	    if(pac.getY() == blue.getY() && pac.getX() == blue.getX()){
+		blueRespawn();
+	    }
+	   
 	}
     }
 
@@ -800,6 +817,7 @@ public void moveUpRed(ImageIcon image){
     }
     
     public void meetRed(){
+	if(isPower == false){
 	if(red.getY() == pac.getY() && red.getX() == pac.getX()){	    
 	     pac.setLives(pac.getLives() - 1);
 	     if(pac.getLives() > 0){
@@ -809,7 +827,13 @@ public void moveUpRed(ImageIcon image){
 	       if(pac.getLives() == 0){
 		     meetNoLives();
 	     }
-       }
+	}
+	}
+	if(isPower){
+	    if(red.getY() == pac.getY() && red.getX() == pac.getX()){
+		redRespawn();
+	    }
+	}
     }
     public void meetYellow(){
 	if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){	    
@@ -823,6 +847,7 @@ public void moveUpRed(ImageIcon image){
     }
     }
     public void meetPink(){
+	if(isPower == false){
 	if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){	   
 	     pac.setLives(pac.getLives() - 1);
 	     if(pac.getLives() > 0){
@@ -831,6 +856,12 @@ public void moveUpRed(ImageIcon image){
 	       if(pac.getLives() == 0){
 		     meetNoLives();
 	     }
+	}
+	}
+        if(isPower){
+	    if(pink.getY() == pac.getY() && pink.getX() == pac.getX()){
+		pinkRespawn();
+	    }
 	}
     }
 
