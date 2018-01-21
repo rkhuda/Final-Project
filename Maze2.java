@@ -139,9 +139,9 @@ public class Maze2 extends JFrame implements KeyListener {
 		
        	ActionListener BlueGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-
+		    if(isPower == false){
 		    if (lastDirectionBlue == 0)
-			randomMoveBlue();
+			randomMoveBlue(Inky);
 		    else{
 	
 	
@@ -149,30 +149,30 @@ public class Maze2 extends JFrame implements KeyListener {
 			    {
 				if (upCounter !=0)
 				    {
-					moveUpBlue();
+					moveUpBlue(Inky);
 					upCounter--;
 				    }else
-				    randomMoveBlue();			
+				    randomMoveBlue(Inky);			
 
 			    }
 			if (lastDirectionBlue == 2)
 			    {
 				if (downCounter !=0)
 				    {
-					moveDownBlue();
+					moveDownBlue(Inky);
 					downCounter--;
 				    }else
-				    randomMoveBlue();			
+				    randomMoveBlue(Inky);			
 
 			    }
 			if (lastDirectionBlue == 3)
 			    {
 				if (rightCounter !=0)
 				    {
-					moveRightBlue();
+					moveRightBlue(Inky);
 					rightCounter--;
 				    }else
-				    randomMoveBlue();			
+				    randomMoveBlue(Inky);			
 
 			    }
 		    
@@ -180,10 +180,10 @@ public class Maze2 extends JFrame implements KeyListener {
 			    {
 				if (leftCounter !=0)
 				    {
-					moveLeftBlue();
+					moveLeftBlue(Inky);
 					leftCounter--;
 				    }else
-				    randomMoveBlue();			
+				    randomMoveBlue(Inky);			
 
 			    }
 		    
@@ -191,7 +191,63 @@ public class Maze2 extends JFrame implements KeyListener {
 
 	
 		    }
+		    }
+		    if(isPower){
+			if (lastDirectionBlue == 0)
+			randomMoveBlue(scaredGhost);
+		    else{
+	
+	
+			if (lastDirectionBlue == 1)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpBlue(scaredGhost);
+					upCounter--;
+				    }else
+				    randomMoveBlue(scaredGhost);			
+
+			    }
+			if (lastDirectionBlue == 2)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownBlue(scaredGhost);
+					downCounter--;
+				    }else
+				    randomMoveBlue(scaredGhost);			
+
+			    }
+			if (lastDirectionBlue == 3)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightBlue(scaredGhost);
+					rightCounter--;
+				    }else
+				    randomMoveBlue(scaredGhost);			
+
+			    }
+		    
+			if (lastDirectionBlue == 4)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftBlue(scaredGhost);
+					leftCounter--;
+				    }else
+				    randomMoveBlue(scaredGhost);			
+
+			    }
+		    
+
+
+	
+		    }
+		    }
 		}
+
+			
 	    };
         timerBlue = new Timer(200, BlueGhost);
         timerBlue.setRepeats(true);
@@ -199,9 +255,9 @@ public class Maze2 extends JFrame implements KeyListener {
 	
 ActionListener YellowGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-
+		    if(isPower == false){
 		    if (lastDirectionYellow == 0)
-			randomMoveYellow();
+			randomMoveYellow(Clyde);
 		    else{
 	
 	
@@ -209,30 +265,30 @@ ActionListener YellowGhost = new ActionListener() {
 			    {
 				if (upCounter !=0)
 				    {
-					moveUpYellow();
+					moveUpYellow(Clyde);
 					upCounter--;
 				    }else
-				    randomMoveYellow();			
+				    randomMoveYellow(Clyde);			
 
 			    }
 			if (lastDirectionYellow == 4)
 			    {
 				if (downCounter !=0)
 				    {
-					moveDownYellow();
+					moveDownYellow(Clyde);
 					downCounter--;
 				    }else
-				    randomMoveYellow();			
+				    randomMoveYellow(Clyde);			
 
 			    }
 			if (lastDirectionYellow == 5)
 			    {
 				if (rightCounter !=0)
 				    {
-					moveRightYellow();
+					moveRightYellow(Clyde);
 					rightCounter--;
 				    }else
-				    randomMoveYellow();			
+				    randomMoveYellow(Clyde);			
 
 			    }
 		    
@@ -240,10 +296,10 @@ ActionListener YellowGhost = new ActionListener() {
 			    {
 				if (leftCounter !=0)
 				    {
-					moveLeftYellow();
+					moveLeftYellow(Clyde);
 					leftCounter--;
 				    }else
-				    randomMoveYellow();			
+				    randomMoveYellow(Clyde);			
 
 			    }
 		    
@@ -251,7 +307,62 @@ ActionListener YellowGhost = new ActionListener() {
 
 	
 		    }
+		    }
+		    if(isPower){
+			 if (lastDirectionYellow == 0)
+			randomMoveYellow(scaredGhost);
+		    else{
+	
+	
+			if (lastDirectionYellow == 3)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpYellow(scaredGhost);
+					upCounter--;
+				    }else
+				    randomMoveYellow(scaredGhost);			
+
+			    }
+			if (lastDirectionYellow == 4)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownYellow(scaredGhost);
+					downCounter--;
+				    }else
+				    randomMoveYellow(scaredGhost);			
+
+			    }
+			if (lastDirectionYellow == 5)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightYellow(scaredGhost);
+					rightCounter--;
+				    }else
+				    randomMoveYellow(scaredGhost);	
+
+			    }
+		    
+			if (lastDirectionYellow == 6)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftYellow(scaredGhost);
+					leftCounter--;
+				    }else
+				    randomMoveYellow(scaredGhost);			
+
+			    }
+		    
+
+
+	
+		    }
+		    }
 		}
+		
 	    };
         timerYellow = new Timer(200, YellowGhost);
         timerYellow.setRepeats(true);
@@ -259,9 +370,9 @@ ActionListener YellowGhost = new ActionListener() {
 	
 ActionListener PinkGhost = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-
+		    if(isPower == false){
 		    if (lastDirectionPink == 0)
-			randomMovePink();
+			randomMovePink(Pinky);
 		    else{
 	
 	
@@ -269,30 +380,30 @@ ActionListener PinkGhost = new ActionListener() {
 			    {
 				if (upCounter !=0)
 				    {
-					moveUpPink();
+					moveUpPink(Pinky);
 					upCounter--;
 				    }else
-				    randomMovePink();			
+				    randomMovePink(Pinky);			
 
 			    }
 			if (lastDirectionPink == 2)
 			    {
 				if (downCounter !=0)
 				    {
-					moveDownPink();
+					moveDownPink(Pinky);
 					downCounter--;
 				    }else
-				    randomMovePink();			
+				    randomMovePink(Pinky);			
 
 			    }
 			if (lastDirectionPink == 3)
 			    {
 				if (rightCounter !=0)
 				    {
-					moveRightPink();
+					moveRightPink(Pinky);
 					rightCounter--;
 				    }else
-				    randomMovePink();			
+				    randomMovePink(Pinky);			
 
 			    }
 		    
@@ -300,10 +411,10 @@ ActionListener PinkGhost = new ActionListener() {
 			    {
 				if (leftCounter !=0)
 				    {
-					moveLeftPink();
+					moveLeftPink(Pinky);
 					leftCounter--;
 				    }else
-				    randomMovePink();			
+				    randomMovePink(Pinky);			
 
 			    }
 		    
@@ -311,8 +422,60 @@ ActionListener PinkGhost = new ActionListener() {
 
 	
 		    }
+		    }
+		    if(isPower){
+			 if (lastDirectionPink == 0)
+			randomMovePink(scaredGhost);
+			 else{
+	
+	
+			if (lastDirectionPink == 1)
+			    {
+				if (upCounter !=0)
+				    {
+					moveUpPink(scaredGhost);
+					upCounter--;
+				    }else
+				    randomMovePink(scaredGhost);			
+
+			    }
+			if (lastDirectionPink == 2)
+			    {
+				if (downCounter !=0)
+				    {
+					moveDownPink(scaredGhost);
+					downCounter--;
+				    }else
+				    randomMovePink(scaredGhost);			
+
+			    }
+			if (lastDirectionPink == 3)
+			    {
+				if (rightCounter !=0)
+				    {
+					moveRightPink(scaredGhost);
+					rightCounter--;
+				    }else
+				    randomMovePink(scaredGhost);			
+
+			    }
+		    
+			if (lastDirectionPink == 4)
+			    {
+				if (leftCounter !=0)
+				    {
+					moveLeftPink(scaredGhost);
+					leftCounter--;
+				    }else
+				    randomMovePink(scaredGhost);			
+
+			    }
+			 }
+		    }
 		}
-	    };
+		
+		
+		};
         timerPink = new Timer(200, PinkGhost);
         timerPink.setRepeats(true);
         timerPink.start();
@@ -490,68 +653,68 @@ ActionListener RedGhost = new ActionListener() {
     
     }
 
-    public void moveUpBlue(){
+    public void moveUpBlue(ImageIcon image){
 	if(blue.getY()- 1 >= 0){
 	    bg.setIcon(null);
 	    panels[blue.getY()][blue.getX()].repaint();
 	    blue.setY(blue.getY() - 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
-	    bg.setIcon(Inky);
+	    bg.setIcon(image);
 	    meetBlue();
 	}
     }
-    public void moveDownBlue(){
+    public void moveDownBlue(ImageIcon image){
 	if(blue.getY() + 1 <= 39){
 	    bg.setIcon(null);
 	    panels[blue.getY()][blue.getX()].repaint();
 	    blue.setY(blue.getY() + 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
-	    bg.setIcon(Inky);
+	    bg.setIcon(image);
 	    meetBlue();
 	}
     }
-    public void moveRightBlue(){
+    public void moveRightBlue(ImageIcon image){
 	if(blue.getX()+ 1 <= 39){
 	    bg.setIcon(null);
 	    panels[blue.getY()][blue.getX()].repaint();
 	    blue.setX(blue.getX() + 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
-	    bg.setIcon(Inky);
+	    bg.setIcon(image);
 	    meetBlue();
 	}
     }
-    public void moveLeftBlue(){
+    public void moveLeftBlue(ImageIcon image){
 	if(blue.getX()- 1 >= 0){
 	    bg.setIcon(null);
 	    panels[blue.getY()][blue.getX()].repaint();
 	    blue.setX(blue.getX() - 1);
 	    panels[blue.getY()][blue.getX()].add(bg);
-	    bg.setIcon(Inky);
+	    bg.setIcon(image);
 	    meetBlue();
 	}
     }
   
-    public void randomMoveBlue(){
+    public void randomMoveBlue(ImageIcon image){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
 		if(rand == 1){
-		   moveUpBlue();
+		   moveUpBlue(image);
 		   lastDirectionBlue = 1;
 		   upCounter = (1 + (int)(Math.random() * (7)));
 		   	}
 		if(rand == 2){
-		  moveDownBlue();
+		  moveDownBlue(image);
 		  lastDirectionBlue = 2;
 		   downCounter = (1 + (int)(Math.random() * (7)));
 		  
 		 }
 		if(rand == 3){
-		    moveRightBlue();
+		    moveRightBlue(image);
 		    lastDirectionBlue = 3;
 		   rightCounter = (1 + (int)(Math.random() * (7)));
 		}
 		if(rand == 4){
-		    moveLeftBlue();
+		    moveLeftBlue(image);
 		    lastDirectionBlue = 4;
 		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
@@ -563,135 +726,135 @@ ActionListener RedGhost = new ActionListener() {
 
 
 
-public void moveUpYellow(){
+public void moveUpYellow(ImageIcon image){
 	if(yellow.getY()- 1 >= 0){
 	    yg.setIcon(null);
 	    panels[yellow.getY()][yellow.getX()].repaint();
 	    yellow.setY(yellow.getY() - 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
-	    yg.setIcon(Clyde);
+	    yg.setIcon(image);
 	    meetYellow();
 	}
     }
-    public void moveDownYellow(){
+    public void moveDownYellow(ImageIcon image){
 	if(yellow.getY() + 1 <= 39){
 	    yg.setIcon(null);
 	    panels[yellow.getY()][yellow.getX()].repaint();
 	    yellow.setY(yellow.getY() + 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
-	    yg.setIcon(Clyde);
+	    yg.setIcon(image);
 	    meetYellow();
 	}
     }
-    public void moveRightYellow(){
+    public void moveRightYellow(ImageIcon image){
 	if(yellow.getX()+ 1 <= 39){
 	    yg.setIcon(null);
 	    panels[yellow.getY()][yellow.getX()].repaint();
 	    yellow.setX(yellow.getX() + 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
-	    yg.setIcon(Clyde);
+	    yg.setIcon(image);
 	    meetYellow();
 	}
     }
-    public void moveLeftYellow(){
+    public void moveLeftYellow(ImageIcon image){
 	if(yellow.getX()- 1 >= 0){
 	    yg.setIcon(null);
 	    panels[yellow.getY()][yellow.getX()].repaint();
 	    yellow.setX(yellow.getX() - 1);
 	    panels[yellow.getY()][yellow.getX()].add(yg);
-	    yg.setIcon(Clyde);
+	    yg.setIcon(image);
 	    meetYellow();
 	}
     }
   
-    public void randomMoveYellow(){
+    public void randomMoveYellow(ImageIcon image){
 	int rand = (3 + (int)(Math.random() * (5)));
  		
 		if(rand == 3){
-		   moveUpYellow();
+		   moveUpYellow(image);
 		   lastDirectionYellow = 3;
 		   upCounter = (1 + (int)(Math.random() * (7)));
 		   	}
 		if(rand == 4){
-		  moveDownYellow();
+		  moveDownYellow(image);
 		  lastDirectionYellow = 4;
 		   downCounter = (1 + (int)(Math.random() * (7)));
 		  
 		 }
 		if(rand == 5){
-		    moveRightYellow();
+		    moveRightYellow(image);
 		    lastDirectionYellow = 5;
 		   rightCounter = (1 + (int)(Math.random() * (7)));
 		}
 		if(rand == 6 || rand == 7){
-		    moveLeftYellow();
+		    moveLeftYellow(image);
 		    lastDirectionYellow = 6;
 		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
     }
 
-public void moveUpPink(){
+public void moveUpPink(ImageIcon image){
 	if(pink.getY()- 1 >= 0){
 	    pg.setIcon(null);
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setY(pink.getY() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Pinky);
+	    pg.setIcon(image);
 	    meetPink();
 	}
     }
-    public void moveDownPink(){
+    public void moveDownPink(ImageIcon image){
 	if(pink.getY() + 1 <= 39){
 	    pg.setIcon(null);
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setY(pink.getY() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Pinky);
+	    pg.setIcon(image);
 	    meetPink();
 	}
     }
-    public void moveRightPink(){
+    public void moveRightPink(ImageIcon image){
 	if(pink.getX()+ 1 <= 39){
 	    pg.setIcon(null);
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setX(pink.getX() + 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Pinky);
+	    pg.setIcon(image);
 	    meetPink();
 	}
     }
-    public void moveLeftPink(){
+    public void moveLeftPink(ImageIcon image){
 	if(pink.getX()- 1 >= 0){
 	    pg.setIcon(null);
 	    panels[pink.getY()][pink.getX()].repaint();
 	    pink.setX(pink.getX() - 1);
 	    panels[pink.getY()][pink.getX()].add(pg);
-	    pg.setIcon(Pinky);
+	    pg.setIcon(image);
 	    meetPink();
 	}
     }
   
-    public void randomMovePink(){
+    public void randomMovePink(ImageIcon image){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
 		if(rand == 1){
-		   moveUpPink();
+		   moveUpPink(image);
 		   lastDirectionPink = 1;
 		   upCounter = (1 + (int)(Math.random() * (7)));
 		   	}
 		if(rand == 2){
-		  moveDownPink();
+		  moveDownPink(image);
 		  lastDirectionPink = 2;
 		   downCounter = (1 + (int)(Math.random() * (7)));
 		  
 		 }
 		if(rand == 3){
-		    moveRightPink();
+		    moveRightPink(image);
 		    lastDirectionPink = 3;
 		   rightCounter = (1 + (int)(Math.random() * (7)));
 		}
 		if(rand == 4){
-		    moveLeftPink();
+		    moveLeftPink(image);
 		    lastDirectionPink = 4;
 		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
