@@ -1322,7 +1322,7 @@ public class Game extends JFrame implements KeyListener {
 	   ( pac.getY() != 1 || pac.getX() != 1) && (pac.getY() != 1 || pac.getX() != 23)){
 	    panels[pac.getY()][pac.getX()].removeAll();
 	}
-	else{
+	else{	    
 	    panels[pac.getY()][pac.getX()].removeAll();
 	    isPower = true;
 	    timerPower.start();
@@ -1338,9 +1338,9 @@ public class Game extends JFrame implements KeyListener {
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() - 1);
-	    // if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){
-	    //panels[pac.getY()][pac.getX()].removeAll();
+	    if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){	   
 	    checkPower();
+	    }
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(U);
 	    meetPac();
@@ -1356,8 +1356,9 @@ public class Game extends JFrame implements KeyListener {
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setY(pac.getY() + 1);
-	   
+	    if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){	   
 	    checkPower();
+	    }
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(D);
 	    meetPac();
@@ -1370,7 +1371,9 @@ public class Game extends JFrame implements KeyListener {
 	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() + 1);
+	    if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){	   
 	    checkPower();
+	    }
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(R);
 	    meetPac();
@@ -1384,8 +1387,9 @@ public class Game extends JFrame implements KeyListener {
        	    pm.setIcon(null);
 	    panels[pac.getY()][pac.getX()].repaint();
 	    pac.setX(pac.getX() - 1);
-	   
+	    if(panels[pac.getY()][pac.getX()].getComponentCount() > 0){	   
 	    checkPower();
+	    }
 	    panels[pac.getY()][pac.getX()].add(pm);
 	    pm.setIcon(L);
 	    meetPac();
