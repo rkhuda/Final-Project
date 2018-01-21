@@ -11,44 +11,14 @@ public class Game extends JFrame implements KeyListener {
 
     private Container pane;
     private JPanel[][] panels;
-
-    private JLabel con;
-    private JLabel pm;
-    private JLabel bg;
-    private JLabel yg;
-    private JLabel pg;
-    private JLabel rg;
-    private JLabel pd;
-    private JLabel b;
-    private JLabel power;
-
-    private ImageIcon R;
-    private ImageIcon L;
-    private ImageIcon U;
-    private ImageIcon D;
-    private ImageIcon Inky;
-    private ImageIcon Clyde;
-    private ImageIcon Pinky;
-    private ImageIcon Blinky;
-    private ImageIcon Pacdot;
-    private ImageIcon Power;
-
+    private JLabel con, pm, bg, yg, pg, rg, pd, b ,power;
+    private ImageIcon R, L, U, D, Inky, Clyde, Pinky, Blinky, Pacdot, scaredGhost;  
     private Pacman pac;
-
-    private Enemy blue;
-    private Enemy yellow;
-    private Enemy pink;
-    private Enemy red;
-
-    private Timer timerBlue;
-    private Timer timerYellow;
-    private Timer timerPink;
-    private Timer timerRed;
-      
+    private Enemy blue, yellow, pink , red;
+    private Timer timerBlue, timerYellow, timerRed, timerPower, timerPink;
     private int upCounter, downCounter, rightCounter, leftCounter;
     private int lastDirectionBlue, lastDirectionYellow, lastDirectionPink,lastDirectionRed;
-    
-    private Boolean isPower;
+    private boolean isPower;
 
     public Game(){
 	
@@ -122,6 +92,13 @@ public class Game extends JFrame implements KeyListener {
 	rg = new JLabel();
         red = new Enemy(10, 13);
 	
+        scaredGhost = new ImageIcon("scaredGhost.png");
+	Image image6 = scaredGhost.getImage(); // transform it
+	Image newimg6 = image6.getScaledInstance(23,23,  java.awt.Image.SCALE_SMOOTH);
+	scaredGhost = new ImageIcon(newimg6);  // transform it back
+	sg = new JLabel();
+
+
 	pane.setLayout(new GridLayout(25, 25));
 	panels = new JPanel[25][25];
 	
@@ -265,7 +242,7 @@ public class Game extends JFrame implements KeyListener {
 		    b.setIcon(null);
 		    b.setBackground(Color.BLUE);
 		}
-		/*
+		
 		//make center box
 		if ((x == 9 || x == 11) && (y == 10 || y == 11 ||  y == 13 ||
 					    y == 14)) {
@@ -284,7 +261,7 @@ public class Game extends JFrame implements KeyListener {
 		    b.setBackground(Color.BLUE);
 
 		}
-		*/
+		
 	    }
 	}
 
@@ -584,48 +561,29 @@ ActionListener RedGhost = new ActionListener() {
 	}
     }
 
-   public void randomMoveBlue(){
+    public void randomMoveBlue(){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
-		if(rand == 1) {
-		    if (panels[blue.getY() - 1][blue.getX()].getBorder() == null) {
-			moveUpBlue();
-			lastDirectionBlue = 1;
-			upCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
+		if(rand == 1){
+		   moveUpBlue();
+		   lastDirectionBlue = 1;
+		   upCounter = (1 + (int)(Math.random() * (7)));
+		   	}
+		if(rand == 2){
+		  moveDownBlue();
+		  lastDirectionBlue = 2;
+		   downCounter = (1 + (int)(Math.random() * (7)));
+		  
+		 }
+		if(rand == 3){
+		    moveRightBlue();
+		    lastDirectionBlue = 3;
+		   rightCounter = (1 + (int)(Math.random() * (7)));
 		}
-		if(rand == 2) {
-		    if (panels[blue.getY() + 1][blue.getX()].getBorder() == null) {
-			moveDownBlue();
-			lastDirectionBlue = 2;
-			downCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
-		}
-		if(rand == 3) {
-		    if (panels[blue.getY()][blue.getX() + 1].getBorder() == null) {
-			moveRightBlue();
-			lastDirectionBlue = 3;
-			rightCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
-		}
-		if(rand == 4) {
-		    if (panels[blue.getY()][blue.getX() - 1].getBorder() == null) {
-			moveLeftBlue();
-			lastDirectionBlue = 4;
-			leftCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else{
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
+		if(rand == 4){
+		    moveLeftBlue();
+		    lastDirectionBlue = 4;
+		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
 	}
 
@@ -680,44 +638,25 @@ public void moveUpYellow(){
 	int rand = (3 + (int)(Math.random() * (5)));
  		
 		if(rand == 3){
-		    if (panels[yellow.getY() - 1][yellow.getX()].getBorder() == null) {
-			moveUpYellow();
-			lastDirectionYellow = 3;
-			upCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (3 + (int)(Math.random() * (5)));
-		    }
-		}
+		   moveUpYellow();
+		   lastDirectionYellow = 3;
+		   upCounter = (1 + (int)(Math.random() * (7)));
+		   	}
 		if(rand == 4){
-		    if (panels[yellow.getY() + 1][yellow.getX()].getBorder() == null) {
-			moveDownYellow();
-			lastDirectionYellow = 4;
-			downCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (3 + (int)(Math.random() * (5)));
-		    }
+		  moveDownYellow();
+		  lastDirectionYellow = 4;
+		   downCounter = (1 + (int)(Math.random() * (7)));
+		  
 		 }
 		if(rand == 5){
-		    if (panels[yellow.getY()][yellow.getX() + 1].getBorder() == null) {
-			moveRightYellow();
-			lastDirectionYellow = 5;
-			rightCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (3 + (int)(Math.random() * (5)));
-		    }
+		    moveRightYellow();
+		    lastDirectionYellow = 5;
+		   rightCounter = (1 + (int)(Math.random() * (7)));
 		}
 		if(rand == 6 || rand == 7){
-		    if (panels[yellow.getY()][yellow.getX() - 1].getBorder() == null) {
-			moveLeftYellow();
-			lastDirectionYellow = 6;
-			leftCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (3 + (int)(Math.random() * (5)));
-		    }
+		    moveLeftYellow();
+		    lastDirectionYellow = 6;
+		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
     }
 
@@ -766,46 +705,27 @@ public void moveUpPink(){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
 		if(rand == 1){
-		    if (panels[pink.getY() - 1][pink.getX()].getBorder() == null) {
-			moveUpPink();
-			lastDirectionPink = 1;
-			upCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
-		}
+		   moveUpPink();
+		   lastDirectionPink = 1;
+		   upCounter = (1 + (int)(Math.random() * (7)));
+		   	}
 		if(rand == 2){
-		    if (panels[pink.getY() + 1][pink.getX()].getBorder() == null) {
-			moveDownPink();
-			lastDirectionPink = 2;
-			downCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
+		  moveDownPink();
+		  lastDirectionPink = 2;
+		   downCounter = (1 + (int)(Math.random() * (7)));
+		  
 		 }
 		if(rand == 3){
-		    if (panels[pink.getY()][pink.getX() + 1].getBorder() == null) {
-			moveRightPink();
-			lastDirectionPink = 3;
-			rightCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
+		    moveRightPink();
+		    lastDirectionPink = 3;
+		   rightCounter = (1 + (int)(Math.random() * (7)));
 		}
 		if(rand == 4){
-		    if (panels[pink.getY()][pink.getX() - 1].getBorder() == null) {
-			moveLeftPink();
-			lastDirectionPink = 4;
-			leftCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
+		    moveLeftPink();
+		    lastDirectionPink = 4;
+		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
-    }
+	}
 public void moveUpRed(){
 	if(red.getY()- 1 > 0){
 	    rg.setIcon(null);
@@ -851,46 +771,27 @@ public void moveUpRed(){
 	int rand = (1 + (int)(Math.random() * (4)));
  		
 		if(rand == 1){
-		    if (panels[red.getY() - 1][red.getX()].getBorder() == null) {
-			moveUpRed();
-			lastDirectionRed = 1;
-			upCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
-		}
+		   moveUpRed();
+		   lastDirectionRed = 1;
+		   upCounter = (1 + (int)(Math.random() * (7)));
+		   	}
 		if(rand == 2){
-		    if (panels[red.getY() + 1][red.getX()].getBorder() == null) {
-			moveDownRed();
-			lastDirectionRed = 2;
-			downCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
+		  moveDownRed();
+		  lastDirectionRed = 2;
+		   downCounter = (1 + (int)(Math.random() * (7)));
+		  
 		 }
 		if(rand == 3){
-		    if (panels[red.getY()][red.getX() + 1].getBorder() == null) {
-			moveRightRed();
-			lastDirectionRed = 3;
-			rightCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
+		    moveRightRed();
+		    lastDirectionRed = 3;
+		   rightCounter = (1 + (int)(Math.random() * (7)));
 		}
 		if(rand == 4){
-		    if (panels[red.getY()][red.getX() - 1].getBorder() == null) {
-			moveLeftRed();
-			lastDirectionRed = 4;
-			leftCounter = (1 + (int)(Math.random() * (4)));
-		    }
-		    else {
-			rand = (1 + (int)(Math.random() * (4)));
-		    }
+		    moveLeftRed();
+		    lastDirectionRed = 4;
+		   leftCounter = (1 + (int)(Math.random() * (7)));
 		}
-    }
+	}
  public void meetPac(){
 	if((pac.getY() == yellow.getY() && pac.getX() == yellow.getX()) || 
 	   (pac.getY() == red.getY() && pac.getX() == red.getX()) || 
@@ -1064,7 +965,8 @@ public void moveUpRed(){
 	    panels[pink.getY()][pink.getX()].add(pg);
 	    pg.setIcon(Pinky);
     }
-  
+    //  public void eatPower(){
+	
      public void checkPower(){
 	 if((pac.getY() != 23 || pac.getX() != 23) && (pac.getY() != 23 || pac.getX() != 1) &&
 	    ( pac.getY() != 1 || pac.getX() != 1) && (pac.getY() != 1 || pac.getX() != 23)){
