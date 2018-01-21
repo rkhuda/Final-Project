@@ -805,6 +805,7 @@ public void moveUpRed(ImageIcon image){
     }
 
     public void meetBlue(){
+	if(isPower == false){
 	if(blue.getY() == pac.getY()&& blue.getX() == pac.getX()){	   
 	     pac.setLives(pac.getLives() - 1);
 	     if(pac.getLives() > 0){
@@ -814,8 +815,14 @@ public void moveUpRed(ImageIcon image){
 		     meetNoLives();
 	     }
 	}
+	}
+	if(isPower){
+	    if(blue.getY() == pac.getY() && blue.getX() == pac.getX()){
+		blueRespawn();
+
     }
-    
+	}
+    }    
     public void meetRed(){
 	if(isPower == false){
 	if(red.getY() == pac.getY() && red.getX() == pac.getX()){	    
@@ -836,6 +843,7 @@ public void moveUpRed(ImageIcon image){
 	}
     }
     public void meetYellow(){
+	if(isPower == false){
 	if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){	    
 	     pac.setLives(pac.getLives() - 1);
 	     if(pac.getLives() > 0){
@@ -844,6 +852,13 @@ public void moveUpRed(ImageIcon image){
 	       if(pac.getLives() == 0){
 		     meetNoLives();
 	     }
+    }
+	}
+	if(isPower){
+	    if(yellow.getY() == pac.getY() && yellow.getX() == pac.getX()){
+		yellowRespawn();
+	    }
+
     }
     }
     public void meetPink(){
